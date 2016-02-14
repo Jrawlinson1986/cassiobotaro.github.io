@@ -1,121 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <meta charset="utf-8" />
-        <title>Import None - Sublime</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom">
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="Cássio Botaro" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="Import None"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Import None"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content=""/>
+  <title>Import None &ndash; Category: Sublime</title>
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="/theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=""></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+          <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+          <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+          <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Import None </a></h1>
-                <nav><ul>
-                    <li><a href="/category/linux.html">Linux</a></li>
-                    <li><a href="/category/python.html">Python</a></li>
-                    <li><a href="/category/python3.html">Python3</a></li>
-                    <li class="active"><a href="/category/sublime.html">Sublime</a></li>
-                    <li><a href="/category/vim.html">Vim</a></li>
-                    <li><a href="/category/web2py.html">web2py</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<article>
+  <header>
+    <h2><a href="/meu-ambiente.html#meu-ambiente">Meu ambiente de trabalho</a></h2>
+    <p>
+      Posted on Qua 25 março 2015 in <a href="/category/sublime.html">Sublime</a>
+      &#8226; Tagged with
+      <a href="/tag/python.html">python</a>,      <a href="/tag/sublimetext.html">sublimetext</a>,      <a href="/tag/iniciantes.html">iniciantes</a>    </p>
+  </header>
+  <div>
+      <p>Apresentação do meu ambiente de trabalho para programação em Python(e web).</p>
+      <a class="btn" href="/meu-ambiente.html#meu-ambiente">Continue reading</a>
+  </div>
+</article>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/meu-ambiente.html">Meu ambiente de trabalho</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2015-03-25T03:00:00-03:00">
-                Published: Qua 25 março 2015
-        </abbr>
+  <div class="pagination">
+  </div>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
-        </address>
-<p>In <a href="/category/sublime.html">Sublime</a>.</p>
-<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/sublimetext.html">sublimetext</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
-</footer><!-- /.post-info --><h2>Frustração</h2>
-<p>Sempre fui perfeccionista com meu editor de texto, já tentei várias ide's, mas sempre ficava faltando algum recurso que eu queria ou era pesada pra carregar e lenta na execução.
-Spyder era legal, seu debugger é um dos melhores, o pydev era pesado, mas também interessante, Ninja IDE me atendeu por um tempo mais ainda assim não totalmente. Pycharm, gedit(até escrevi plugin para ele) e mais uma infinidade de editores.
-Sempre tinha um recurso que faltava e eu não conseguia me decidir.
-Foi ai que comecei com vim, utilizei por um tempo, mas eu gastava muito tempo configurando para torna-lo da maneira que eu gostava.
-Nesta época comecei a escrever scripts para automatzar os processos.</p>
-<h2>Solução</h2>
-<p>Sempre digo a todos, o melhor editor é aquele ao qual você mais se adapta e  se torna produtivo. O Sublime Text foi o que mais me identifiquei, logo aprendi os seus atalhos e adotei como editor padrao.
-Mas ainda faltava os vários recursos que outros editores me forneciam.
-Com a necessidade de preparar um abiente para programação python e personalizar o editor de texto, surgiu o <a href="https://github.com/cassiobotaro/my_environment">my_enviroment</a>.</p>
-<h2>Meu Ambiente</h2>
-<p>Abaixo alguns recursos da minha configuração.</p>
-<h3>ATENÇÂO: O script foi desenvolvido e testado em Ubuntu e linux Mint</h3>
-<h2>Isolamento de ambientes virtuais utilizando virtualenvwrapper</h2>
-<p><img alt="virtualenv" src="/images/virtualenv.png" title="Virtualenv" />
-<img alt="ambiente isolado" src="/images/ambientes_isolados.png" title="Ambientes isolados" /></p>
-<h2>Ipython</h2>
-<h3>Terminal interativo com esteroides</h3>
-<p><img alt="ipython" src="/images/ipython.png" title="Ipython" /></p>
-<h2>Complete para Django e Web2py</h2>
-<h3>Auto completar para web2py e django, vários snippets</h3>
-<p><img alt="Django" src="/images/django.png" />
-<img alt="web2py" src="/images/web2py.png" /></p>
-<h2>Um pouco de JS</h2>
-<h3>Auto completar e formatação</h3>
-<p><img alt="antes_format_js" src="/images/antes_format_js.png" />
-<img alt="depois_format_js" src="/images/depois_format_js.png" />
-<img alt="console_log" src="/images/console_log.png" />
-<img alt="query_selector" src="/images/query_selector.png" /></p>
-<h1>Integração com git</h1>
-<h3>Comandos como push, pull, diff, status, etc, além do gutter que indica onde os arquivos foram modificados</h3>
-<p><img alt="git" src="/images/git.png" />
-<img alt="gutter" src="/images/gutter.png" /></p>
-<h2>REPL</h2>
-<h3>Terminal interativo para python, bash e outros. Sem contar a opção de debug.</h3>
-<p><img alt="repl_python" src="/images/repl_python.png" />
-<img alt="repl_shell" src="/images/repl_shell.png" /></p>
-<h2>Emmet</h2>
-<h3>Facilitando algum front-end</h3>
-<p><img alt="emmet1" src="/images/emmet1.png" />
-<img alt="emmet2" src="/images/emmet2.png" />
-<img alt="emmet3" src="/images/emmet3.png" />
-<img alt="emmet4" src="/images/emmet4.png" /></p>
-<h2>E muito mais</h2>
-<p><img alt="docstring" src="/images/docstring.png" />
-<img alt="highcolor" src="/images/highcolor.png" />
-<img alt="markdown_editing" src="/images/markdown_editing.png" />
-<img alt="preview_mark" src="/images/preview_mark.png" />
-<img alt="requirements_txt" src="/images/requirements_txt.png" /></p>
-<p>Curtiu? Dê uma estrelinha pro projeto e faça seu fork e suas próprias configurações.</p>                </article>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+    <footer>
+        <p>&copy; Cássio Botaro </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
 
-</body>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Import None ",
+  "url" : "",
+  "image": "",
+  "description": ""
+}
+</script></body>
 </html>

@@ -1,134 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <meta charset="utf-8" />
-        <title>Import None - dotfiles</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom">
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="Cássio Botaro" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="Import None"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Import None"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content=""/>
+  <title>Import None &ndash; Tag: dotfiles</title>
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="/theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=""></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+          <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+          <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+          <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Import None </a></h1>
-                <nav><ul>
-                    <li><a href="/category/linux.html">Linux</a></li>
-                    <li><a href="/category/python.html">Python</a></li>
-                    <li><a href="/category/python3.html">Python3</a></li>
-                    <li><a href="/category/sublime.html">Sublime</a></li>
-                    <li><a href="/category/vim.html">Vim</a></li>
-                    <li><a href="/category/web2py.html">web2py</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<article>
+  <header>
+    <h2><a href="/mv-bash-zsh.html#mv-bash-zsh">mv /bin/bash /bin/zsh</a></h2>
+    <p>
+      Posted on Dom 09 agosto 2015 in <a href="/category/linux.html">Linux</a>
+      &#8226; Tagged with
+      <a href="/tag/linux.html">linux</a>,      <a href="/tag/dotfiles.html">dotfiles</a>,      <a href="/tag/iniciantes.html">iniciantes</a>    </p>
+  </header>
+  <div>
+      <p>Why I changed from bash to zsh and how I made my new config.</p>
+      <a class="btn" href="/mv-bash-zsh.html#mv-bash-zsh">Continue reading</a>
+  </div>
+</article>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/mv-bash-zsh.html">mv /bin/bash /bin/zsh</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2015-08-09T01:00:00-03:00">
-                Published: Dom 09 agosto 2015
-        </abbr>
+  <div class="pagination">
+  </div>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
-        </address>
-<p>In <a href="/category/linux.html">Linux</a>.</p>
-<p>tags: <a href="/tag/linux.html">linux</a> <a href="/tag/dotfiles.html">dotfiles</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
-</footer><!-- /.post-info --><p><img alt="logo-zsh" src="/images/oh-my-zsh-logo.png" title="Logo zsh" /></p>
-<h2>Motivation</h2>
-<p>A while ago, when I spoke at Santa Rita in Inatel, my laptop doesn't work with the projector. Then I had to use a friend's Mac with zsh. I love what I saw and decided that some day I'd give a chance to that shell.</p>
-<p>Two months later I wrote my own .bashrc with some shortcuts to improve my productivity.</p>
-<p>The result was <a href="https://github.com/cassiobotaro/dot_files">https://github.com/cassiobotaro/dot_files</a>.</p>
-<p>Then, yesterday, I did a fresh xubuntu install and finally gave a chance to zsh, and I'm in love.</p>
-<h2>Disclaimer</h2>
-<p>Works on Ubuntu with any interface, and works too in all *unix system, only changing the instalation commands.</p>
-<p>If you have a question, look the references at the end of post. </p>
-<h2>Step by step</h2>
-<p>First install zsh. As I said, xubuntu is my distro, then I only have to write:</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; sudo apt-get install zsh
-</pre></div>
-
-
-<p>As prerequisite git is needed, please install typing:</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; sudo apt-get install git
-</pre></div>
-
-
-<p>After we have to install oh-my-zsh </p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; sh -c &quot;$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;
-</pre></div>
+    <footer>
+        <p>&copy; Cássio Botaro </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
 
 
-<p>Oh my zsh is a great helper to manage zsh configuration. </p>
-<h2>Powerline fonts</h2>
-<p>To improve our experience, with fancy symbols and more, install powerline fonts and chage your terminal font with one of powerlined fonts.
-Clone <a href="https://github.com/powerline/fonts">this</a> repo and only type <code>./install</code>.</p>
-<h2>Theme - bullet-train-oh-my-zsh-theme</h2>
-<p>My chosen theme is from a brazilian guy named Caio Gondim, and it's amazing.
-One prerequisite is powerline font.</p>
-<p><img alt="bullet-train-oh-my-zsh-theme" src="/images/preview.gif" title="bullet-train-oh-my-zsh-theme" /></p>
-<p>Step by step:</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
-&gt;&gt;&gt; mv bullet-train.zsh-theme ~/.oh-my-zsh/themes/
-<span class="c1"># Configure the theme in your ~/.zshrc file</span>
-<span class="c1"># ZSH_THEME=&quot;bullet-train&quot;</span>
-</pre></div>
 
 
-<h2>My own config</h2>
-<p>My changes at default values are:</p>
-<p>In .zshrc</p>
-<div class="highlight"><pre><span></span>ZSH_THEME=&quot;bullet-train&quot;
 
-plugins=(git python extract django virtualenvwrapper ubuntu vagrant)
-</pre></div>
-
-
-<h2>Conclusion</h2>
-<p>One more thing is necessary, change my default shell.</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; chsh -s <span class="k">$(</span>which zsh<span class="k">)</span>
-</pre></div>
-
-
-<p>Logoff and then logon, and now zsh turned into your new default.</p>
-<h2>Repositories</h2>
-<p>More information here:</p>
-<p><a href="https://github.com/robbyrussell/oh-my-zsh">Oh-my-zsh</a></p>
-<p><a href="https://github.com/powerline/fonts">Powerline fonts</a></p>
-<p><a href="https://github.com/caiogondim/bullet-train-oh-my-zsh-theme">Bullet-train-oh-my-zsh-theme</a></p>
-<p><a href="https://github.com/cassiobotaro/dot_files">old bashrc config</a></p>                </article>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-</body>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Import None ",
+  "url" : "",
+  "image": "",
+  "description": ""
+}
+</script></body>
 </html>

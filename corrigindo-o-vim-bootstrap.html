@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <meta charset="utf-8" />
-        <title>Corrigindo o vim bootstrap</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom">
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="Cássio Botaro" />
+<meta name="description" content="Compilado de pequenos problemas que tive e suas soluções." />
+<meta name="keywords" content="vim, iniciantes">
+<meta property="og:site_name" content="Import None"/>
+<meta property="og:title" content="Corrigindo o vim bootstrap"/>
+<meta property="og:description" content="Compilado de pequenos problemas que tive e suas soluções."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/corrigindo-o-vim-bootstrap.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-02-11 00:00:00-02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/cassio-botaro.html">
+<meta property="article:section" content="Vim"/>
+<meta property="article:tag" content="vim"/>
+<meta property="article:tag" content="iniciantes"/>
+<meta property="og:image" content="">  <title>Import None &ndash; Corrigindo o vim bootstrap</title>
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="/theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=""></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+          <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+          <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+          <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Import None </a></h1>
-                <nav><ul>
-                    <li><a href="/category/linux.html">Linux</a></li>
-                    <li><a href="/category/python.html">Python</a></li>
-                    <li><a href="/category/python3.html">Python3</a></li>
-                    <li><a href="/category/sublime.html">Sublime</a></li>
-                    <li class="active"><a href="/category/vim.html">Vim</a></li>
-                    <li><a href="/category/web2py.html">web2py</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="/corrigindo-o-vim-bootstrap.html" rel="bookmark"
-           title="Permalink to Corrigindo o vim bootstrap">Corrigindo o vim bootstrap</a></h1>
-    </header>
-
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-11T00:00:00-02:00">
-                Published: Qui 11 fevereiro 2016
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
-        </address>
-<p>In <a href="/category/vim.html">Vim</a>.</p>
-<p>tags: <a href="/tag/vim.html">vim</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
-</footer><!-- /.post-info -->      <p><img alt="logo-vim" src="/images/vim.png" title="Logo Vim" /></p>
+<article>
+  <header>
+    <h1 id="corrigindo-o-vim-bootstrap">Corrigindo o vim bootstrap</h1>
+    <p>Posted on Qui 11 fevereiro 2016 in <a href="/category/vim.html">Vim</a></p>
+  </header>
+  <div>
+    <p><img alt="logo-vim" src="/images/vim.png" title="Logo Vim" /></p>
 <h2>Introdução</h2>
 <p>O intuito deste post é trazer problemas que tive durante a instalação do <a href="https://github.com/avelino/vim-bootstrap">vim-bootstrap</a> e a solução dos mesmos.</p>
 <p>Acredito que minhas dúvidas podem ser de outros também.</p>
@@ -93,38 +108,40 @@ autocmd FileType jinja set commentstring={#\ %s\ #}
 <p>Espero ter ajudado, quem tiver interesse em ver todas as minhas configurações elas estão públicas neste <a href="https://github.com/cassiobotaro/botaro-toolbelt">repositório</a>.</p>
 <p>Também não podia deixar de falar no excelente <a href="https://github.com/cassiobotaro/vimbook.git">vimbook</a>, em pt-br, que estou portando para o gitbook, para que em breve tenhamos uma versão .epub, .mobi e .pdf.</p>
 <p>[]'s</p>
-    </div><!-- /.entry-content -->
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/vim.html">vim</a>
+      <a href="/tag/iniciantes.html">iniciantes</a>
+    </p>
+  </div>
+</article>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+    <footer>
+        <p>&copy; Cássio Botaro </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
 
-</body>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Corrigindo o vim bootstrap",
+  "headline": "Corrigindo o vim bootstrap",
+  "datePublished": "2016-02-11 00:00:00-02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Cássio Botaro",
+    "url": "/author/cassio-botaro.html"
+  },
+  "image": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png",
+  "url": "/corrigindo-o-vim-bootstrap.html",
+  "description": "Compilado de pequenos problemas que tive e suas soluções."
+}
+</script></body>
 </html>

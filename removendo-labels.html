@@ -1,48 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <meta charset="utf-8" />
-        <title>Removendo Labels</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom">
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="Cássio Botaro" />
+<meta name="description" content="Como remover a tag label do formulário o web2py." />
+<meta name="keywords" content="web2py, dicas, forms">
+<meta property="og:site_name" content="Import None"/>
+<meta property="og:title" content="Removendo Labels"/>
+<meta property="og:description" content="Como remover a tag label do formulário o web2py."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/removendo-labels.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-09-28 23:00:00-03:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/cassio-botaro.html">
+<meta property="article:section" content="web2py"/>
+<meta property="article:tag" content="web2py"/>
+<meta property="article:tag" content="dicas"/>
+<meta property="article:tag" content="forms"/>
+<meta property="og:image" content="">  <title>Import None &ndash; Removendo Labels</title>
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="/theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=""></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+          <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+          <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+          <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Import None </a></h1>
-                <nav><ul>
-                    <li><a href="/category/linux.html">Linux</a></li>
-                    <li><a href="/category/python.html">Python</a></li>
-                    <li><a href="/category/python3.html">Python3</a></li>
-                    <li><a href="/category/sublime.html">Sublime</a></li>
-                    <li><a href="/category/vim.html">Vim</a></li>
-                    <li class="active"><a href="/category/web2py.html">web2py</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="/removendo-labels.html" rel="bookmark"
-           title="Permalink to Removendo Labels">Removendo Labels</a></h1>
-    </header>
-
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-09-28T23:00:00-03:00">
-                Published: Seg 28 setembro 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
-        </address>
-<p>In <a href="/category/web2py.html">web2py</a>.</p>
-<p>tags: <a href="/tag/web2py.html">web2py</a> <a href="/tag/dicas.html">dicas</a> <a href="/tag/forms.html">forms</a> </p>
-</footer><!-- /.post-info -->      <p><img alt="rotulo" src="/images/rotulos.png" title="Rótulos" /></p>
+<article>
+  <header>
+    <h1 id="removendo-labels">Removendo Labels</h1>
+    <p>Posted on Seg 28 setembro 2015 in <a href="/category/web2py.html">web2py</a></p>
+  </header>
+  <div>
+    <p><img alt="rotulo" src="/images/rotulos.png" title="Rótulos" /></p>
 <h2>O problema</h2>
 <p>Recentemente em um projeto pessoal me deparei com o seguinte problema. Ao adicionar um formulário utilizando o helper <code>SQLFORM</code>, mais especificamente com o método <code>SQLFORM.factory</code>.</p>
 <p>Eu não gostaria de exibir a label no formulário e também não gostaria de ter de escrever um form custom só por causa deste problema.</p>
@@ -59,38 +75,41 @@ O que complicou bastante a tentativa de suprimir as labels. </p>
 
 <p>Fica aqui a dica para quem tiver o mesmo problema.</p>
 <p>[ ]'s</p>
-    </div><!-- /.entry-content -->
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/web2py.html">web2py</a>
+      <a href="/tag/dicas.html">dicas</a>
+      <a href="/tag/forms.html">forms</a>
+    </p>
+  </div>
+</article>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+    <footer>
+        <p>&copy; Cássio Botaro </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
 
-</body>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Removendo Labels",
+  "headline": "Removendo Labels",
+  "datePublished": "2015-09-28 23:00:00-03:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Cássio Botaro",
+    "url": "/author/cassio-botaro.html"
+  },
+  "image": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png",
+  "url": "/removendo-labels.html",
+  "description": "Como remover a tag label do formulário o web2py."
+}
+</script></body>
 </html>
