@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/web2py.atom.xml" rel="self"></link><id>/</id><updated>2015-09-28T23:00:00-03:00</updated><entry><title>Removendo Labels</title><link href="/removendo-labels.html" rel="alternate"></link><updated>2015-09-28T23:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-09-28:removendo-labels.html</id><summary type="html">&lt;p&gt;&lt;img alt="rotulo" src="/images/rotulos.png" title="Rótulos" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="http://cassiobotaro.github.io/" rel="alternate"></link><link href="http://cassiobotaro.github.io/feeds/web2py.atom.xml" rel="self"></link><id>http://cassiobotaro.github.io/</id><updated>2015-09-28T23:00:00-03:00</updated><entry><title>Removendo Labels</title><link href="http://cassiobotaro.github.io/removendo-labels.html" rel="alternate"></link><updated>2015-09-28T23:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-09-28:removendo-labels.html</id><summary type="html">&lt;p&gt;&lt;img alt="rotulo" src="http://cassiobotaro.github.io/images/rotulos.png" title="Rótulos" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Recentemente em um projeto pessoal me deparei com o seguinte problema. Ao adicionar um formulário utilizando o helper &lt;code&gt;SQLFORM&lt;/code&gt;, mais especificamente com o método &lt;code&gt;SQLFORM.factory&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Eu não gostaria de exibir a label no formulário e também não gostaria de ter de escrever um form custom só por causa deste problema.&lt;/p&gt;
@@ -15,11 +15,11 @@ O que complicou bastante a tentativa de suprimir as labels. &lt;/p&gt;
 
 
 &lt;p&gt;Fica aqui a dica para quem tiver o mesmo problema.&lt;/p&gt;
-&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="dicas"></category><category term="forms"></category></entry><entry><title>Mais um passo com web2py</title><link href="/mais-um-passo-com-web2py.html" rel="alternate"></link><updated>2015-07-07T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-07-07:mais-um-passo-com-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="/images/web2py_logo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="dicas"></category><category term="forms"></category></entry><entry><title>Mais um passo com web2py</title><link href="http://cassiobotaro.github.io/mais-um-passo-com-web2py.html" rel="alternate"></link><updated>2015-07-07T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-07-07:mais-um-passo-com-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="http://cassiobotaro.github.io/images/web2py_logo.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Recapitulando&lt;/h2&gt;
 &lt;p&gt;No &lt;a href="http://cassiobotaro.github.io/introducao-ao-web2py.html"&gt;post&lt;/a&gt; anterior dei uma introdução sobre o que é o web2py e iniciamos a construção de uma aplicação, porém não através de um scaffolding(uma aplicação base).&lt;/p&gt;
 &lt;p&gt;Escrevemos um hello world personalizado onde o nome passado por argumento era retornado no corpo do retorno da nossa aplicação.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="print" src="/images/print_screen_hello.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="print" src="http://cassiobotaro.github.io/images/print_screen_hello.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;O próximo passo&lt;/h2&gt;
 &lt;p&gt;Ainda sem uma aplicação bem definida decidi aboradar um pouco da criação de um modelo e sua aplicação.&lt;/p&gt;
 &lt;p&gt;Este será então o nosso segundo hello world, criaremos um modelo, faremos sua exposição através da view e seu controle através de um controlador. Será dado uma pincelada como ter visões alternativas sobre o mesmo controlador.&lt;/p&gt;
@@ -124,7 +124,7 @@ com estes mesmos dados para uma possível comunicação entre sistemas ou at´e 
 &lt;p&gt;Ficou curioso sobre o esquema de templates do web2py?, mais detalhes sobre os modelos? Ainda um pouco perdido? Não se preocupe.
 Pretendo em breve escreves posts mais detalhados sobre cada aspecto do web2py como modelo, visão, controlador, modulos e também tratar brechas que até agora foram deixadas.&lt;/p&gt;
 &lt;p&gt;Curtiu? Compartilhe!&lt;/p&gt;
-&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Introdução ao web2py</title><link href="/introducao-ao-web2py.html" rel="alternate"></link><updated>2015-05-04T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-05-04:introducao-ao-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="/images/web2py_logo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Introdução ao web2py</title><link href="http://cassiobotaro.github.io/introducao-ao-web2py.html" rel="alternate"></link><updated>2015-05-04T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-05-04:introducao-ao-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="http://cassiobotaro.github.io/images/web2py_logo.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Sobre o web2py&lt;/h2&gt;
 &lt;p&gt;Framework full-stack(ou seja assim como python vem com baterias incluídas), para desenvolvimento rápido, seguro, portável e orientado a banco de dados(o que não o limita).&lt;/p&gt;
 &lt;p&gt;O download pode ser feito através da página &lt;a href="http://www.web2py.com/download"&gt;http://www.web2py.com/&lt;/a&gt; e quando este artigo foi escrito estava em sua versão 2.10.X.&lt;/p&gt;
@@ -150,7 +150,7 @@ mkdir applications/hello/controllers &lt;span class="c1"&gt;# criação da pasta
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="Web2py Word Cloud" src="/images/tag-cloud-web2py.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Web2py Word Cloud" src="http://cassiobotaro.github.io/images/tag-cloud-web2py.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Hello Author&lt;/h2&gt;
 &lt;p&gt;Vamos tornar nosso primeiro aplicativo web mais interessante, vamos faze-lo passar a exibir um nome recebido como argumento em nossa url.&lt;/p&gt;
 &lt;p&gt;Abra novamente o controlador default.py e agora adicione o seguinte código:&lt;/p&gt;

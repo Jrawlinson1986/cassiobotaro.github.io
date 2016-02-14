@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2016-02-11T00:00:00-02:00</updated><entry><title>Corrigindo o vim bootstrap</title><link href="/corrigindo-o-vim-bootstrap.html" rel="alternate"></link><updated>2016-02-11T00:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2016-02-11:corrigindo-o-vim-bootstrap.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-vim" src="/images/vim.png" title="Logo Vim" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="http://cassiobotaro.github.io/" rel="alternate"></link><link href="http://cassiobotaro.github.io/feeds/all.atom.xml" rel="self"></link><id>http://cassiobotaro.github.io/</id><updated>2016-02-11T00:00:00-02:00</updated><entry><title>Corrigindo o vim bootstrap</title><link href="http://cassiobotaro.github.io/corrigindo-o-vim-bootstrap.html" rel="alternate"></link><updated>2016-02-11T00:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2016-02-11:corrigindo-o-vim-bootstrap.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-vim" src="http://cassiobotaro.github.io/images/vim.png" title="Logo Vim" /&gt;&lt;/p&gt;
 &lt;h2&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;O intuito deste post é trazer problemas que tive durante a instalação do &lt;a href="https://github.com/avelino/vim-bootstrap"&gt;vim-bootstrap&lt;/a&gt; e a solução dos mesmos.&lt;/p&gt;
 &lt;p&gt;Acredito que minhas dúvidas podem ser de outros também.&lt;/p&gt;
@@ -49,7 +49,7 @@ autocmd FileType jinja set commentstring={#\ %s\ #}
 &lt;h3&gt;Conclusão&lt;/h3&gt;
 &lt;p&gt;Espero ter ajudado, quem tiver interesse em ver todas as minhas configurações elas estão públicas neste &lt;a href="https://github.com/cassiobotaro/botaro-toolbelt"&gt;repositório&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Também não podia deixar de falar no excelente &lt;a href="https://github.com/cassiobotaro/vimbook.git"&gt;vimbook&lt;/a&gt;, em pt-br, que estou portando para o gitbook, para que em breve tenhamos uma versão .epub, .mobi e .pdf.&lt;/p&gt;
-&lt;p&gt;[]'s&lt;/p&gt;</summary><category term="vim"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 4</title><link href="/conceitos-linguagem-parte-4.html" rel="alternate"></link><updated>2015-12-14T01:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-12-14:conceitos-linguagem-parte-4.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;[]'s&lt;/p&gt;</summary><category term="vim"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 4</title><link href="http://cassiobotaro.github.io/conceitos-linguagem-parte-4.html" rel="alternate"></link><updated>2015-12-14T01:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-12-14:conceitos-linguagem-parte-4.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="http://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
 &lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
@@ -127,7 +127,7 @@ Características:&lt;/p&gt;
 &lt;h3&gt;Gostinho de queiro mais?&lt;/h3&gt;
 &lt;p&gt;Este assunto é melhor explicado na prática, então não perca tempo e veja &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/paradigmas.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
-&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 3</title><link href="/conceitos-linguagem-parte-3.html" rel="alternate"></link><updated>2015-12-06T23:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-12-06:conceitos-linguagem-parte-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 3</title><link href="http://cassiobotaro.github.io/conceitos-linguagem-parte-3.html" rel="alternate"></link><updated>2015-12-06T23:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-12-06:conceitos-linguagem-parte-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="http://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
 &lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
@@ -168,7 +168,7 @@ Por exemplo, um método se comporta de uma maneira quando recebe uma string e de
 &lt;p&gt;Foi proposital, este assunto é melhor explicado na prática, então não perca tempo e veja &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/sobrecargas.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-4"&gt;Clique aqui&lt;/a&gt; para ir até a parte 4.&lt;/p&gt;
 &lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
-&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 2</title><link href="/conceitos-linguagem-parte-2.html" rel="alternate"></link><updated>2015-11-29T23:30:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-11-29:conceitos-linguagem-parte-2.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 2</title><link href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2.html" rel="alternate"></link><updated>2015-11-29T23:30:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-11-29:conceitos-linguagem-parte-2.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="http://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
 &lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
@@ -227,7 +227,7 @@ considerado um assunto simples.&lt;/p&gt;
 &lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/metodos.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
-&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 1</title><link href="/conceitos-linguagem-parte-1.html" rel="alternate"></link><updated>2015-11-22T22:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-11-22:conceitos-linguagem-parte-1.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 1</title><link href="http://cassiobotaro.github.io/conceitos-linguagem-parte-1.html" rel="alternate"></link><updated>2015-11-22T22:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-11-22:conceitos-linguagem-parte-1.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="http://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
 &lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
@@ -254,7 +254,7 @@ Possuimos tipos builtins, tipos básicos que já estão disponíveis, como por e
 &lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/tipagem.py"&gt;este arquivo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
-&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Removendo Labels</title><link href="/removendo-labels.html" rel="alternate"></link><updated>2015-09-28T23:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-09-28:removendo-labels.html</id><summary type="html">&lt;p&gt;&lt;img alt="rotulo" src="/images/rotulos.png" title="Rótulos" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Removendo Labels</title><link href="http://cassiobotaro.github.io/removendo-labels.html" rel="alternate"></link><updated>2015-09-28T23:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-09-28:removendo-labels.html</id><summary type="html">&lt;p&gt;&lt;img alt="rotulo" src="http://cassiobotaro.github.io/images/rotulos.png" title="Rótulos" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Recentemente em um projeto pessoal me deparei com o seguinte problema. Ao adicionar um formulário utilizando o helper &lt;code&gt;SQLFORM&lt;/code&gt;, mais especificamente com o método &lt;code&gt;SQLFORM.factory&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Eu não gostaria de exibir a label no formulário e também não gostaria de ter de escrever um form custom só por causa deste problema.&lt;/p&gt;
@@ -270,7 +270,7 @@ O que complicou bastante a tentativa de suprimir as labels. &lt;/p&gt;
 
 
 &lt;p&gt;Fica aqui a dica para quem tiver o mesmo problema.&lt;/p&gt;
-&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="dicas"></category><category term="forms"></category></entry><entry><title>Instalando Pillow</title><link href="/instalando-pillow.html" rel="alternate"></link><updated>2015-08-14T22:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-08-14:instalando-pillow.html</id><summary type="html">&lt;p&gt;&lt;img alt="ubuntu-pillow" src="/images/ubuntu_pillow.jpg" title="Travesseiro Ubuntu" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="dicas"></category><category term="forms"></category></entry><entry><title>Instalando Pillow</title><link href="http://cassiobotaro.github.io/instalando-pillow.html" rel="alternate"></link><updated>2015-08-14T22:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-08-14:instalando-pillow.html</id><summary type="html">&lt;p&gt;&lt;img alt="ubuntu-pillow" src="http://cassiobotaro.github.io/images/ubuntu_pillow.jpg" title="Travesseiro Ubuntu" /&gt;&lt;/p&gt;
 &lt;h2&gt;Problema&lt;/h2&gt;
 &lt;p&gt;Ao tentar instalar a biblioteca pillow, me deparei com o problema de não dar suporte a jpeg.&lt;/p&gt;
 &lt;p&gt;O erro apresentado era: "decoder jpeg not available". &lt;/p&gt;
@@ -313,7 +313,7 @@ O que complicou bastante a tentativa de suprimir as labels. &lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html"&gt;http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="python"></category><category term="python3"></category><category term="ubuntu"></category></entry><entry><title>mv /bin/bash /bin/zsh</title><link href="/mv-bash-zsh.html" rel="alternate"></link><updated>2015-08-09T01:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-08-09:mv-bash-zsh.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-zsh" src="/images/oh-my-zsh-logo.png" title="Logo zsh" /&gt;&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="python3"></category><category term="ubuntu"></category></entry><entry><title>mv /bin/bash /bin/zsh</title><link href="http://cassiobotaro.github.io/mv-bash-zsh.html" rel="alternate"></link><updated>2015-08-09T01:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-08-09:mv-bash-zsh.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-zsh" src="http://cassiobotaro.github.io/images/oh-my-zsh-logo.png" title="Logo zsh" /&gt;&lt;/p&gt;
 &lt;h2&gt;Motivation&lt;/h2&gt;
 &lt;p&gt;A while ago, when I spoke at Santa Rita in Inatel, my laptop doesn't work with the projector. Then I had to use a friend's Mac with zsh. I love what I saw and decided that some day I'd give a chance to that shell.&lt;/p&gt;
 &lt;p&gt;Two months later I wrote my own .bashrc with some shortcuts to improve my productivity.&lt;/p&gt;
@@ -345,7 +345,7 @@ Clone &lt;a href="https://github.com/powerline/fonts"&gt;this&lt;/a&gt; repo and
 &lt;h2&gt;Theme - bullet-train-oh-my-zsh-theme&lt;/h2&gt;
 &lt;p&gt;My chosen theme is from a brazilian guy named Caio Gondim, and it's amazing.
 One prerequisite is powerline font.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="bullet-train-oh-my-zsh-theme" src="/images/preview.gif" title="bullet-train-oh-my-zsh-theme" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="bullet-train-oh-my-zsh-theme" src="http://cassiobotaro.github.io/images/preview.gif" title="bullet-train-oh-my-zsh-theme" /&gt;&lt;/p&gt;
 &lt;p&gt;Step by step:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
 &amp;gt;&amp;gt;&amp;gt; mv bullet-train.zsh-theme ~/.oh-my-zsh/themes/
@@ -375,7 +375,7 @@ plugins=(git python extract django virtualenvwrapper ubuntu vagrant)
 &lt;p&gt;&lt;a href="https://github.com/robbyrussell/oh-my-zsh"&gt;Oh-my-zsh&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/powerline/fonts"&gt;Powerline fonts&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/caiogondim/bullet-train-oh-my-zsh-theme"&gt;Bullet-train-oh-my-zsh-theme&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/cassiobotaro/dot_files"&gt;old bashrc config&lt;/a&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="dotfiles"></category><category term="iniciantes"></category></entry><entry><title>Mito ou Verdade: Destrutor</title><link href="/mito-ou-verdade-destrutor.html" rel="alternate"></link><updated>2015-07-25T14:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-07-25:mito-ou-verdade-destrutor.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/cassiobotaro/dot_files"&gt;old bashrc config&lt;/a&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="dotfiles"></category><category term="iniciantes"></category></entry><entry><title>Mito ou Verdade: Destrutor</title><link href="http://cassiobotaro.github.io/mito-ou-verdade-destrutor.html" rel="alternate"></link><updated>2015-07-25T14:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-07-25:mito-ou-verdade-destrutor.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="http://cassiobotaro.github.io/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Linguagens de programação mais antigas traziam a capacidade de manipulação da memória. A competência de reservar um espaço de memória pra determinada operação e sua posterior liberação era do desenvolvedor.&lt;/p&gt;
 &lt;p&gt;Python desde o seu início possui um mecanismo simples de alocação e desalocação, é o mecanismo de contador de refêrencia.&lt;/p&gt;
@@ -514,11 +514,11 @@ Em python é o método dunder del &lt;code&gt;__del__&lt;/code&gt;.&lt;/p&gt;
 &lt;h2&gt;Conclusão&lt;/h2&gt;
 &lt;p&gt;Como vimos há uma certa complexidade envolvida em uma instrução del, e dado isso não podemos garantir que o comando del realmente desaloque o espaço de memória naquele instante.&lt;/p&gt;
 &lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Mais um passo com web2py</title><link href="/mais-um-passo-com-web2py.html" rel="alternate"></link><updated>2015-07-07T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-07-07:mais-um-passo-com-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="/images/web2py_logo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="http://cassiobotaro.github.io/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Mais um passo com web2py</title><link href="http://cassiobotaro.github.io/mais-um-passo-com-web2py.html" rel="alternate"></link><updated>2015-07-07T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-07-07:mais-um-passo-com-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="http://cassiobotaro.github.io/images/web2py_logo.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Recapitulando&lt;/h2&gt;
 &lt;p&gt;No &lt;a href="http://cassiobotaro.github.io/introducao-ao-web2py.html"&gt;post&lt;/a&gt; anterior dei uma introdução sobre o que é o web2py e iniciamos a construção de uma aplicação, porém não através de um scaffolding(uma aplicação base).&lt;/p&gt;
 &lt;p&gt;Escrevemos um hello world personalizado onde o nome passado por argumento era retornado no corpo do retorno da nossa aplicação.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="print" src="/images/print_screen_hello.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="print" src="http://cassiobotaro.github.io/images/print_screen_hello.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;O próximo passo&lt;/h2&gt;
 &lt;p&gt;Ainda sem uma aplicação bem definida decidi aboradar um pouco da criação de um modelo e sua aplicação.&lt;/p&gt;
 &lt;p&gt;Este será então o nosso segundo hello world, criaremos um modelo, faremos sua exposição através da view e seu controle através de um controlador. Será dado uma pincelada como ter visões alternativas sobre o mesmo controlador.&lt;/p&gt;
@@ -623,7 +623,7 @@ com estes mesmos dados para uma possível comunicação entre sistemas ou at´e 
 &lt;p&gt;Ficou curioso sobre o esquema de templates do web2py?, mais detalhes sobre os modelos? Ainda um pouco perdido? Não se preocupe.
 Pretendo em breve escreves posts mais detalhados sobre cada aspecto do web2py como modelo, visão, controlador, modulos e também tratar brechas que até agora foram deixadas.&lt;/p&gt;
 &lt;p&gt;Curtiu? Compartilhe!&lt;/p&gt;
-&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Loop Infinito</title><link href="/loop-infinito.html" rel="alternate"></link><updated>2015-06-27T18:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-27:loop-infinito.html</id><summary type="html">&lt;p&gt;&lt;img alt="loop" src="/images/infinite_loop.png" title="Loop infinito" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Loop Infinito</title><link href="http://cassiobotaro.github.io/loop-infinito.html" rel="alternate"></link><updated>2015-06-27T18:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-06-27:loop-infinito.html</id><summary type="html">&lt;p&gt;&lt;img alt="loop" src="http://cassiobotaro.github.io/images/infinite_loop.png" title="Loop infinito" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Vamos começar analisando o seguinte código:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -670,7 +670,7 @@ Pretendo em breve escreves posts mais detalhados sobre cada aspecto do web2py co
 
 
 &lt;p&gt;E Pam!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Pane" src="/images/panic.gif" title="Pane no sistema" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pane" src="http://cassiobotaro.github.io/images/panic.gif" title="Pane no sistema" /&gt;&lt;/p&gt;
 &lt;p&gt;Seu programa entra em loop infinito. &lt;/p&gt;
 &lt;h2&gt;Como funciona o Python em termos de iteração?&lt;/h2&gt;
 &lt;p&gt;Vamos  começar por conceitos. Iterável, é tudo aquilo que pode ser percorrido, não confunda com iterador que é um padrão de projeto. Em Python, listas, tuplas, geradores e dicionarios podem ser percorridos.&lt;/p&gt;
@@ -688,7 +688,7 @@ Pretendo em breve escreves posts mais detalhados sobre cada aspecto do web2py co
 &lt;h2&gt;Créditos&lt;/h2&gt;
 &lt;p&gt;Este post só se tornou possível após consulta de duas fontes:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/926574/why-does-defining-getitem-on-a-class-make-it-iterable-in-python"&gt;Resposta do Alex Martelli&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ULj7ejvuzI8"&gt;Palestra do Luciano Ramalho&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="OO"></category></entry><entry><title>Mito ou Verdade: Importação</title><link href="/mito-ou-verdade-importacao.html" rel="alternate"></link><updated>2015-06-11T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-11:mito-ou-verdade-importacao.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ULj7ejvuzI8"&gt;Palestra do Luciano Ramalho&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="OO"></category></entry><entry><title>Mito ou Verdade: Importação</title><link href="http://cassiobotaro.github.io/mito-ou-verdade-importacao.html" rel="alternate"></link><updated>2015-06-11T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-06-11:mito-ou-verdade-importacao.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="http://cassiobotaro.github.io/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Vamos supor que temos uma função em um determinado módulo que precisa de utilizar de recursos de outro módulo.&lt;/p&gt;
 &lt;p&gt;Mas este outro modulo pode importar outros módulos que possivelmente não serão utilizados.&lt;/p&gt;
@@ -794,7 +794,7 @@ dis.dis(funcaoteste)&lt;/p&gt;
 &lt;h2&gt;Conclusão&lt;/h2&gt;
 &lt;p&gt;Essa otimização pode ter até casos pontuais em que se aplica, mas na maioria das vezes é uma má pratica.&lt;/p&gt;
 &lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Introdução ao web2py</title><link href="/introducao-ao-web2py.html" rel="alternate"></link><updated>2015-05-04T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-05-04:introducao-ao-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="/images/web2py_logo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="http://cassiobotaro.github.io/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Introdução ao web2py</title><link href="http://cassiobotaro.github.io/introducao-ao-web2py.html" rel="alternate"></link><updated>2015-05-04T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-05-04:introducao-ao-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="http://cassiobotaro.github.io/images/web2py_logo.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Sobre o web2py&lt;/h2&gt;
 &lt;p&gt;Framework full-stack(ou seja assim como python vem com baterias incluídas), para desenvolvimento rápido, seguro, portável e orientado a banco de dados(o que não o limita).&lt;/p&gt;
 &lt;p&gt;O download pode ser feito através da página &lt;a href="http://www.web2py.com/download"&gt;http://www.web2py.com/&lt;/a&gt; e quando este artigo foi escrito estava em sua versão 2.10.X.&lt;/p&gt;
@@ -820,7 +820,7 @@ mkdir applications/hello/controllers &lt;span class="c1"&gt;# criação da pasta
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="Web2py Word Cloud" src="/images/tag-cloud-web2py.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Web2py Word Cloud" src="http://cassiobotaro.github.io/images/tag-cloud-web2py.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Hello Author&lt;/h2&gt;
 &lt;p&gt;Vamos tornar nosso primeiro aplicativo web mais interessante, vamos faze-lo passar a exibir um nome recebido como argumento em nossa url.&lt;/p&gt;
 &lt;p&gt;Abra novamente o controlador default.py e agora adicione o seguinte código:&lt;/p&gt;
@@ -867,7 +867,7 @@ Como pode ser visto a variável nome que foi definida para o ambiente desta acti
 &lt;p&gt;Este foi o primeiro post sobre web2py do meu blog, quis ser breve. Se ficou perdido em algum detalhe, não se preocupe, deixe um comentário que adorarei lhe ajudar.&lt;/p&gt;
 &lt;p&gt;E já adiantando, teremos continuação para este post, demonstrando diversos recursos do framework e também dscutindo sobre suas "mágicas".&lt;/p&gt;
 &lt;p&gt;Gostou? Compatilhe!&lt;/p&gt;
-&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Argumentos somente por palavra chave</title><link href="/argumentos-somente-por-palavra-chave.html" rel="alternate"></link><updated>2015-03-28T19:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-28:argumentos-somente-por-palavra-chave.html</id><summary type="html">&lt;h2&gt;Por que falar sobre isto?&lt;/h2&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Argumentos somente por palavra chave</title><link href="http://cassiobotaro.github.io/argumentos-somente-por-palavra-chave.html" rel="alternate"></link><updated>2015-03-28T19:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-03-28:argumentos-somente-por-palavra-chave.html</id><summary type="html">&lt;h2&gt;Por que falar sobre isto?&lt;/h2&gt;
 &lt;p&gt;Python 3 ainda possui uma névoa sobre ele, e o movimento de resistência ainda é grande. Mas isto não quer dizer que desbravadores já não o estejam explorando. Já escrevi um &lt;a href="http://cassiobotaro.github.io/porque-python-3.html"&gt;post&lt;/a&gt; sobre a nova versão da linguagem, porém ainda tem vários recursos que podem ser demonstrados. Um deles é a capacidade de aceitar somente palavras chaves como argumento. Eu até coloquei isto nos slides da Python Brasil 10, porém senti que ao apresentar faltou uma boa explicação.&lt;/p&gt;
 &lt;h2&gt;Talk is cheap. Show me the code&lt;/h2&gt;
 &lt;p&gt;Tentarei dar um exemplo utilizando código, explicarei utilizando os comentários&lt;/p&gt;
@@ -921,7 +921,7 @@ Como pode ser visto a variável nome que foi definida para o ambiente desta acti
 &lt;h2&gt;Considerações finais&lt;/h2&gt;
 &lt;p&gt;Não pense que exemplo é exagerado, pode acontecer a qualquer hora com você.
 Não brinque mais de roleta russa com seus argumentos.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="programming-motherfucker" src="/images/programming-motherfucker.jpg" /&gt;&lt;/p&gt;</summary><category term="python3"></category></entry><entry><title>Meu ambiente de trabalho</title><link href="/meu-ambiente.html" rel="alternate"></link><updated>2015-03-25T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-25:meu-ambiente.html</id><summary type="html">&lt;h2&gt;Frustração&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="programming-motherfucker" src="http://cassiobotaro.github.io/images/programming-motherfucker.jpg" /&gt;&lt;/p&gt;</summary><category term="python3"></category></entry><entry><title>Meu ambiente de trabalho</title><link href="http://cassiobotaro.github.io/meu-ambiente.html" rel="alternate"></link><updated>2015-03-25T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-03-25:meu-ambiente.html</id><summary type="html">&lt;h2&gt;Frustração&lt;/h2&gt;
 &lt;p&gt;Sempre fui perfeccionista com meu editor de texto, já tentei várias ide's, mas sempre ficava faltando algum recurso que eu queria ou era pesada pra carregar e lenta na execução.
 Spyder era legal, seu debugger é um dos melhores, o pydev era pesado, mas também interessante, Ninja IDE me atendeu por um tempo mais ainda assim não totalmente. Pycharm, gedit(até escrevi plugin para ele) e mais uma infinidade de editores.
 Sempre tinha um recurso que faltava e eu não conseguia me decidir.
@@ -935,42 +935,42 @@ Com a necessidade de preparar um abiente para programação python e personaliza
 &lt;p&gt;Abaixo alguns recursos da minha configuração.&lt;/p&gt;
 &lt;h3&gt;ATENÇÂO: O script foi desenvolvido e testado em Ubuntu e linux Mint&lt;/h3&gt;
 &lt;h2&gt;Isolamento de ambientes virtuais utilizando virtualenvwrapper&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="virtualenv" src="/images/virtualenv.png" title="Virtualenv" /&gt;
-&lt;img alt="ambiente isolado" src="/images/ambientes_isolados.png" title="Ambientes isolados" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="virtualenv" src="http://cassiobotaro.github.io/images/virtualenv.png" title="Virtualenv" /&gt;
+&lt;img alt="ambiente isolado" src="http://cassiobotaro.github.io/images/ambientes_isolados.png" title="Ambientes isolados" /&gt;&lt;/p&gt;
 &lt;h2&gt;Ipython&lt;/h2&gt;
 &lt;h3&gt;Terminal interativo com esteroides&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="ipython" src="/images/ipython.png" title="Ipython" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ipython" src="http://cassiobotaro.github.io/images/ipython.png" title="Ipython" /&gt;&lt;/p&gt;
 &lt;h2&gt;Complete para Django e Web2py&lt;/h2&gt;
 &lt;h3&gt;Auto completar para web2py e django, vários snippets&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Django" src="/images/django.png" /&gt;
-&lt;img alt="web2py" src="/images/web2py.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Django" src="http://cassiobotaro.github.io/images/django.png" /&gt;
+&lt;img alt="web2py" src="http://cassiobotaro.github.io/images/web2py.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Um pouco de JS&lt;/h2&gt;
 &lt;h3&gt;Auto completar e formatação&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="antes_format_js" src="/images/antes_format_js.png" /&gt;
-&lt;img alt="depois_format_js" src="/images/depois_format_js.png" /&gt;
-&lt;img alt="console_log" src="/images/console_log.png" /&gt;
-&lt;img alt="query_selector" src="/images/query_selector.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="antes_format_js" src="http://cassiobotaro.github.io/images/antes_format_js.png" /&gt;
+&lt;img alt="depois_format_js" src="http://cassiobotaro.github.io/images/depois_format_js.png" /&gt;
+&lt;img alt="console_log" src="http://cassiobotaro.github.io/images/console_log.png" /&gt;
+&lt;img alt="query_selector" src="http://cassiobotaro.github.io/images/query_selector.png" /&gt;&lt;/p&gt;
 &lt;h1&gt;Integração com git&lt;/h1&gt;
 &lt;h3&gt;Comandos como push, pull, diff, status, etc, além do gutter que indica onde os arquivos foram modificados&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="git" src="/images/git.png" /&gt;
-&lt;img alt="gutter" src="/images/gutter.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="git" src="http://cassiobotaro.github.io/images/git.png" /&gt;
+&lt;img alt="gutter" src="http://cassiobotaro.github.io/images/gutter.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;REPL&lt;/h2&gt;
 &lt;h3&gt;Terminal interativo para python, bash e outros. Sem contar a opção de debug.&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="repl_python" src="/images/repl_python.png" /&gt;
-&lt;img alt="repl_shell" src="/images/repl_shell.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="repl_python" src="http://cassiobotaro.github.io/images/repl_python.png" /&gt;
+&lt;img alt="repl_shell" src="http://cassiobotaro.github.io/images/repl_shell.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Emmet&lt;/h2&gt;
 &lt;h3&gt;Facilitando algum front-end&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="emmet1" src="/images/emmet1.png" /&gt;
-&lt;img alt="emmet2" src="/images/emmet2.png" /&gt;
-&lt;img alt="emmet3" src="/images/emmet3.png" /&gt;
-&lt;img alt="emmet4" src="/images/emmet4.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="emmet1" src="http://cassiobotaro.github.io/images/emmet1.png" /&gt;
+&lt;img alt="emmet2" src="http://cassiobotaro.github.io/images/emmet2.png" /&gt;
+&lt;img alt="emmet3" src="http://cassiobotaro.github.io/images/emmet3.png" /&gt;
+&lt;img alt="emmet4" src="http://cassiobotaro.github.io/images/emmet4.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;E muito mais&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="docstring" src="/images/docstring.png" /&gt;
-&lt;img alt="highcolor" src="/images/highcolor.png" /&gt;
-&lt;img alt="markdown_editing" src="/images/markdown_editing.png" /&gt;
-&lt;img alt="preview_mark" src="/images/preview_mark.png" /&gt;
-&lt;img alt="requirements_txt" src="/images/requirements_txt.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Curtiu? Dê uma estrelinha pro projeto e faça seu fork e suas próprias configurações.&lt;/p&gt;</summary><category term="python"></category><category term="sublimetext"></category><category term="iniciantes"></category></entry><entry><title>Por que python 3?</title><link href="/porque-python-3.html" rel="alternate"></link><updated>2015-03-10T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-10:porque-python-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="docstring" src="http://cassiobotaro.github.io/images/docstring.png" /&gt;
+&lt;img alt="highcolor" src="http://cassiobotaro.github.io/images/highcolor.png" /&gt;
+&lt;img alt="markdown_editing" src="http://cassiobotaro.github.io/images/markdown_editing.png" /&gt;
+&lt;img alt="preview_mark" src="http://cassiobotaro.github.io/images/preview_mark.png" /&gt;
+&lt;img alt="requirements_txt" src="http://cassiobotaro.github.io/images/requirements_txt.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Curtiu? Dê uma estrelinha pro projeto e faça seu fork e suas próprias configurações.&lt;/p&gt;</summary><category term="python"></category><category term="sublimetext"></category><category term="iniciantes"></category></entry><entry><title>Por que python 3?</title><link href="http://cassiobotaro.github.io/porque-python-3.html" rel="alternate"></link><updated>2015-03-10T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-03-10:porque-python-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="http://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;Um pouco de história&lt;/h2&gt;
 &lt;p&gt;O python 3.0 foi uma decisão tomada em 2008, e decidiu-se assim por causa da incompatibilidade de alguns novos recursos com a versão 2.0 .
 É uma versão com novas baterias incluídas como asyncio, pip, enum, statistics, venv.
@@ -1160,7 +1160,7 @@ python -m json.tool
 &lt;li&gt;&lt;a href="http://pythonhosted.org//six/"&gt;six&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://docs.python.org/2/library/2to3.html"&gt;2to3&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;E se tem duvida sobre suporte de alguma bilbioteca, confira &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/a&gt;. &lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Hello Python!</title><link href="/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;E se tem duvida sobre suporte de alguma bilbioteca, confira &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/a&gt;. &lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Hello Python!</title><link href="http://cassiobotaro.github.io/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="http://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;FAQ&lt;/h2&gt;
 &lt;p&gt;Como algumas perguntas são recorrentes nas listas de discussões, nos grupos do facebook e outros meios de comunicação e nossa comunidade gosta de receber bem os iniciantes, responderei aqui aquelas dúvidas que são constantes.&lt;/p&gt;
 &lt;h2&gt;Python roda no (coloque aqui sua plataforma) ?&lt;/h2&gt;
@@ -1195,7 +1195,7 @@ Está na duvida, verifique &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/
 &lt;h2&gt;Por onde começo?&lt;/h2&gt;
 &lt;p&gt;Definitivamente o melhor lugar para começar é se juntar a horda de zumbis do profossor Masanori, que tem uma didática incrível e mostra muitos exemplos práticos e divertidos.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://pycursos.com/python-para-zumbis/"&gt;Python para zombies&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="python-para-zumbis" src="/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="python-para-zumbis" src="http://cassiobotaro.github.io/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
 &lt;p&gt;Um outro lugar bom pra começar é o site do &lt;a href="https://twitter.com/erichideki"&gt;japa&lt;/a&gt; que teve o trabalho de reunir todo um material pra iniciantes e vai ganhar uma estrelinha por isto. Quando for no site dele, leia os outros posts, que ele tem vários compilados interessantes.&lt;/p&gt;
 &lt;p&gt;Alguns links interessantes:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ericstk.wordpress.com/2015/02/16/guia-para-iniciantes-a-programacao-em-python/"&gt;Guia para iniciantes python&lt;/a&gt;&lt;/p&gt;
@@ -1229,4 +1229,4 @@ Por exemplo:&lt;/p&gt;
 &lt;p&gt;Outra dica é preparar e isolar seu ambiente de trabalho em um projeto, mas como fazer isto ficará para outro post.&lt;/p&gt;
 &lt;p&gt;Caso seja um iniciante lendo este post, bem vindo a comunidade e conte comigo com o que eu puder te ajudar.&lt;/p&gt;
 &lt;p&gt;Espero que tenha contribuído com vocês e meu ultimo recado é:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="learn-python" src="/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>
+&lt;p&gt;&lt;img alt="learn-python" src="http://cassiobotaro.github.io/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>/</id><updated>2015-08-14T22:00:00-03:00</updated><entry><title>Instalando Pillow</title><link href="/instalando-pillow.html" rel="alternate"></link><updated>2015-08-14T22:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-08-14:instalando-pillow.html</id><summary type="html">&lt;p&gt;&lt;img alt="ubuntu-pillow" src="/images/ubuntu_pillow.jpg" title="Travesseiro Ubuntu" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="http://cassiobotaro.github.io/" rel="alternate"></link><link href="http://cassiobotaro.github.io/feeds/python.atom.xml" rel="self"></link><id>http://cassiobotaro.github.io/</id><updated>2015-08-14T22:00:00-03:00</updated><entry><title>Instalando Pillow</title><link href="http://cassiobotaro.github.io/instalando-pillow.html" rel="alternate"></link><updated>2015-08-14T22:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-08-14:instalando-pillow.html</id><summary type="html">&lt;p&gt;&lt;img alt="ubuntu-pillow" src="http://cassiobotaro.github.io/images/ubuntu_pillow.jpg" title="Travesseiro Ubuntu" /&gt;&lt;/p&gt;
 &lt;h2&gt;Problema&lt;/h2&gt;
 &lt;p&gt;Ao tentar instalar a biblioteca pillow, me deparei com o problema de não dar suporte a jpeg.&lt;/p&gt;
 &lt;p&gt;O erro apresentado era: "decoder jpeg not available". &lt;/p&gt;
@@ -42,7 +42,7 @@
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html"&gt;http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="python"></category><category term="python3"></category><category term="ubuntu"></category></entry><entry><title>Mito ou Verdade: Destrutor</title><link href="/mito-ou-verdade-destrutor.html" rel="alternate"></link><updated>2015-07-25T14:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-07-25:mito-ou-verdade-destrutor.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="python3"></category><category term="ubuntu"></category></entry><entry><title>Mito ou Verdade: Destrutor</title><link href="http://cassiobotaro.github.io/mito-ou-verdade-destrutor.html" rel="alternate"></link><updated>2015-07-25T14:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-07-25:mito-ou-verdade-destrutor.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="http://cassiobotaro.github.io/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Linguagens de programação mais antigas traziam a capacidade de manipulação da memória. A competência de reservar um espaço de memória pra determinada operação e sua posterior liberação era do desenvolvedor.&lt;/p&gt;
 &lt;p&gt;Python desde o seu início possui um mecanismo simples de alocação e desalocação, é o mecanismo de contador de refêrencia.&lt;/p&gt;
@@ -181,7 +181,7 @@ Em python é o método dunder del &lt;code&gt;__del__&lt;/code&gt;.&lt;/p&gt;
 &lt;h2&gt;Conclusão&lt;/h2&gt;
 &lt;p&gt;Como vimos há uma certa complexidade envolvida em uma instrução del, e dado isso não podemos garantir que o comando del realmente desaloque o espaço de memória naquele instante.&lt;/p&gt;
 &lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Loop Infinito</title><link href="/loop-infinito.html" rel="alternate"></link><updated>2015-06-27T18:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-27:loop-infinito.html</id><summary type="html">&lt;p&gt;&lt;img alt="loop" src="/images/infinite_loop.png" title="Loop infinito" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="http://cassiobotaro.github.io/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Loop Infinito</title><link href="http://cassiobotaro.github.io/loop-infinito.html" rel="alternate"></link><updated>2015-06-27T18:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-06-27:loop-infinito.html</id><summary type="html">&lt;p&gt;&lt;img alt="loop" src="http://cassiobotaro.github.io/images/infinite_loop.png" title="Loop infinito" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Vamos começar analisando o seguinte código:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -228,7 +228,7 @@ Em python é o método dunder del &lt;code&gt;__del__&lt;/code&gt;.&lt;/p&gt;
 
 
 &lt;p&gt;E Pam!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Pane" src="/images/panic.gif" title="Pane no sistema" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pane" src="http://cassiobotaro.github.io/images/panic.gif" title="Pane no sistema" /&gt;&lt;/p&gt;
 &lt;p&gt;Seu programa entra em loop infinito. &lt;/p&gt;
 &lt;h2&gt;Como funciona o Python em termos de iteração?&lt;/h2&gt;
 &lt;p&gt;Vamos  começar por conceitos. Iterável, é tudo aquilo que pode ser percorrido, não confunda com iterador que é um padrão de projeto. Em Python, listas, tuplas, geradores e dicionarios podem ser percorridos.&lt;/p&gt;
@@ -246,7 +246,7 @@ Em python é o método dunder del &lt;code&gt;__del__&lt;/code&gt;.&lt;/p&gt;
 &lt;h2&gt;Créditos&lt;/h2&gt;
 &lt;p&gt;Este post só se tornou possível após consulta de duas fontes:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/926574/why-does-defining-getitem-on-a-class-make-it-iterable-in-python"&gt;Resposta do Alex Martelli&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ULj7ejvuzI8"&gt;Palestra do Luciano Ramalho&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="OO"></category></entry><entry><title>Mito ou Verdade: Importação</title><link href="/mito-ou-verdade-importacao.html" rel="alternate"></link><updated>2015-06-11T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-11:mito-ou-verdade-importacao.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ULj7ejvuzI8"&gt;Palestra do Luciano Ramalho&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="OO"></category></entry><entry><title>Mito ou Verdade: Importação</title><link href="http://cassiobotaro.github.io/mito-ou-verdade-importacao.html" rel="alternate"></link><updated>2015-06-11T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-06-11:mito-ou-verdade-importacao.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="http://cassiobotaro.github.io/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Vamos supor que temos uma função em um determinado módulo que precisa de utilizar de recursos de outro módulo.&lt;/p&gt;
 &lt;p&gt;Mas este outro modulo pode importar outros módulos que possivelmente não serão utilizados.&lt;/p&gt;
@@ -352,7 +352,7 @@ dis.dis(funcaoteste)&lt;/p&gt;
 &lt;h2&gt;Conclusão&lt;/h2&gt;
 &lt;p&gt;Essa otimização pode ter até casos pontuais em que se aplica, mas na maioria das vezes é uma má pratica.&lt;/p&gt;
 &lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Hello Python!</title><link href="/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="http://cassiobotaro.github.io/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Hello Python!</title><link href="http://cassiobotaro.github.io/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="http://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;FAQ&lt;/h2&gt;
 &lt;p&gt;Como algumas perguntas são recorrentes nas listas de discussões, nos grupos do facebook e outros meios de comunicação e nossa comunidade gosta de receber bem os iniciantes, responderei aqui aquelas dúvidas que são constantes.&lt;/p&gt;
 &lt;h2&gt;Python roda no (coloque aqui sua plataforma) ?&lt;/h2&gt;
@@ -387,7 +387,7 @@ Está na duvida, verifique &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/
 &lt;h2&gt;Por onde começo?&lt;/h2&gt;
 &lt;p&gt;Definitivamente o melhor lugar para começar é se juntar a horda de zumbis do profossor Masanori, que tem uma didática incrível e mostra muitos exemplos práticos e divertidos.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://pycursos.com/python-para-zumbis/"&gt;Python para zombies&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="python-para-zumbis" src="/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="python-para-zumbis" src="http://cassiobotaro.github.io/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
 &lt;p&gt;Um outro lugar bom pra começar é o site do &lt;a href="https://twitter.com/erichideki"&gt;japa&lt;/a&gt; que teve o trabalho de reunir todo um material pra iniciantes e vai ganhar uma estrelinha por isto. Quando for no site dele, leia os outros posts, que ele tem vários compilados interessantes.&lt;/p&gt;
 &lt;p&gt;Alguns links interessantes:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ericstk.wordpress.com/2015/02/16/guia-para-iniciantes-a-programacao-em-python/"&gt;Guia para iniciantes python&lt;/a&gt;&lt;/p&gt;
@@ -421,4 +421,4 @@ Por exemplo:&lt;/p&gt;
 &lt;p&gt;Outra dica é preparar e isolar seu ambiente de trabalho em um projeto, mas como fazer isto ficará para outro post.&lt;/p&gt;
 &lt;p&gt;Caso seja um iniciante lendo este post, bem vindo a comunidade e conte comigo com o que eu puder te ajudar.&lt;/p&gt;
 &lt;p&gt;Espero que tenha contribuído com vocês e meu ultimo recado é:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="learn-python" src="/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>
+&lt;p&gt;&lt;img alt="learn-python" src="http://cassiobotaro.github.io/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>
