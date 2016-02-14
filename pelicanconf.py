@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Cássio Botaro'
 SITENAME = 'Import None'
-SITEURL = 'http://cassiobotaro.github.io'
+SITEURL = ''
 
 THEME = 'Flex'
 PATH = 'content'
@@ -46,9 +46,6 @@ SOCIAL = (
 
 
 DEFAULT_PAGINATION = 10
-GOOGLE_ANALYTICS = 'UA-59964005-1'
-ADD_THIS_ID = 'ra-54023148366c6bdd'
-DISQUS_SITENAME = 'importnone'
 
 USE_FOLDER_AS_CATEGORY = True
 MAIN_MENU = True

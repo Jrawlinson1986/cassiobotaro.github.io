@@ -10,7 +10,7 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-SITEURL = ''
+SITEURL = 'http://cassiobotaro.github.io'
 RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
@@ -20,5 +20,8 @@ DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
 
-#DISQUS_SITENAME = ""
-#GOOGLE_ANALYTICS = ""
+# DISQUS_SITENAME = ""
+# GOOGLE_ANALYTICS = ""
+GOOGLE_ANALYTICS = u'UA-59964005-1'
+ADD_THIS_ID = u'ra-54023148366c6bdd'
+DISQUS_SITENAME = u'importnone'
