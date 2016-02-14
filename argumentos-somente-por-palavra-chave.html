@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Argumentos somente por palavra chave</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Import None </a></h1>
+                <nav><ul>
+                    <li><a href="/category/linux.html">Linux</a></li>
+                    <li><a href="/category/python.html">Python</a></li>
+                    <li class="active"><a href="/category/python3.html">Python3</a></li>
+                    <li><a href="/category/sublime.html">Sublime</a></li>
+                    <li><a href="/category/vim.html">Vim</a></li>
+                    <li><a href="/category/web2py.html">web2py</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/argumentos-somente-por-palavra-chave.html" rel="bookmark"
+           title="Permalink to Argumentos somente por palavra chave">Argumentos somente por palavra chave</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-28T19:00:00-03:00">
+                Published: Sáb 28 março 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python3.html">python3</a> </p>
+</footer><!-- /.post-info -->      <h2>Por que falar sobre isto?</h2>
+<p>Python 3 ainda possui uma névoa sobre ele, e o movimento de resistência ainda é grande. Mas isto não quer dizer que desbravadores já não o estejam explorando. Já escrevi um <a href="http://cassiobotaro.github.io/porque-python-3.html">post</a> sobre a nova versão da linguagem, porém ainda tem vários recursos que podem ser demonstrados. Um deles é a capacidade de aceitar somente palavras chaves como argumento. Eu até coloquei isto nos slides da Python Brasil 10, porém senti que ao apresentar faltou uma boa explicação.</p>
+<h2>Talk is cheap. Show me the code</h2>
+<p>Tentarei dar um exemplo utilizando código, explicarei utilizando os comentários</p>
+<div class="highlight"><pre><span></span><span class="c1"># vamos iniciar com a seguinte função</span>
+
+<span class="k">def</span> <span class="nf">funcao</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">kill</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">kill</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># realiza operacao</span>
+    <span class="o">...</span>
+
+<span class="c1"># e por algum algum descuido...</span>
+<span class="n">funcao</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># o que acontece?</span>
+<span class="c1"># possivelmente você acaba de ser demitido</span>
+
+<span class="c1"># Agora vamos corrigir isto utilizando python3</span>
+<span class="c1"># lembre-se que daqui pra baixo, a sintáxe não é compativel com python 2</span>
+
+<span class="k">def</span> <span class="nf">funcao</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kill</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">kill</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># realiza operacao</span>
+    <span class="o">...</span>
+
+<span class="c1"># Basta colocar um * e pronto</span>
+<span class="c1"># agora se cometer um erro o python 3 te alerta</span>
+<span class="n">funcao</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># TypeError: funcao() takes 2 positional arguments but 3 were given</span>
+
+<span class="c1"># Mas o que é esse asterico, é igual o args?</span>
+<span class="c1"># Na verdade é similar, porém o interpretador sabe que se não foi definido o </span>
+<span class="c1"># &quot;args&quot; um erro deve ser lançado</span>
+
+<span class="c1">#Mas e se eu definir o args?</span>
+<span class="k">def</span> <span class="nf">funcao</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">kill</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">kill</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># realiza operacao</span>
+    <span class="o">...</span>
+
+<span class="c1"># acontece que agora, todo parâmetro passado além dos dois obrigatórios(positionals), será armazenado em args, e kill só sera atribuido quando</span>
+<span class="c1"># utilizado palavra chave</span>
+<span class="c1">#Ex: funcao(0, 0, kill=True)</span>
+</pre></div>
+
+
+<h2>Considerações finais</h2>
+<p>Não pense que exemplo é exagerado, pode acontecer a qualquer hora com você.
+Não brinque mais de roleta russa com seus argumentos.</p>
+<p><img alt="programming-motherfucker" src="/images/programming-motherfucker.jpg" /></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

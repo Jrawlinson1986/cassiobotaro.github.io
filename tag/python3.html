@@ -15,13 +15,252 @@
         <header id="banner" class="body">
                 <h1><a href="/">Import None </a></h1>
                 <nav><ul>
+                    <li><a href="/category/linux.html">Linux</a></li>
                     <li><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/python3.html">Python3</a></li>
+                    <li><a href="/category/sublime.html">Sublime</a></li>
+                    <li><a href="/category/vim.html">Vim</a></li>
+                    <li><a href="/category/web2py.html">web2py</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/hello-python.html">Hello Python!</a></h1>
+                    <h1 class="entry-title"><a href="/conceitos-linguagem-parte-4.html">Conceitos de linguagem de programação - Parte 4</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-12-14T01:00:00-02:00">
+                Published: Seg 14 dezembro 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python3.html">python3</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
+</footer><!-- /.post-info --><p><img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /></p>
+<h2>Introdução</h2>
+<p>Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.</p>
+<p>Cada parte será postada em uma semana.</p>
+<p>Existe um <a href="https://github.com/cassiobotaro/conceitos_linguagens">repositório</a> onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.</p>
+<p>A parte 3 pode ser encontrada <a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-3">aqui</a>.</p>
+<h2>Paradigmas</h2>
+<p>Como segundo assunto falaremos sobre paradigmas de programação.</p>
+<h3>Programação Imperativa</h3>
+<p>Paradigma principal do Python, tem por característica mudança de estado do programa.</p>
+<p>O nome imperativo e por causa que ordens são dadas no imperativo.</p>
+<p>Basicamente um programa é escrito como:
+faça isto, faça aquilo, depois aquilo outro.</p>
+<p>Exemplo de um programa imprativo:</p>
+<div class="highlight"><pre><span></span><span class="n">somente_menores_que_1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">somente_menores_que_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">quadrado_valores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">somente_menores_que_1</span><span class="p">:</span>
+    <span class="n">quadrado_valores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">quadrado_valores</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Repare que a mudança do programa são refletidas e armazenadas em células de memória(variáveis).</p>
+<h3>Programação Funcional</h3>
+<p>Características funcionais</p>
+<div class="highlight"><pre><span></span>- Provê map  e filter, funções utéis quando se trabalha funcionalmente
+- Funções lambdas
+- Funções de primeira ordem(veja as lambdas sendo passados como parâmetros de outras funções)
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>Restrições</p>
+<div class="highlight"><pre><span></span>- não existe recursão em cauda
+- não é puramente funcional, logo não apresenta todas as suas características
+</pre></div>
+
+
+<h3>Orientação a objeto</h3>
+<p>Não considerado por Sebesta como um paradigma de programação, O argumento é que toda programação orientada a objeto é imperativa, com única diferença que a estruturação dos arquivos é orientada a objetos.
+Características:</p>
+<div class="highlight"><pre><span></span>- Elegância em getters e setters com utilização de properties
+- Herança Múltipla
+- Utilização do self explícito em métodos de instância
+</pre></div>
+
+
+<p>Exemplo da utilização:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Filho</span><span class="p">(</span><span class="n">Pai</span><span class="p">,</span> <span class="n">Mae</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">peso</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nome</span> <span class="o">=</span> <span class="n">nome</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">peso</span> <span class="o">=</span> <span class="n">peso</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">peso</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__peso</span>
+
+    <span class="nd">@peso.setter</span>
+    <span class="k">def</span> <span class="nf">peso</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__peso</span> <span class="o">=</span> <span class="n">valor</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;valor deve ser &gt; 0&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Python possui suporte a orientação a objetos, inclusive até mesmo os tipos básicos em python são objetos.</p>
+<p>A conclusão é que Python é imperativo, mas também possui caratéristicas de outros paradigmas e suporte a orientação a objeto.</p>
+<h3>Gostinho de queiro mais?</h3>
+<p>Este assunto é melhor explicado na prática, então não perca tempo e veja <a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/paradigmas.py">este arquivo</a>.</p>
+<p>Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.</p>
+<p>[ ]'s    </p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/conceitos-linguagem-parte-3.html" rel="bookmark"
+                           title="Permalink to Conceitos de linguagem de programação - Parte 3">Conceitos de linguagem de programação - Parte 3</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-12-06T23:00:00-02:00">
+                Published: Dom 06 dezembro 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python3.html">python3</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
+</footer><!-- /.post-info -->                <p>Conceitos de linguagens de programação aplicados em Python</p>
+                <a class="readmore" href="/conceitos-linguagem-parte-3.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/conceitos-linguagem-parte-2.html" rel="bookmark"
+                           title="Permalink to Conceitos de linguagem de programação - Parte 2">Conceitos de linguagem de programação - Parte 2</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-29T23:30:00-02:00">
+                Published: Dom 29 novembro 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python3.html">python3</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
+</footer><!-- /.post-info -->                <p>Conceitos de linguagens de programação aplicados em Python</p>
+                <a class="readmore" href="/conceitos-linguagem-parte-2.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/conceitos-linguagem-parte-1.html" rel="bookmark"
+                           title="Permalink to Conceitos de linguagem de programação - Parte 1">Conceitos de linguagem de programação - Parte 1</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-22T22:00:00-02:00">
+                Published: Dom 22 novembro 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python3.html">python3</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
+</footer><!-- /.post-info -->                <p>Conceitos de linguagens de programação aplicados em Python</p>
+                <a class="readmore" href="/conceitos-linguagem-parte-1.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/instalando-pillow.html" rel="bookmark"
+                           title="Permalink to Instalando Pillow">Instalando Pillow</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-08-14T22:00:00-03:00">
+                Published: Sex 14 agosto 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python.html">Python</a>.</p>
+<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/python3.html">python3</a> <a href="/tag/ubuntu.html">ubuntu</a> </p>
+</footer><!-- /.post-info -->                <p>Como instalar a biblioteca pillow com suporte total a png,jpg,web.</p>
+                <a class="readmore" href="/instalando-pillow.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/argumentos-somente-por-palavra-chave.html" rel="bookmark"
+                           title="Permalink to Argumentos somente por palavra chave">Argumentos somente por palavra chave</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-28T19:00:00-03:00">
+                Published: Sáb 28 março 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python3.html">python3</a> </p>
+</footer><!-- /.post-info -->                <p>Como um novo recurso do python 3 te ajuda a não brincar de roleta russa com seus parâmetros.</p>
+                <a class="readmore" href="/argumentos-somente-por-palavra-chave.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/porque-python-3.html" rel="bookmark"
+                           title="Permalink to Por que python 3?">Por que python 3?</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-10T03:00:00-03:00">
+                Published: Ter 10 março 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/python3.html">python3</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
+</footer><!-- /.post-info -->                <p>Motivos para a utilização da versão 3.0 da linguagem Python.</p>
+                <a class="readmore" href="/porque-python-3.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/hello-python.html" rel="bookmark"
+                           title="Permalink to Hello Python!">Hello Python!</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2015-03-01T00:00:00-03:00">
                 Published: Dom 01 março 2015
@@ -32,77 +271,12 @@
         </address>
 <p>In <a href="/category/python.html">Python</a>.</p>
 <p>tags: <a href="/tag/python.html">python</a> <a href="/tag/python3.html">python3</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
-</footer><!-- /.post-info --><p><img alt="logo-python" src="{filename}/images/logopython2.png" title="Logo Python" /></p>
-<h2>FAQ</h2>
-<p>Como algumas perguntas são recorrentes nas listas de discussões, nos grupos do facebook e outros meios de comunicação e nossa comunidade gosta de receber bem os iniciantes, responderei aqui aquelas dúvidas que são constantes.</p>
-<h2>Python roda no (coloque aqui sua plataforma) ?</h2>
-<p>Sim. Atualmente usuários linux, windows, MAC e de <a href="https://www.python.org/download/other/">outras plataformas</a>  podem programar nesta linguagem. O mesmo código pode ser rodado em diferentes plataformas, embora em <em>casos específicos</em> não funcione. </p>
-<h2>Alguma empresa grande utiliza?</h2>
-<p>Aqui uma lista de algumas que talvez você nem sabia que utilizava, algumas com links interessantes de como e onde o python é utilizado.</p>
-<ul>
-<li><a href="http://highscalability.com/blog/2011/3/14/6-lessons-from-dropbox-one-million-files-saved-every-15-minu.html">Dropbox</a></li>
-<li><a href="https://www.python.org/about/success/ilm/">Industrial light and magic</a></li>
-<li><a href="https://labs.spotify.com/2013/03/20/how-we-use-python-at-spotify/">Spotify</a></li>
-<li><a href="https://developer.mozilla.org/pt-BR/docs/Python#Use_of_Python_at_Mozilla">Mozilla</a></li>
-<li><a href="https://web.archive.org/web/19990204033714/http://google.stanford.edu/about.html">Google</a></li>
-</ul>
-<p>E no Brasil?</p>
-<ul>
-<li><a href="http://www.brasil.gov.br/">Governo Brasileiro(diversos portais)</a></li>
-<li><a href="http://luizalabs.com/">Luizalabs</a></li>
-<li><a href="http://www.uai.com.br/">Portal UAI</a></li>
-<li><a href="http://www.globo.com/">Globo.com(diversos portais)</a>
-e muitos outros...</li>
-</ul>
-<p>Mais casos de sucesso podem ser vistos <a href="https://www.python.org/about/success/">aqui</a>.</p>
-<h2>Mas eu trabalho com (coloque aqui sua área de atuação), consigo trabalhar em Python?</h2>
-<p>Busque no google ou na lista de discussão que deve ter alguém que já mexeu nesta área ou está mexendo. Área científica, games, web e até mesmo como linguagem de cola, ou seja, linguagem para interligar sistemas de linguagens diferentes.
-Python atende a diversos nichos e várias bibliotecas estão disponíveis para te ajudar a não reinventar a roda.
-Mas nem tudo dá pra fazer com Python, e o mesmo é valido para toda linguagem, logo deixo o recado, uma pessoa que só tem um martelo, para ela, todo parafuso é prego.</p>
-<h2>Python 2 ou 3?</h2>
-<p>Está começando na linguagem? Python 3.
-Está iniciando projeto? Python 3, a não ser que logo de cara tenha alguma dependência de biblioteca que ainda não dá suporte. Sistema ja roda, caso não tenha impacto($$ e tempo), porte para python 3.
-Se não está preso a nenhuma dependência utilize python 3 e seja feliz!
-Está na duvida, verifique <a href="https://caniusepython3.com/">aqui</a>. </p>
-<h2>Por onde começo?</h2>
-<p>Definitivamente o melhor lugar para começar é se juntar a horda de zumbis do profossor Masanori, que tem uma didática incrível e mostra muitos exemplos práticos e divertidos.</p>
-<p><a href="http://pycursos.com/python-para-zumbis/">Python para zombies</a></p>
-<p><img alt="python-para-zumbis" src="{filename}/images/zumbi.jpg" title="Python para zumbis" /></p>
-<p>Um outro lugar bom pra começar é o site do <a href="https://twitter.com/erichideki">japa</a> que teve o trabalho de reunir todo um material pra iniciantes e vai ganhar uma estrelinha por isto. Quando for no site dele, leia os outros posts, que ele tem vários compilados interessantes.</p>
-<p>Alguns links interessantes:</p>
-<p><a href="https://ericstk.wordpress.com/2015/02/16/guia-para-iniciantes-a-programacao-em-python/">Guia para iniciantes python</a></p>
-<p><a href="https://ericstk.wordpress.com/2013/02/15/quais-sao-as-melhores-formas-para-aprender-python-ides-referencias-e-dicas/">Melhores formas para aprender</a></p>
-<p><a href="https://ericstk.wordpress.com/2013/01/02/onde-encontrar-respostas-para-suas-duvidas-em-python/">Onde encontrar respostas para suas dúvidas</a></p>
-<h2>Qual ide utilizar?</h2>
-<p>A que melhor te atender e te tornar produtivo. Experimente várias e não caia no conto que xxx é melhor porque fulano utiliza ela. Quando se sentir confortável e produtivo, personalize sua ide ou editor de texto.
-Não listarei ide's o post do japa tem lá um monte, mas sim algumas customizações:</p>
-<ul>
-<li>
-<p><a href="https://github.com/cassiobotaro/my_environment">Sublime text</a></p>
-</li>
-<li>
-<p><a href="http://vim-bootstrap.com/">VIM</a> </p>
-</li>
-</ul>
-<h2>Qual a maior feature do python?</h2>
-<p>A comunidade. A diversidade de perfis que encontramos na comunidade é sem dúvida sua maior qualidade. A prontidão e paciência em atender e ajudar dos mais veteranos é incrivel. Nenhum perfil é descriminado e todos são sempre bem acolhidos.</p>
-<h2>Python não serve para projeto grande?</h2>
-<p>Uma das grandes questões que normalmente levantam é que outras linguagens são muito mais burocráticas e organizadas do que Python e para projetos maiores a linguagem não atende.Em respeito a isso o que tenho a dizer que organização e arquitetura de software tem muito mais haver com pessoas e como elas organizam o processo e ou contrução do que com a linguagem.Um projeto grande sim pode ser feito com python porém o projeto não tende a crescer tanto como outras linguagens, pois afinal não é tão verbosa.</p>
-<h2>Python é lento?</h2>
-<p>Infelizmente a linguagem não é tão performática e em alguns casos pode ser considerada lenta. Uma dica é tentar utilizar ao máximo os <em>builtins</em> da linguagem pois são otimizados e experimente outros interpretadores como <a href="http://pypy.org/">pypy</a>. Mas lembre-se sempre "otimização prematura é a raiz de todo o mal." --Donald Knuth</p>
-<h2>Dicas finais</h2>
-<p>Os comandos dir e help do python são como "por favor" e "obrigado", uma pessoa que os conhece passa a ser diferente. 
-O comando help funciona com com <em>statements</em> do python, como if, while, for.
-Por exemplo:</p>
-<div class="highlight"><pre><span></span>        <span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="s1">&#39;if&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Outra dica é preparar e isolar seu ambiente de trabalho em um projeto, mas como fazer isto ficará para outro post.</p>
-<p>Caso seja um iniciante lendo este post, bem vindo a comunidade e conte comigo com o que eu puder te ajudar.</p>
-<p>Espero que tenha contribuído com vocês e meu ultimo recado é:</p>
-<p><img alt="learn-python" src="{filename}/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /></p>                </article>
-            </aside><!-- /#featured -->
+</footer><!-- /.post-info -->                <p>Resposta à perguntas frequntes de iniciantes na linguagem Python.</p>
+                <a class="readmore" href="/hello-python.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

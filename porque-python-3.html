@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Por que python 3?</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Import None </a></h1>
+                <nav><ul>
+                    <li><a href="/category/linux.html">Linux</a></li>
+                    <li><a href="/category/python.html">Python</a></li>
+                    <li class="active"><a href="/category/python3.html">Python3</a></li>
+                    <li><a href="/category/sublime.html">Sublime</a></li>
+                    <li><a href="/category/vim.html">Vim</a></li>
+                    <li><a href="/category/web2py.html">web2py</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/porque-python-3.html" rel="bookmark"
+           title="Permalink to Por que python 3?">Por que python 3?</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-10T03:00:00-03:00">
+                Published: Ter 10 março 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python3.html">Python3</a>.</p>
+<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/python3.html">python3</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
+</footer><!-- /.post-info -->      <p><img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /></p>
+<h2>Um pouco de história</h2>
+<p>O python 3.0 foi uma decisão tomada em 2008, e decidiu-se assim por causa da incompatibilidade de alguns novos recursos com a versão 2.0 .
+É uma versão com novas baterias incluídas como asyncio, pip, enum, statistics, venv.
+Uma longa correção da nomeclatura de alguns módulos foi feita seguindo mais o padrão pythonico(pep-8).
+Outras mudanças foram a transformação do print em uma função, o que trouxe novas possibilidades, a utilização de visão e iteradores ao invés de listas como retorno de alguns métodos, a unificação de long e int, e várias outras mudanças que serão apresentadas.</p>
+<h2>Mas porque python 3?</h2>
+<p>Se a correção de nomeclatura e inclusão de novas bibliotecas à biblioteca padrão do python ainda não te convenceram, abaixo serão listados novos recursos e possibilidades que podem te atrair a esta nova versão. </p>
+<h2>Fatiamento</h2>
+<p>Agora é possivel extrair, inicio, meio e fim de sequencias utlizando novas possibilidades de atribuições.</p>
+<div class="highlight"><pre><span></span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="c1"># retorna 0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tail</span><span class="p">)</span>
+<span class="c1"># retorna 9</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+<span class="c1"># retorna [1, 2, 3, 4, 5, 6, 7, 8]</span>
+<span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+<span class="c1"># retorna [0, 1, 2, 3]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tail</span><span class="p">)</span>
+<span class="c1"># retorna 4</span>
+</pre></div>
+
+
+<h2>Iteradores em todo lugar!</h2>
+<p>Nada de se preocupar em otimizar memória modificando o metodo através da adição de algum prefixo como x  ou iter.
+Ou seja, nada mais de Xtudo ou iterlista no python 3.</p>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># retorna range(0, 10)</span>
+<span class="c1"># não é mais uma lista</span>
+<span class="c1"># se comporta como xrange do python 2</span>
+<span class="k">for</span> <span class="n">numero</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">numero</span><span class="p">,</span> <span class="n">endp</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="c1"># 0 1 2 3 4 5 6 7 8 9</span>
+<span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chaveA&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;chaveB&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;chaveC&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">dic</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="c1"># retorna dict_keys([&#39;chaveB&#39;, &#39;chaveC&#39;, &#39;chaveA&#39;])</span>
+<span class="c1"># visão com os valores das chaves do dicionário</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dic</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
+<span class="c1"># chaveB 2</span>
+<span class="c1"># chaveC 3</span>
+<span class="c1"># chaveA 1</span>
+</pre></div>
+
+
+<h2>Tipificação forte em comparadores.</h2>
+<p>Dado que python é uma linguagem dinâmica porém  com tipificação forte, nada mais sensato que comparadores também reclamem quando tipos distintos são comparados.</p>
+<div class="highlight"><pre><span></span><span class="c1"># No Python 2</span>
+<span class="s1">&#39;abc&#39;</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="c1"># True</span>
+<span class="bp">None</span> <span class="o">&lt;</span> <span class="mi">0</span>
+<span class="c1"># True</span>
+
+<span class="c1"># No Python 3</span>
+<span class="s1">&#39;abc&#39;</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="c1"># TypeError: unorderable types: str() &gt; int()</span>
+<span class="bp">None</span> <span class="o">&lt;</span> <span class="mi">0</span>
+<span class="c1"># TypeError: unorderable types: NoneType() &lt; int()</span>
+</pre></div>
+
+
+<h2>Strings divididas em bytes e unicodes</h2>
+<p>Agora é possivél utilizar de acentos, caracteres de outros alfabetos como chinês e outros caracteres especias.</p>
+<div class="highlight"><pre><span></span><span class="c1"># python 2</span>
+<span class="n">nome</span> <span class="o">=</span><span class="s1">&#39;cássio&#39;</span>
+<span class="n">nome</span> 
+<span class="c1"># &#39;c\xc3\xa1ssio</span>
+<span class="nb">bytes</span><span class="p">(</span><span class="s1">&#39;cássio&#39;</span><span class="p">)</span>
+<span class="c1"># &#39;c\xc3\xa1ssio</span>
+<span class="c1"># bytes e strings são a mesma coisa</span>
+
+<span class="c1"># python 3</span>
+<span class="n">nome</span> <span class="o">=</span><span class="s1">&#39;cássio&#39;</span>
+<span class="n">nome</span> 
+<span class="c1"># &#39;cássio&#39;</span>
+<span class="nb">bytes</span><span class="p">(</span><span class="s1">&#39;cássio&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="c1"># b&#39;c\xc3\xa1ssio&#39;</span>
+<span class="c1"># bytes e strings são coisas distintas</span>
+</pre></div>
+
+
+<p>E uma outra coisa permitida:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="err">Σ(</span><span class="nf">lim_inf</span><span class="p">,</span> <span class="n">lim_sup</span><span class="p">,</span> <span class="n">funcao</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Um somatório é um operador matemático que nos permite</span>
+<span class="sd">    representar facilmente somas de um grande número de termos,</span>
+<span class="sd">    até infinitos.</span>
+<span class="sd">    É representado com a letra grega sigma ( \Sigma ).</span>
+<span class="sd">    Uma variável i chamada índice do somatório recebe como valor inicial o</span>
+<span class="sd">    limite inferior(lim_inf).A</span>
+<span class="sd">    Esta variável percorre os valores inteiros até alcançar o limite</span>
+<span class="sd">    superior(lim_sup).</span>
+<span class="sd">    A cada iteração uma função(funcao) é executada sobre o índice do</span>
+<span class="sd">    somatório.</span>
+<span class="sd">    A função de entrada (funcao) deve receber um valor de entrada e retornar</span>
+<span class="sd">    um valor de saída.</span>
+
+<span class="sd">    Σ(1,5,lambda x:x) = 1 + 2 + 3 + 4 + 5 = 15</span>
+
+<span class="sd">    &gt;&gt;&gt; Σ(1,5,lambda x:x)</span>
+<span class="sd">    15</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">funcao</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lim_inf</span><span class="p">,</span> <span class="n">lim_sup</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+
+
+<h2>Leitura de dados de forma segura</h2>
+<p>Toda leitura de dados feita do teclado é feita em forma de string  e cabe ao programa sua manipulação.</p>
+<div class="highlight"><pre><span></span><span class="c1"># No python 2 </span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Comando a ser executado: &#39;</span><span class="p">)</span>
+<span class="c1"># experimente a expressão 80*&#39;-&#39; como entrada</span>
+<span class="c1"># embora no python 2 existe uma versão mais segura que é o raw_input</span>
+<span class="c1"># no python 3</span>
+<span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">)</span>
+<span class="c1"># &#39;4&#39;</span>
+<span class="c1"># o input sempre retorna string e caso precise deve ser explicitamente convertida</span>
+</pre></div>
+
+
+<h2>python -m modulo</h2>
+<p>Uma série de módulos da biblioteca padão se utilizam do artificio de colocar uma condicional para verificar quando são executados ou importados e podem ser utilizados como ferramentas.</p>
+<div class="highlight"><pre><span></span><span class="c1"># criação de um ambiente virtual</span>
+python -m venv /path/to/&lt;my_venv&gt;
+<span class="c1"># ubuntu apresenta problemas, nele utilize</span>
+python -m venv --without-pip /path/to/&lt;my_venv&gt;
+<span class="c1"># ativação deste ambiente</span>
+<span class="nb">source</span> /path/to/&lt;my_venv&gt;/bin/activate
+
+<span class="c1"># PYTHONPATH</span>
+python -m site
+
+<span class="c1"># Servidor http python</span>
+python -m http.server <span class="o">[</span>port<span class="o">]</span>
+
+<span class="c1"># Documentação</span>
+python -m pydoc
+<span class="c1"># b para abrir documentação no browser</span>
+python -m pydoc -b
+<span class="c1"># ou especifique o módulo</span>
+python -m pydoc math.sin
+
+<span class="c1"># debug estilo gdb</span>
+python -m pdb &lt;nomedoprograma.py&gt;
+
+<span class="c1"># profiler</span>
+python -m profile &lt;nomedoprograma.py&gt;
+
+<span class="c1">#exibe um calendario</span>
+python -m calendar
+
+<span class="c1"># recebe entrada json e imprime</span>
+python -m json.tool
+
+<span class="c1"># codifica e decodifica um texto em base64</span>
+<span class="nb">echo</span> <span class="s1">&#39;Hello World&#39;</span> <span class="p">|</span> python -m base64 -e
+<span class="nb">echo</span> <span class="s1">&#39;SGVsbG8gV29ybGQK&#39;</span> <span class="p">|</span> python -m base64 -d
+</pre></div>
+
+
+<h1>E mais uma infinidade de outros recursos</h1>
+<div class="highlight"><pre><span></span><span class="c1"># set comprehension</span>
+<span class="p">{</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">something</span><span class="p">}</span>
+
+<span class="c1"># dict comprehension </span>
+<span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">something</span><span class="p">}</span>
+
+<span class="c1"># 3/2 agora retorna 1.5 </span>
+
+<span class="c1"># notação para numeros em base oito e desesseis</span>
+<span class="c1"># 0o99 </span>
+<span class="c1"># 0x44</span>
+
+<span class="c1"># Não dá mais pra trolar amigos</span>
+<span class="bp">True</span><span class="p">,</span> <span class="bp">False</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span><span class="bp">True</span>
+<span class="c1"># SyntaxError: can&#39;t assign to keyword</span>
+
+<span class="c1"># asyncio</span>
+<span class="c1"># aqui uma utilização interessante</span>
+<span class="c1"># http://compiletoi.net/fast-scraping-in-python-with-asyncio.html</span>
+</pre></div>
+
+
+<h2>Considerações finais</h2>
+<p>Ainda existem  várias funcionalidades que infelizmente não serão apresentadas neste post devido a extensão do mesmo. Espero que tenham curtido e com o crescimento do numero de bibliotecas com suporte para o python 3, como Django, nltk, numpy e muitas outras, está esperando o que para dar suporte ao python 3 em seu projeto?</p>
+<p><a href="http://www.diveintopython3.net/">Vamos mergulhar no Python 3?</a> Algumas ferramentas que podem te ajudar:</p>
+<ul>
+<li><a href="http://pythonhosted.org//six/">six</a></li>
+<li><a href="https://docs.python.org/2/library/2to3.html">2to3</a></li>
+</ul>
+<p>E se tem duvida sobre suporte de alguma bilbioteca, confira <a href="https://caniusepython3.com/">aqui</a>. </p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Import None - OO</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Import None </a></h1>
+                <nav><ul>
+                    <li><a href="/category/linux.html">Linux</a></li>
+                    <li><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/python3.html">Python3</a></li>
+                    <li><a href="/category/sublime.html">Sublime</a></li>
+                    <li><a href="/category/vim.html">Vim</a></li>
+                    <li><a href="/category/web2py.html">web2py</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/loop-infinito.html">Loop Infinito</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-06-27T18:00:00-03:00">
+                Published: Sáb 27 junho 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python.html">Python</a>.</p>
+<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/oo.html">OO</a> </p>
+</footer><!-- /.post-info --><p><img alt="loop" src="/images/infinite_loop.png" title="Loop infinito" /></p>
+<h2>O problema</h2>
+<p>Vamos começar analisando o seguinte código:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Exemplo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Exemplo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interno</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chave</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interno</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chave</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interno</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">valor</span>
+</pre></div>
+
+
+<p>Criando uma instância do exemplo e manipulando-a, as coisas parecem legais:</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; <span class="nv">instancia_exemplo</span> <span class="o">=</span> Exemplo<span class="o">()</span>
+&gt;&gt;&gt; instancia_exemplo<span class="o">[</span><span class="s1">&#39;chave1&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;valor1&#39;</span>
+&gt;&gt;&gt; instancia_exemplo<span class="o">[</span><span class="s1">&#39;chave2&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;valor2&#39;</span>
+&gt;&gt;&gt; instancia_exemplo.get<span class="o">(</span><span class="s1">&#39;chave1&#39;</span><span class="o">)</span>
+    <span class="s1">&#39;valor1&#39;</span> 
+</pre></div>
+
+
+<p>Até que você decide mudar a notação para se recuperar um valor:</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; instancia_exemplo<span class="o">[</span><span class="s1">&#39;chave1&#39;</span><span class="o">]</span>
+    <span class="s1">&#39;valor1&#39;</span>
+&gt;&gt;&gt; instancia_exemplo<span class="o">[</span><span class="s1">&#39;chave3&#39;</span><span class="o">]</span>
+&gt;&gt;&gt; instancia_exemplo<span class="o">[</span><span class="s1">&#39;chave2&#39;</span><span class="o">]</span>
+    <span class="s1">&#39;valor2&#39;</span>
+</pre></div>
+
+
+<p>Opa! Uma chave não existentente não deveria dar um erro?</p>
+<p>Se reparar a implemenação de dunder item (<code>_getitem__</code>) vai ver que eu tenho um valor default que é retornado quando eu não encontro essa chave e este valor por padrão é None.</p>
+<p>Mas tudo bem, quando esta classe foi implementada, talvez essa seja o intuito.</p>
+<p>No código onde utilizo essa instancia eu simplesmente verifico se chave passada retorna valor nulo(None).</p>
+<p>Mas ai vem um desavisado, e vendo o <code>__getitem__</code> na classe decidi itera-la.</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; <span class="k">for</span> indice in instancia_exemplo:
+...    print indice 
+&gt;&gt;&gt;
+</pre></div>
+
+
+<p>E Pam!</p>
+<p><img alt="Pane" src="/images/panic.gif" title="Pane no sistema" /></p>
+<p>Seu programa entra em loop infinito. </p>
+<h2>Como funciona o Python em termos de iteração?</h2>
+<p>Vamos  começar por conceitos. Iterável, é tudo aquilo que pode ser percorrido, não confunda com iterador que é um padrão de projeto. Em Python, listas, tuplas, geradores e dicionarios podem ser percorridos.</p>
+<p>Mas como posso definir para o interpretador que algo pode ser percorrível?</p>
+<p>Algo que pode ser percorrível em Python, possui uma função <code>__iter___</code> que retorna um iterador. Um iterador é um padrão de projeto aplicado em containers e seguem um protocolo para este container ser percorrido.</p>
+<p>Uma outra opção é  a existência da função <code>__getitem__</code> <strong>que aceite itens numéricos e lançam IndexError indicando que o percurso foi finalizado</strong>.</p>
+<p>Dito isso já dá pra se ter uma idéia do que aconteceu em nosso código. Quando o laço de repetição(for) foi iniciado o interpretador tentou atribuir exaustivamente valores de 0..n para <code>__getitem__</code> que continuava responder None e nenhuma exceção foi lançada.</p>
+<h2>A solução</h2>
+<p>Não há solução, porque não é um problema, apenas uma confusão causada sobre interpretação de iteráveis.</p>
+<p>Porém analisando o código acima, acho que o grande problema neste código é a tentiva de suprimir uma exceção. Para casos em que isto ocorre o proprio dicionário já nos fornece um método chamado <code>get</code>.</p>
+<p>É até dificil falar que a solução é o metódo get, pois este exemplo também nos faz pensar sobre a classe Exemplo que é basicamente um dicionário e caso algum estado ou ação seja adicionado ao objeto, talvez uma melhor reescrita seria através de herança.   </p>
+<h2>Moral da história</h2>
+<p>Seja cuidadoso ao reescrever os <code>special methods</code>, lembrem-se que o maquinário para a execução destes métodos está presente no interpretador e que existe um protocolo estabelecido.</p>
+<p>Lembre-se também que suprimir exceções podem fazer com que erros sejam silenciados e isto não é pythônico.</p>
+<h2>Créditos</h2>
+<p>Este post só se tornou possível após consulta de duas fontes:</p>
+<p><a href="http://stackoverflow.com/questions/926574/why-does-defining-getitem-on-a-class-make-it-iterable-in-python">Resposta do Alex Martelli</a></p>
+<p><a href="https://www.youtube.com/watch?v=ULj7ejvuzI8">Palestra do Luciano Ramalho</a></p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Mais um passo com web2py</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Import None </a></h1>
+                <nav><ul>
+                    <li><a href="/category/linux.html">Linux</a></li>
+                    <li><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/python3.html">Python3</a></li>
+                    <li><a href="/category/sublime.html">Sublime</a></li>
+                    <li><a href="/category/vim.html">Vim</a></li>
+                    <li class="active"><a href="/category/web2py.html">web2py</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/mais-um-passo-com-web2py.html" rel="bookmark"
+           title="Permalink to Mais um passo com web2py">Mais um passo com web2py</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-07-07T00:00:00-03:00">
+                Published: Ter 07 julho 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/web2py.html">web2py</a>.</p>
+<p>tags: <a href="/tag/web2py.html">web2py</a> <a href="/tag/iniciantes.html">iniciantes</a> </p>
+</footer><!-- /.post-info -->      <p><img alt="Web2py Logo" src="/images/web2py_logo.png" /></p>
+<h2>Recapitulando</h2>
+<p>No <a href="http://cassiobotaro.github.io/introducao-ao-web2py.html">post</a> anterior dei uma introdução sobre o que é o web2py e iniciamos a construção de uma aplicação, porém não através de um scaffolding(uma aplicação base).</p>
+<p>Escrevemos um hello world personalizado onde o nome passado por argumento era retornado no corpo do retorno da nossa aplicação.</p>
+<p><img alt="print" src="/images/print_screen_hello.png" /></p>
+<h2>O próximo passo</h2>
+<p>Ainda sem uma aplicação bem definida decidi aboradar um pouco da criação de um modelo e sua aplicação.</p>
+<p>Este será então o nosso segundo hello world, criaremos um modelo, faremos sua exposição através da view e seu controle através de um controlador. Será dado uma pincelada como ter visões alternativas sobre o mesmo controlador.</p>
+<h2>Definindo o modelo</h2>
+<p>Crie um arquivo dentro do diretório models chamado db.py com o seguinte conteúdo:</p>
+<div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">DAL</span><span class="p">(</span><span class="s1">&#39;sqlite://storage.sqlite&#39;</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">define_table</span><span class="p">(</span>
+    <span class="s1">&#39;marcas&#39;</span><span class="p">,</span>
+    <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;nome&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">define_table</span><span class="p">(</span>
+    <span class="s1">&#39;carros&#39;</span><span class="p">,</span>
+    <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;modelo&#39;</span><span class="p">,</span> <span class="n">notnull</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+    <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;ano&#39;</span><span class="p">,</span> <span class="n">notnull</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+    <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;marca&#39;</span><span class="p">,</span> <span class="s1">&#39;reference marcas&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Agora temos definidos dois modelos de nossa aplicação, lembrando que estes modelos serão aplicados à <a href="http://web2py.com/books/default/chapter/29/07/forms-and-validators#SQLFORM">visão</a> e a persistência de dados.</p>
+<p>O que acabamos de definir é que utilizaremos o sqlite como banco de dados, e neste banco de dados temos duas tabelas onde serão armazenados nossos dados.</p>
+<p>Em uma delas temos uma lista de marcas, e em outra uma lista de carros asosociados a estas marcas. todo carro deve possuir obrigatoriamente modelo, ano e marca.</p>
+<h2>Populando nossas tabelas</h2>
+<p>Ainda no arquivo db.py adicione as seguintes linhas:</p>
+<div class="highlight"><pre><span></span><span class="c1"># verifica se a tabela de marcas está vazia</span>
+<span class="k">if</span> <span class="n">db</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">marcas</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">marcas</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">nome</span><span class="o">=</span><span class="s1">&#39;Fiat&#39;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">marcas</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">nome</span><span class="o">=</span><span class="s1">&#39;Ford&#39;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">marcas</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">nome</span><span class="o">=</span><span class="s1">&#39;Chevrolet&#39;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="c1"># verifica se a tabela de carros está vazia</span>
+<span class="k">if</span> <span class="n">db</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">carros</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">carros</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">modelo</span><span class="o">=</span><span class="s1">&#39;Idea&#39;</span><span class="p">,</span> <span class="n">marca</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ano</span><span class="o">=</span><span class="s1">&#39;2003&#39;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">carros</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">modelo</span><span class="o">=</span><span class="s1">&#39;Ka&#39;</span><span class="p">,</span> <span class="n">marca</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ano</span><span class="o">=</span><span class="s1">&#39;2004&#39;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">carros</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">modelo</span><span class="o">=</span><span class="s1">&#39;Celta&#39;</span><span class="p">,</span> <span class="n">marca</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ano</span><span class="o">=</span><span class="s1">&#39;2005&#39;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Temos 3 carros de 3 marcas distintas. Preste atenção no if que foi adicionado antes da inserção do carro, ele previne que a cada requisição carros repetidos sejam adicionados à tabela.</p>
+<p>Lembre-se tambem que essa maneira de povoar os dados é somente para desenvolvimento e teste e pode ser apagado após os registros serem adicionados ao banco de dados. Apagar estas linhas evita duas consultas desnecessárias ao banco de dados.</p>
+<h2>Controlando o que será exibido</h2>
+<p>Vamos voltar ao nosso controlador, o arquivo default.py(hello/controllers/default.py)</p>
+<p>Já vimos que o controlador recebe uma requisição, realiza processamento e retorna alguma resposta ao solicitante.
+Vamos então apagar o conteúdo de index e reescreve-lo agora consultando os carros existentes em meu banco de dados.</p>
+<p>O código será o seguinte:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="c1"># pode ser traduzido como select * from carros</span>
+    <span class="c1"># ou seja, todos os carros na tabela</span>
+    <span class="n">carros</span> <span class="o">=</span> <span class="n">db</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">carros</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">()</span>
+    <span class="c1"># dicionário que define as variáveis presentes no ambiente </span>
+    <span class="c1"># durante renderização da template html</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;carros&#39;</span><span class="p">:</span> <span class="n">carros</span><span class="p">}</span>
+</pre></div>
+
+
+<p>Com essa alteração nossa visão também deve ser alterada. Para uma vizualização interessante vamos fazer uma tabela.
+Edite o arquivo index.html(hello/views/default/index.html)</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;pt-br&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Carros<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Modelo<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Marca<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Ano<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        {{for carro in carros:}}
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{=carro.modelo}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{=carro.marca.nome}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{=carro.ano}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        {{pass}}
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>Um único detalhe que chamo atenção neste codigo é <code>{{=carro.marca.nome}}</code>, como as tabelas possuem relação o web2py irá ficar responsável por  buscar o nome do modelo de cada carro.
+Visualize através da url: <a href="http://localhost:8000/hello/default/index.json">http://localhost:8000/hello/default/index.json</a></p>
+<h2>Exibindo os mesmos dados de forma diferente</h2>
+<p>Já que temos uma resposta html, o quão será difícil retornar um json
+com estes mesmos dados para uma possível comunicação entre sistemas ou at´e mesmo para consumo de um aplicativo móvel?</p>
+<p>Na verdade é extremamente simples. Apenas crie no mesmo diretório onde se encontra a view index.html um arquivo index.json com o seguinte conteúdo.</p>
+<div class="highlight"><pre><span></span>{{from gluon.serializers import json}}{{=XML(json(response._vars))}}
+</pre></div>
+
+
+<p>Para consultar visite a url: <a href="http://localhost:8000/hello/default/index.json">http://localhost:8000/hello/default/index.json</a></p>
+<h2>Em breve tem mais...</h2>
+<p>Ficou curioso sobre o esquema de templates do web2py?, mais detalhes sobre os modelos? Ainda um pouco perdido? Não se preocupe.
+Pretendo em breve escreves posts mais detalhados sobre cada aspecto do web2py como modelo, visão, controlador, modulos e também tratar brechas que até agora foram deixadas.</p>
+<p>Curtiu? Compartilhe!</p>
+<p>[ ]'s</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

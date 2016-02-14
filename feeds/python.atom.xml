@@ -1,5 +1,358 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>/</id><updated>2015-03-01T00:00:00-03:00</updated><entry><title>Hello Python!</title><link href="/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="{filename}/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>/</id><updated>2015-08-14T22:00:00-03:00</updated><entry><title>Instalando Pillow</title><link href="/instalando-pillow.html" rel="alternate"></link><updated>2015-08-14T22:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-08-14:instalando-pillow.html</id><summary type="html">&lt;p&gt;&lt;img alt="ubuntu-pillow" src="/images/ubuntu_pillow.jpg" title="Travesseiro Ubuntu" /&gt;&lt;/p&gt;
+&lt;h2&gt;Problema&lt;/h2&gt;
+&lt;p&gt;Ao tentar instalar a biblioteca pillow, me deparei com o problema de não dar suporte a jpeg.&lt;/p&gt;
+&lt;p&gt;O erro apresentado era: "decoder jpeg not available". &lt;/p&gt;
+&lt;p&gt;Como estou desenvolvendo uma aplicação que irá redimensionar imagens jpeg e png isto é um problema.&lt;/p&gt;
+&lt;h2&gt;Solução&lt;/h2&gt;
+&lt;p&gt;Após algumas buscas no Stack Overflow cheguei ao seguintes passos que funcionaram pra mim.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Esta solução funciona em Ubuntu 14.04+&lt;/span&gt;
+
+&amp;gt;&amp;gt;&amp;gt; sudo apt-get install libtiff5-dev  libjpeg8-dev  zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+
+&lt;span class="c1"&gt;#For Ubuntu x64:&lt;/span&gt;
+
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib
+
+&lt;span class="c1"&gt;# Or for Ubuntu 32bit:&lt;/span&gt;
+
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/i386-linux-gnu/libjpeg.so /usr/lib/
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/i386-linux-gnu/libfreetype.so.6 /usr/lib/
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/i386-linux-gnu/libz.so /usr/lib/
+
+&amp;gt;&amp;gt;&amp;gt; pip install --no-cache-dir -v Pillow
+
+&lt;span class="c1"&gt;# O -v é só para após a instalação checarmos se tudo correu bem.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+&lt;p&gt;Sim, este foi um post ligeiro, com intuito de ajudar outros que possivelmente encontrem o mesmo erro que eu.&lt;/p&gt;
+&lt;p&gt;Espero que tenham gostado. Abraços!&lt;/p&gt;
+&lt;p&gt;Créditos para a solução e links interessantes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/8915296/python-image-library-fails-with-message-decoder-jpeg-not-available-pil"&gt;http://stackoverflow.com/questions/8915296/python-image-library-fails-with-message-decoder-jpeg-not-available-pil&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://pillow.readthedocs.org/installation.html"&gt;http://pillow.readthedocs.org/installation.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html"&gt;http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="python3"></category><category term="ubuntu"></category></entry><entry><title>Mito ou Verdade: Destrutor</title><link href="/mito-ou-verdade-destrutor.html" rel="alternate"></link><updated>2015-07-25T14:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-07-25:mito-ou-verdade-destrutor.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Linguagens de programação mais antigas traziam a capacidade de manipulação da memória. A competência de reservar um espaço de memória pra determinada operação e sua posterior liberação era do desenvolvedor.&lt;/p&gt;
+&lt;p&gt;Python desde o seu início possui um mecanismo simples de alocação e desalocação, é o mecanismo de contador de refêrencia.&lt;/p&gt;
+&lt;p&gt;Sempre que um novo objeto é referenciado(alguém passa apontar para aquele objeto), o contador é incrementado e quando deixa de apontar, este contador é decreementado. Chegando a 0 este contador aquele espaço de memória está livre.&lt;/p&gt;
+&lt;p&gt;Até aqui tudo certo, isto quer então que quando realizo &lt;code&gt;del &amp;lt;objeto&amp;gt;&lt;/code&gt;, meu objeto é desalocado?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;lista = []
+lista.append(lista)
+del lista
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Aparentemente tudo ok, mas tenho péssimas notícias para lhe dar, o rótulo lista pode até não estar mais referenciando aquele espaço de memória, porém aquele espaço de memória ainda continua ocupado.&lt;/p&gt;
+&lt;h2&gt;Discussão sobre o problema&lt;/h2&gt;
+&lt;p&gt;Vamos uma demonstração que mostra que aquele objeto ainda estava na memória.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="c1"&gt;# Primeiro definiramos que o nível de debug do &lt;/span&gt;
+&lt;span class="c1"&gt;# coletor de lixo é DEBUG_LEAK para&lt;/span&gt;
+&lt;span class="c1"&gt;# poder ver os objetos coletados pelo coletor&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# vamos definir uma lista e verificar qual o seu endereço de memória &lt;/span&gt;
+&lt;span class="n"&gt;lista&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="c1"&gt;# repetimos o código anterior &lt;/span&gt;
+&lt;span class="c1"&gt;# adicionando lista a ela mesmo&lt;/span&gt;
+&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# apaga a lista&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;lista&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# Repare que um dos elementos coletados foi a &lt;/span&gt;
+&lt;span class="c1"&gt;# lista que achamos já ter sido removida&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Agora que já foi provado, vamos entender melhor como funciona o coletor de lixo do Python.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="c1"&gt;# Definiramos que o nível de debug do &lt;/span&gt;
+&lt;span class="c1"&gt;# coletor de lixo é DEBUG_LEAK para&lt;/span&gt;
+&lt;span class="c1"&gt;# poder ver os objetos coletados pelo coletor&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Primeira coisa a saber é que nem todos os objetos provocam o&lt;/span&gt;
+&lt;span class="c1"&gt;# comportamento visto acima&lt;/span&gt;
+&lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="c1"&gt;# obs: Tudo em Python é objeto&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;variavel&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# não foi coletado pelo coletor como a lista&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O que acontece é que nem todos os objetos em Python precisam ser monitorados, pois possuem atomicidade em sua construção.
+A maneira de verificar se um objeto está sendo monitorado é a seguinte:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="n"&gt;lista&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_tracked&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;variavel&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;# False&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_tracked&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;# True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Como dito a atomicidade de certos objetos o previnem da geração de ciclos, porém outros podem gerar ciclos e isto faz com que o número de referencias nunca caia a 0.&lt;/p&gt;
+&lt;h2&gt;Entendendo o &lt;code&gt;del&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Relembrando, Python tem um sistema de contador de referências, e quando não há mais referências a um objeto seu espaço de memória é desalocado.&lt;/p&gt;
+&lt;p&gt;Mas porque isso não ocorreu quando eu fiz a lista referenciar a si proprio?&lt;/p&gt;
+&lt;p&gt;A instrução &lt;code&gt;del&lt;/code&gt; não pede a desalocação da memória, apenas faz com o contador de referências seja decrementado e associação do rótulo com o espaço de memória desfeita.&lt;/p&gt;
+&lt;h2&gt;Mais exemplos pois ísto não ocorre somente em listas&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt; 
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;
+
+&lt;span class="n"&gt;ref1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ref2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="c1"&gt;# repare que aqui temos um ciclo, ou seja, objetos se referenciam mutualmente&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="c1"&gt;# os rótulos ref1 e ref2 não se referem mais a nada&lt;/span&gt;
+&lt;span class="c1"&gt;# o contador de referências é decrementado&lt;/span&gt;
+&lt;span class="c1"&gt;# mas o espaço de memória ainda não foi desalocado&lt;/span&gt;
+&lt;span class="c1"&gt;# perceba que cada objeto ainda possui uma referência&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# gc: collectable &amp;lt;Example 0x7f0f59646780&amp;gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# gc: collectable &amp;lt;Example 0x7f0f59646b38&amp;gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Podemos ver que agora há a desalocação do objeto&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Mas e sobre o destrutor?&lt;/h2&gt;
+&lt;p&gt;O destrutor, ou finalizador é um método chamado quando um objeto está para ser desalocado. 
+Em python é o método dunder del &lt;code&gt;__del__&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt; 
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__del__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Poderia estar fazendo algo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;ref1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;
+&lt;span class="c1"&gt;# deve aparecer em tela &amp;quot;Poderia estar fazendo algo&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# Mas e se ocorrer um cilo?&lt;/span&gt;
+
+&lt;span class="n"&gt;ref1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ref2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="n"&gt;ref2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;
+
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="c1"&gt;# sim! O finalizador ainda não foi chamado, pois por causa do ciclo&lt;/span&gt;
+&lt;span class="c1"&gt;# ainda não finalizado&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# agora sim o finalizador é invocado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Últimas considerações&lt;/h2&gt;
+&lt;p&gt;O coletor de lixo é automático, aqui foi utilizado de forma manual somente para efeito explicativo. E como saber quando ele ocorre?&lt;/p&gt;
+&lt;p&gt;O python monitora cada alocação e desalocação que ocorre, e quando a diferença de alocações e desalocações atinge um limite, o coletor de lixo é chamado.&lt;/p&gt;
+&lt;p&gt;Este limite por padrão é de 700.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_threshold&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Um importante detalhe, este artigo foi escrito em python 3.4. Antes disso o coletor de lixo mantinha os objetos contendo ciclos, classificando-os como &lt;em&gt;não coletáveis&lt;/em&gt;, estes vazamentos de memória são colocados em &lt;code&gt;gc.garbage&lt;/code&gt; e necessitam ser tratados manualmente.&lt;/p&gt;
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+&lt;p&gt;Como vimos há uma certa complexidade envolvida em uma instrução del, e dado isso não podemos garantir que o comando del realmente desaloque o espaço de memória naquele instante.&lt;/p&gt;
+&lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Loop Infinito</title><link href="/loop-infinito.html" rel="alternate"></link><updated>2015-06-27T18:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-27:loop-infinito.html</id><summary type="html">&lt;p&gt;&lt;img alt="loop" src="/images/infinite_loop.png" title="Loop infinito" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Vamos começar analisando o seguinte código:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__getitem__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interno&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__setitem__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interno&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Criando uma instância do exemplo e manipulando-a, as coisas parecem legais:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class="nv"&gt;instancia_exemplo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Exemplo&lt;span class="o"&gt;()&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave1&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;valor1&amp;#39;&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave2&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;valor2&amp;#39;&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo.get&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave1&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;valor1&amp;#39;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Até que você decide mudar a notação para se recuperar um valor:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave1&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;valor1&amp;#39;&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave3&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave2&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;valor2&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Opa! Uma chave não existentente não deveria dar um erro?&lt;/p&gt;
+&lt;p&gt;Se reparar a implemenação de dunder item (&lt;code&gt;_getitem__&lt;/code&gt;) vai ver que eu tenho um valor default que é retornado quando eu não encontro essa chave e este valor por padrão é None.&lt;/p&gt;
+&lt;p&gt;Mas tudo bem, quando esta classe foi implementada, talvez essa seja o intuito.&lt;/p&gt;
+&lt;p&gt;No código onde utilizo essa instancia eu simplesmente verifico se chave passada retorna valor nulo(None).&lt;/p&gt;
+&lt;p&gt;Mas ai vem um desavisado, e vendo o &lt;code&gt;__getitem__&lt;/code&gt; na classe decidi itera-la.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class="k"&gt;for&lt;/span&gt; indice in instancia_exemplo:
+...    print indice 
+&amp;gt;&amp;gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;E Pam!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pane" src="/images/panic.gif" title="Pane no sistema" /&gt;&lt;/p&gt;
+&lt;p&gt;Seu programa entra em loop infinito. &lt;/p&gt;
+&lt;h2&gt;Como funciona o Python em termos de iteração?&lt;/h2&gt;
+&lt;p&gt;Vamos  começar por conceitos. Iterável, é tudo aquilo que pode ser percorrido, não confunda com iterador que é um padrão de projeto. Em Python, listas, tuplas, geradores e dicionarios podem ser percorridos.&lt;/p&gt;
+&lt;p&gt;Mas como posso definir para o interpretador que algo pode ser percorrível?&lt;/p&gt;
+&lt;p&gt;Algo que pode ser percorrível em Python, possui uma função &lt;code&gt;__iter___&lt;/code&gt; que retorna um iterador. Um iterador é um padrão de projeto aplicado em containers e seguem um protocolo para este container ser percorrido.&lt;/p&gt;
+&lt;p&gt;Uma outra opção é  a existência da função &lt;code&gt;__getitem__&lt;/code&gt; &lt;strong&gt;que aceite itens numéricos e lançam IndexError indicando que o percurso foi finalizado&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Dito isso já dá pra se ter uma idéia do que aconteceu em nosso código. Quando o laço de repetição(for) foi iniciado o interpretador tentou atribuir exaustivamente valores de 0..n para &lt;code&gt;__getitem__&lt;/code&gt; que continuava responder None e nenhuma exceção foi lançada.&lt;/p&gt;
+&lt;h2&gt;A solução&lt;/h2&gt;
+&lt;p&gt;Não há solução, porque não é um problema, apenas uma confusão causada sobre interpretação de iteráveis.&lt;/p&gt;
+&lt;p&gt;Porém analisando o código acima, acho que o grande problema neste código é a tentiva de suprimir uma exceção. Para casos em que isto ocorre o proprio dicionário já nos fornece um método chamado &lt;code&gt;get&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;É até dificil falar que a solução é o metódo get, pois este exemplo também nos faz pensar sobre a classe Exemplo que é basicamente um dicionário e caso algum estado ou ação seja adicionado ao objeto, talvez uma melhor reescrita seria através de herança.   &lt;/p&gt;
+&lt;h2&gt;Moral da história&lt;/h2&gt;
+&lt;p&gt;Seja cuidadoso ao reescrever os &lt;code&gt;special methods&lt;/code&gt;, lembrem-se que o maquinário para a execução destes métodos está presente no interpretador e que existe um protocolo estabelecido.&lt;/p&gt;
+&lt;p&gt;Lembre-se também que suprimir exceções podem fazer com que erros sejam silenciados e isto não é pythônico.&lt;/p&gt;
+&lt;h2&gt;Créditos&lt;/h2&gt;
+&lt;p&gt;Este post só se tornou possível após consulta de duas fontes:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/926574/why-does-defining-getitem-on-a-class-make-it-iterable-in-python"&gt;Resposta do Alex Martelli&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ULj7ejvuzI8"&gt;Palestra do Luciano Ramalho&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="OO"></category></entry><entry><title>Mito ou Verdade: Importação</title><link href="/mito-ou-verdade-importacao.html" rel="alternate"></link><updated>2015-06-11T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-11:mito-ou-verdade-importacao.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Vamos supor que temos uma função em um determinado módulo que precisa de utilizar de recursos de outro módulo.&lt;/p&gt;
+&lt;p&gt;Mas este outro modulo pode importar outros módulos que possivelmente não serão utilizados.&lt;/p&gt;
+&lt;p&gt;Será que a solução é fazer as importações internamente nas funções para que o carregamento seja feito de forma preguiçosa?&lt;/p&gt;
+&lt;p&gt;Esta economia de recursos é uma otimização?&lt;/p&gt;
+&lt;h2&gt;Discussão sobre o problema&lt;/h2&gt;
+&lt;p&gt;Vamos iniciar com um módulo A(moduloa.py):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;modulob&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;funcaoteste&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;Chama função de modulo B&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;funcaoteste&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;e em um módulo B(modulob.py):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcaoteste&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# mais código...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Quando executamos a função funcao, além de trazermos funcaoteste ao namespace corrente, um cache é feito para os outros módulos importados por modulob.&lt;/p&gt;
+&lt;p&gt;Agora vamos modificar o modulob para um segunda versão:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcaoteste&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# mais código...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Caso rode o modulo A novamente veremos que agora math não está nos módulos até que a função seja chamada.&lt;/p&gt;
+&lt;p&gt;Para vizualizar a mudança modifique modulo A para conter o seguinte código:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Repare que somente após a chamada da função o cache do módulo math é realizado.&lt;/p&gt;
+&lt;p&gt;Porém, ao fazer isto estamos aumentando o tempo de execução da função pois a chamada a instrução de importação será executada a cada vez que função for chamada(embora o interpretador já terá compilado o módulo e responderá a chamada instântaneamente).&lt;/p&gt;
+&lt;p&gt;Em um programa que preocupação é performance esta execução pode ser prejudicial.&lt;/p&gt;
+&lt;p&gt;Para vê-la  vamos analizar o bytecode das funções:&lt;/p&gt;
+&lt;p&gt;import dis
+dis.dis(funcaoteste)&lt;/p&gt;
+&lt;p&gt;funcaoteste versão 1:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="m"&gt;8&lt;/span&gt;           &lt;span class="m"&gt;0&lt;/span&gt; LOAD_GLOBAL              &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;3&lt;/span&gt; LOAD_ATTR                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;sin&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;6&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;a&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;9&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;b&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;12&lt;/span&gt; BINARY_POWER
+             &lt;span class="m"&gt;13&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;3&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;16&lt;/span&gt; BINARY_MULTIPLY
+             &lt;span class="m"&gt;17&lt;/span&gt; CALL_FUNCTION            1
+             &lt;span class="m"&gt;20&lt;/span&gt; RETURN_VALUE
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;funcaoteste versão2:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="m"&gt;7&lt;/span&gt;           &lt;span class="m"&gt;0&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;3&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;None&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;6&lt;/span&gt; IMPORT_NAME              &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;9&lt;/span&gt; STORE_FAST               &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+
+  &lt;span class="m"&gt;8&lt;/span&gt;          &lt;span class="m"&gt;12&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;15&lt;/span&gt; LOAD_ATTR                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;sin&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;18&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;a&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;21&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;b&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;24&lt;/span&gt; BINARY_POWER
+             &lt;span class="m"&gt;25&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;3&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;28&lt;/span&gt; BINARY_MULTIPLY
+             &lt;span class="m"&gt;29&lt;/span&gt; CALL_FUNCTION            1
+             &lt;span class="m"&gt;32&lt;/span&gt; RETURN_VALUE
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Aqui veremos uma  diferença no bytecode  gerado e isto reflete na execução, quando executado os programas apresentam leve diferença de tempo, sendo menor na primeira abordagem.&lt;/p&gt;
+&lt;p&gt;A pep 8 também recomenda a importação no início do arquivo, isto ajuda na legibilidade do código.&lt;/p&gt;
+&lt;h2&gt;Vamos Pensar&lt;/h2&gt;
+&lt;p&gt;Como import math está dentro da função, seu código somente será executado quando a função for chamada, ou seja estou atrasando o carregamento do módulo e com isso ganhamos na inicialização do módulo. Certo? Trazer estes módulos não podem prejudicar memória?&lt;/p&gt;
+&lt;p&gt;Não está errado, realmente com a segunda abordagem, caso a função não seja chamada, a compilação do módulo não ocorre e fica delegado a cada função o carregamento do módulo. Mas isto pode trazer consigo alguns problemas como replicação de código.&lt;/p&gt;
+&lt;p&gt;Esta preocupação com a memória não é justificavel, pois se analisarmos eu não trouxe math para meu namespace, apensa deixei o modulo em cache.&lt;/p&gt;
+&lt;h2&gt;Quando realizar importação dentro da função?&lt;/h2&gt;
+&lt;p&gt;Tenho alguns motivos para fazer isto como para evitar colisão de nomes em um namespace, deixar em escopo local algum modulo ou se este módulo importado é raramente utilizado.&lt;/p&gt;
+&lt;p&gt;Porém isto deve ser pensado cautelosamente.&lt;/p&gt;
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+&lt;p&gt;Essa otimização pode ter até casos pontuais em que se aplica, mas na maioria das vezes é uma má pratica.&lt;/p&gt;
+&lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Hello Python!</title><link href="/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;FAQ&lt;/h2&gt;
 &lt;p&gt;Como algumas perguntas são recorrentes nas listas de discussões, nos grupos do facebook e outros meios de comunicação e nossa comunidade gosta de receber bem os iniciantes, responderei aqui aquelas dúvidas que são constantes.&lt;/p&gt;
 &lt;h2&gt;Python roda no (coloque aqui sua plataforma) ?&lt;/h2&gt;
@@ -34,7 +387,7 @@ Está na duvida, verifique &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/
 &lt;h2&gt;Por onde começo?&lt;/h2&gt;
 &lt;p&gt;Definitivamente o melhor lugar para começar é se juntar a horda de zumbis do profossor Masanori, que tem uma didática incrível e mostra muitos exemplos práticos e divertidos.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://pycursos.com/python-para-zumbis/"&gt;Python para zombies&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="python-para-zumbis" src="{filename}/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="python-para-zumbis" src="/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
 &lt;p&gt;Um outro lugar bom pra começar é o site do &lt;a href="https://twitter.com/erichideki"&gt;japa&lt;/a&gt; que teve o trabalho de reunir todo um material pra iniciantes e vai ganhar uma estrelinha por isto. Quando for no site dele, leia os outros posts, que ele tem vários compilados interessantes.&lt;/p&gt;
 &lt;p&gt;Alguns links interessantes:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ericstk.wordpress.com/2015/02/16/guia-para-iniciantes-a-programacao-em-python/"&gt;Guia para iniciantes python&lt;/a&gt;&lt;/p&gt;
@@ -68,4 +421,4 @@ Por exemplo:&lt;/p&gt;
 &lt;p&gt;Outra dica é preparar e isolar seu ambiente de trabalho em um projeto, mas como fazer isto ficará para outro post.&lt;/p&gt;
 &lt;p&gt;Caso seja um iniciante lendo este post, bem vindo a comunidade e conte comigo com o que eu puder te ajudar.&lt;/p&gt;
 &lt;p&gt;Espero que tenha contribuído com vocês e meu ultimo recado é:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="learn-python" src="{filename}/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>
+&lt;p&gt;&lt;img alt="learn-python" src="/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>

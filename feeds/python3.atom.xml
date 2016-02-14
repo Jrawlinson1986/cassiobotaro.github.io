@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/python3.atom.xml" rel="self"></link><id>/</id><updated>2015-12-14T01:00:00-02:00</updated><entry><title>Conceitos de linguagem de programação - Parte 4</title><link href="/conceitos-linguagem-parte-4.html" rel="alternate"></link><updated>2015-12-14T01:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-12-14:conceitos-linguagem-parte-4.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;A parte 3 pode ser encontrada &lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-3"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Paradigmas&lt;/h2&gt;
+&lt;p&gt;Como segundo assunto falaremos sobre paradigmas de programação.&lt;/p&gt;
+&lt;h3&gt;Programação Imperativa&lt;/h3&gt;
+&lt;p&gt;Paradigma principal do Python, tem por característica mudança de estado do programa.&lt;/p&gt;
+&lt;p&gt;O nome imperativo e por causa que ordens são dadas no imperativo.&lt;/p&gt;
+&lt;p&gt;Basicamente um programa é escrito como:
+faça isto, faça aquilo, depois aquilo outro.&lt;/p&gt;
+&lt;p&gt;Exemplo de um programa imprativo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;quadrado_valores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;quadrado_valores&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;quadrado_valores&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Repare que a mudança do programa são refletidas e armazenadas em células de memória(variáveis).&lt;/p&gt;
+&lt;h3&gt;Programação Funcional&lt;/h3&gt;
+&lt;p&gt;Características funcionais&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- Provê map  e filter, funções utéis quando se trabalha funcionalmente
+- Funções lambdas
+- Funções de primeira ordem(veja as lambdas sendo passados como parâmetros de outras funções)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Restrições&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- não existe recursão em cauda
+- não é puramente funcional, logo não apresenta todas as suas características
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Orientação a objeto&lt;/h3&gt;
+&lt;p&gt;Não considerado por Sebesta como um paradigma de programação, O argumento é que toda programação orientada a objeto é imperativa, com única diferença que a estruturação dos arquivos é orientada a objetos.
+Características:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- Elegância em getters e setters com utilização de properties
+- Herança Múltipla
+- Utilização do self explícito em métodos de instância
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Exemplo da utilização:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Filho&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Pai&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Mae&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;peso&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nome&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;peso&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;peso&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;peso&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__peso&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@peso.setter&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;peso&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__peso&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;valor deve ser &amp;gt; 0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Python possui suporte a orientação a objetos, inclusive até mesmo os tipos básicos em python são objetos.&lt;/p&gt;
+&lt;p&gt;A conclusão é que Python é imperativo, mas também possui caratéristicas de outros paradigmas e suporte a orientação a objeto.&lt;/p&gt;
+&lt;h3&gt;Gostinho de queiro mais?&lt;/h3&gt;
+&lt;p&gt;Este assunto é melhor explicado na prática, então não perca tempo e veja &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/paradigmas.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 3</title><link href="/conceitos-linguagem-parte-3.html" rel="alternate"></link><updated>2015-12-06T23:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-12-06:conceitos-linguagem-parte-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;A parte 2 pode ser encontrada &lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Sobrecargas&lt;/h2&gt;
+&lt;p&gt;Como segundo assunto falaremos sobre sobrecargas de operadores e métodos.&lt;/p&gt;
+&lt;h3&gt;Sobrecarga de operadores&lt;/h3&gt;
+&lt;p&gt;Tudo é objeto em python, como tal, quando eu utilizo um operador sobre qualquer coisa, na verdade estou invocando o "dunder" método correspondente 
+àquele operador.&lt;/p&gt;
+&lt;p&gt;Ex: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# é o mesmo que&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__add__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Quando falamos em sobrecarga de método, significa modificar estas funções especiais que o interpretador utiliza, para prover um comportamento diferente.&lt;/p&gt;
+&lt;p&gt;Normalmente respondendo a tipos diferentes com valores diferentes. &lt;/p&gt;
+&lt;p&gt;Por exemplo as strings em python são sobrecarregadas, quando diantes do operador de multiplicaçao '*' e o oerando é um inteiro, ele realiza a replicação do valor e sua eventual concatenação.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 333&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Sobrecarga de métodos&lt;/h3&gt;
+&lt;p&gt;Um mesmo método, responde de diferentes maneiras de acordo com a sua assinatura.
+Por exemplo, um método se comporta de uma maneira quando recebe uma string e de outra, quando recebe uma instância de Objeto qualquer.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# invoca um método&lt;/span&gt;
+
+&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;NFL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Futebol Americano&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="c1"&gt;# outro método é invocado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;No python isto é feito através de singledispatch da biblioteca functools. Há uma função(dispatcher) que invoca a função correspondente de acordo com o tipo do parâmetro recebido.&lt;/p&gt;
+&lt;p&gt;Post curto neh? &lt;/p&gt;
+&lt;p&gt;Foi proposital, este assunto é melhor explicado na prática, então não perca tempo e veja &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/sobrecargas.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-4"&gt;Clique aqui&lt;/a&gt; para ir até a parte 4.&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 2</title><link href="/conceitos-linguagem-parte-2.html" rel="alternate"></link><updated>2015-11-29T23:30:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-11-29:conceitos-linguagem-parte-2.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;A parte 1 pode ser encontrada &lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-1"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Métodos e funções&lt;/h2&gt;
+&lt;p&gt;Como segundo assunto falaremos sobre coisas associadas a funções.&lt;/p&gt;
+&lt;h3&gt;Escopo&lt;/h3&gt;
+&lt;p&gt;A resolução de nomes é sempre do interior(escopo local) para o exterior(escopo global) das funções a menos que explicitamente modificado.&lt;/p&gt;
+&lt;p&gt;Caso um nome seja invocado dentro de uma função, primeiro se procura dentro do escopo da funão esta variável, em seguida no escopo de quem invocou a função e assim por diante até chegar ao escopo global.&lt;/p&gt;
+&lt;h3&gt;Passagem de parâmetro por valor ou referência?&lt;/h3&gt;
+&lt;p&gt;A passagem de parâmetro em python se dar por referência em Python.&lt;/p&gt;
+&lt;p&gt;Isto leva a duas considerações, quando há atribuição daquele nome a um outro
+objeto, repare que isto não afeta o objeto externo.
+E isto leva a um efeito colateral com objetos mutáveis como listas e dicionários.&lt;/p&gt;
+&lt;p&gt;Sua alteração dentro da função é refletida no objeto externo.&lt;/p&gt;
+&lt;h4&gt;Namespaces&lt;/h4&gt;
+&lt;p&gt;Eventualmente há uma colisão na vinculação de nomes, e a resolução disto
+pelo interpretador é considerar a ultima atribuição ou importação daquele nome.
+Para solucionar isto, a utilização de namespaces é importante.
+Por exemplo a função open é builtin do Python, ou seja já vem por padrão no escopo global, mas caso eu quero utilizar a open do modulo io eu devo fazer utilização de namespaces.&lt;/p&gt;
+&lt;p&gt;Exemplo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;io&lt;/span&gt;
+
+&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Métodos anônimos&lt;/h3&gt;
+&lt;p&gt;Pode ser definida basicamente como: "Dado uma entrada, me retorne uma saída."
+São funções que não possuem nome, sua representação é através da palavra reservada lambda.&lt;/p&gt;
+&lt;p&gt;Exemplo: Função que retorna o cubo de um número&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A função deixa de existir quando não há mais referências a ela.&lt;/p&gt;
+&lt;h3&gt;Closure&lt;/h3&gt;
+&lt;p&gt;Closure é o registro de uma função associado a variáveis livre dentro
+de um contexto léxico em funções de primeira classe.
+Exemplo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;makeInk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;inc&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A variável x está associada a função inc, em um contexto léxico.&lt;/p&gt;
+&lt;p&gt;closure1 = makeInk(1)&lt;/p&gt;
+&lt;p&gt;closure2 = makeInk(5)&lt;/p&gt;
+&lt;p&gt;Seu valor na closure 1 é 1 e na segunda é 5.&lt;/p&gt;
+&lt;p&gt;Se o conceito ainda soar estranho, não se apavore, este conceito de alterar
+uma função em tempo de execução é dado como metaprogramação e não é
+considerado um assunto simples.&lt;/p&gt;
+&lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/metodos.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 1</title><link href="/conceitos-linguagem-parte-1.html" rel="alternate"></link><updated>2015-11-22T22:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-11-22:conceitos-linguagem-parte-1.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;Durante a faculdade eu aprendi uma disciplina chamada linguagens de programação, e nela não se aprende nenhuma linguagem específica, mas sim os conceitos que são aplicados em todas elas.&lt;/p&gt;
+&lt;p&gt;Veremos abaixo sobre alguns conceitos e como eles são aplicados em Python.&lt;/p&gt;
+&lt;h2&gt;Tipagem&lt;/h2&gt;
+&lt;p&gt;O primeiro assunto a ser tratado será tipagem.&lt;/p&gt;
+&lt;h3&gt;Tipagem estáticaou dinâmica&lt;/h3&gt;
+&lt;p&gt;Python possui tipagem dinâmica, sua vinculação de tipos ocorre em tempo de execução, por isso é possível mudar o tipo de uma variável em tempo de execução.&lt;/p&gt;
+&lt;h3&gt;Tipagem forte ou fraca?&lt;/h3&gt;
+&lt;p&gt;Python embora tenha uma vinculação de tipo em tempo de execução, ou seja dinâmica, ele possui uma tipagem forte. Não há muita conversão de tipos quando se refere a operações, como por exemplo soma.&lt;/p&gt;
+&lt;h3&gt;Tipos primitivos&lt;/h3&gt;
+&lt;p&gt;Em Python não possuimos tipos primitivos, tudo é objeto. 
+Possuimos tipos builtins, tipos básicos que já estão disponíveis, como por exemplos listas, tuplas, números complexos, etc.&lt;/p&gt;
+&lt;h3&gt;Conversão/coerção de tipos&lt;/h3&gt;
+&lt;p&gt;Por possuir tipagem forte não há muita coerção de tipos, embora os tipos numéricos apresentam coerção.&lt;/p&gt;
+&lt;p&gt;A conversão de tipos, quando possível é realizada atraves  de uma "função" com nome semelhante ao tipo escolhido. Por exemplo str(1), para converter um número em string.&lt;/p&gt;
+&lt;h3&gt;Comparação e outros operadores&lt;/h3&gt;
+&lt;p&gt;A comparação entre elementos não é permitida(tipagem forte) a menos que dois elementos se permitam comparação. Uma consideração deve ser feita a comparação que apresenta como resultado False.&lt;/p&gt;
+&lt;h3&gt;Ponteiros&lt;/h3&gt;
+&lt;p&gt;Não existe o tipo ponteiro, mas tudo tem  a ver com ponteiros. Entenda a atribuição de uma variavél como um rótulo a um endereço de memória, associado a um escopo(assunto para outro post) e este endereço de memória pode ser compartilhado.&lt;/p&gt;
+&lt;p&gt;Inclusive Python costuma utilizar desta técnica para economizar o uso de memória.&lt;/p&gt;
+&lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/tipagem.py"&gt;este arquivo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Argumentos somente por palavra chave</title><link href="/argumentos-somente-por-palavra-chave.html" rel="alternate"></link><updated>2015-03-28T19:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-28:argumentos-somente-por-palavra-chave.html</id><summary type="html">&lt;h2&gt;Por que falar sobre isto?&lt;/h2&gt;
+&lt;p&gt;Python 3 ainda possui uma névoa sobre ele, e o movimento de resistência ainda é grande. Mas isto não quer dizer que desbravadores já não o estejam explorando. Já escrevi um &lt;a href="http://cassiobotaro.github.io/porque-python-3.html"&gt;post&lt;/a&gt; sobre a nova versão da linguagem, porém ainda tem vários recursos que podem ser demonstrados. Um deles é a capacidade de aceitar somente palavras chaves como argumento. Eu até coloquei isto nos slides da Python Brasil 10, porém senti que ao apresentar faltou uma boa explicação.&lt;/p&gt;
+&lt;h2&gt;Talk is cheap. Show me the code&lt;/h2&gt;
+&lt;p&gt;Tentarei dar um exemplo utilizando código, explicarei utilizando os comentários&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# vamos iniciar com a seguinte função&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# realiza operacao&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# e por algum algum descuido...&lt;/span&gt;
+&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# o que acontece?&lt;/span&gt;
+&lt;span class="c1"&gt;# possivelmente você acaba de ser demitido&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Agora vamos corrigir isto utilizando python3&lt;/span&gt;
+&lt;span class="c1"&gt;# lembre-se que daqui pra baixo, a sintáxe não é compativel com python 2&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# realiza operacao&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Basta colocar um * e pronto&lt;/span&gt;
+&lt;span class="c1"&gt;# agora se cometer um erro o python 3 te alerta&lt;/span&gt;
+&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# TypeError: funcao() takes 2 positional arguments but 3 were given&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Mas o que é esse asterico, é igual o args?&lt;/span&gt;
+&lt;span class="c1"&gt;# Na verdade é similar, porém o interpretador sabe que se não foi definido o &lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;quot;args&amp;quot; um erro deve ser lançado&lt;/span&gt;
+
+&lt;span class="c1"&gt;#Mas e se eu definir o args?&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# realiza operacao&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# acontece que agora, todo parâmetro passado além dos dois obrigatórios(positionals), será armazenado em args, e kill só sera atribuido quando&lt;/span&gt;
+&lt;span class="c1"&gt;# utilizado palavra chave&lt;/span&gt;
+&lt;span class="c1"&gt;#Ex: funcao(0, 0, kill=True)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Considerações finais&lt;/h2&gt;
+&lt;p&gt;Não pense que exemplo é exagerado, pode acontecer a qualquer hora com você.
+Não brinque mais de roleta russa com seus argumentos.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="programming-motherfucker" src="/images/programming-motherfucker.jpg" /&gt;&lt;/p&gt;</summary><category term="python3"></category></entry><entry><title>Por que python 3?</title><link href="/porque-python-3.html" rel="alternate"></link><updated>2015-03-10T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-10:porque-python-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Um pouco de história&lt;/h2&gt;
+&lt;p&gt;O python 3.0 foi uma decisão tomada em 2008, e decidiu-se assim por causa da incompatibilidade de alguns novos recursos com a versão 2.0 .
+É uma versão com novas baterias incluídas como asyncio, pip, enum, statistics, venv.
+Uma longa correção da nomeclatura de alguns módulos foi feita seguindo mais o padrão pythonico(pep-8).
+Outras mudanças foram a transformação do print em uma função, o que trouxe novas possibilidades, a utilização de visão e iteradores ao invés de listas como retorno de alguns métodos, a unificação de long e int, e várias outras mudanças que serão apresentadas.&lt;/p&gt;
+&lt;h2&gt;Mas porque python 3?&lt;/h2&gt;
+&lt;p&gt;Se a correção de nomeclatura e inclusão de novas bibliotecas à biblioteca padrão do python ainda não te convenceram, abaixo serão listados novos recursos e possibilidades que podem te atrair a esta nova versão. &lt;/p&gt;
+&lt;h2&gt;Fatiamento&lt;/h2&gt;
+&lt;p&gt;Agora é possivel extrair, inicio, meio e fim de sequencias utlizando novas possibilidades de atribuições.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna 0&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tail&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna 9&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna [1, 2, 3, 4, 5, 6, 7, 8]&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna [0, 1, 2, 3]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tail&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna 4&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Iteradores em todo lugar!&lt;/h2&gt;
+&lt;p&gt;Nada de se preocupar em otimizar memória modificando o metodo através da adição de algum prefixo como x  ou iter.
+Ou seja, nada mais de Xtudo ou iterlista no python 3.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna range(0, 10)&lt;/span&gt;
+&lt;span class="c1"&gt;# não é mais uma lista&lt;/span&gt;
+&lt;span class="c1"&gt;# se comporta como xrange do python 2&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;numero&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;numero&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;endp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 0 1 2 3 4 5 6 7 8 9&lt;/span&gt;
+&lt;span class="n"&gt;dic&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;chaveA&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;chaveB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;chaveC&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;dic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna dict_keys([&amp;#39;chaveB&amp;#39;, &amp;#39;chaveC&amp;#39;, &amp;#39;chaveA&amp;#39;])&lt;/span&gt;
+&lt;span class="c1"&gt;# visão com os valores das chaves do dicionário&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# chaveB 2&lt;/span&gt;
+&lt;span class="c1"&gt;# chaveC 3&lt;/span&gt;
+&lt;span class="c1"&gt;# chaveA 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Tipificação forte em comparadores.&lt;/h2&gt;
+&lt;p&gt;Dado que python é uma linguagem dinâmica porém  com tipificação forte, nada mais sensato que comparadores também reclamem quando tipos distintos são comparados.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# No Python 2&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;abc&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="c1"&gt;# True&lt;/span&gt;
+&lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="c1"&gt;# True&lt;/span&gt;
+
+&lt;span class="c1"&gt;# No Python 3&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;abc&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="c1"&gt;# TypeError: unorderable types: str() &amp;gt; int()&lt;/span&gt;
+&lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="c1"&gt;# TypeError: unorderable types: NoneType() &amp;lt; int()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Strings divididas em bytes e unicodes&lt;/h2&gt;
+&lt;p&gt;Agora é possivél utilizar de acentos, caracteres de outros alfabetos como chinês e outros caracteres especias.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# python 2&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; 
+&lt;span class="c1"&gt;# &amp;#39;c\xc3\xa1ssio&lt;/span&gt;
+&lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;#39;c\xc3\xa1ssio&lt;/span&gt;
+&lt;span class="c1"&gt;# bytes e strings são a mesma coisa&lt;/span&gt;
+
+&lt;span class="c1"&gt;# python 3&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; 
+&lt;span class="c1"&gt;# &amp;#39;cássio&amp;#39;&lt;/span&gt;
+&lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# b&amp;#39;c\xc3\xa1ssio&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;# bytes e strings são coisas distintas&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;E uma outra coisa permitida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="err"&gt;Σ(&lt;/span&gt;&lt;span class="nf"&gt;lim_inf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lim_sup&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;Um somatório é um operador matemático que nos permite&lt;/span&gt;
+&lt;span class="sd"&gt;    representar facilmente somas de um grande número de termos,&lt;/span&gt;
+&lt;span class="sd"&gt;    até infinitos.&lt;/span&gt;
+&lt;span class="sd"&gt;    É representado com a letra grega sigma ( \Sigma ).&lt;/span&gt;
+&lt;span class="sd"&gt;    Uma variável i chamada índice do somatório recebe como valor inicial o&lt;/span&gt;
+&lt;span class="sd"&gt;    limite inferior(lim_inf).A&lt;/span&gt;
+&lt;span class="sd"&gt;    Esta variável percorre os valores inteiros até alcançar o limite&lt;/span&gt;
+&lt;span class="sd"&gt;    superior(lim_sup).&lt;/span&gt;
+&lt;span class="sd"&gt;    A cada iteração uma função(funcao) é executada sobre o índice do&lt;/span&gt;
+&lt;span class="sd"&gt;    somatório.&lt;/span&gt;
+&lt;span class="sd"&gt;    A função de entrada (funcao) deve receber um valor de entrada e retornar&lt;/span&gt;
+&lt;span class="sd"&gt;    um valor de saída.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Σ(1,5,lambda x:x) = 1 + 2 + 3 + 4 + 5 = 15&lt;/span&gt;
+
+&lt;span class="sd"&gt;    &amp;gt;&amp;gt;&amp;gt; Σ(1,5,lambda x:x)&lt;/span&gt;
+&lt;span class="sd"&gt;    15&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lim_inf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lim_sup&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Leitura de dados de forma segura&lt;/h2&gt;
+&lt;p&gt;Toda leitura de dados feita do teclado é feita em forma de string  e cabe ao programa sua manipulação.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# No python 2 &lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Comando a ser executado: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# experimente a expressão 80*&amp;#39;-&amp;#39; como entrada&lt;/span&gt;
+&lt;span class="c1"&gt;# embora no python 2 existe uma versão mais segura que é o raw_input&lt;/span&gt;
+&lt;span class="c1"&gt;# no python 3&lt;/span&gt;
+&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Digite um número: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;#39;4&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;# o input sempre retorna string e caso precise deve ser explicitamente convertida&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;python -m modulo&lt;/h2&gt;
+&lt;p&gt;Uma série de módulos da biblioteca padão se utilizam do artificio de colocar uma condicional para verificar quando são executados ou importados e podem ser utilizados como ferramentas.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# criação de um ambiente virtual&lt;/span&gt;
+python -m venv /path/to/&amp;lt;my_venv&amp;gt;
+&lt;span class="c1"&gt;# ubuntu apresenta problemas, nele utilize&lt;/span&gt;
+python -m venv --without-pip /path/to/&amp;lt;my_venv&amp;gt;
+&lt;span class="c1"&gt;# ativação deste ambiente&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; /path/to/&amp;lt;my_venv&amp;gt;/bin/activate
+
+&lt;span class="c1"&gt;# PYTHONPATH&lt;/span&gt;
+python -m site
+
+&lt;span class="c1"&gt;# Servidor http python&lt;/span&gt;
+python -m http.server &lt;span class="o"&gt;[&lt;/span&gt;port&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Documentação&lt;/span&gt;
+python -m pydoc
+&lt;span class="c1"&gt;# b para abrir documentação no browser&lt;/span&gt;
+python -m pydoc -b
+&lt;span class="c1"&gt;# ou especifique o módulo&lt;/span&gt;
+python -m pydoc math.sin
+
+&lt;span class="c1"&gt;# debug estilo gdb&lt;/span&gt;
+python -m pdb &amp;lt;nomedoprograma.py&amp;gt;
+
+&lt;span class="c1"&gt;# profiler&lt;/span&gt;
+python -m profile &amp;lt;nomedoprograma.py&amp;gt;
+
+&lt;span class="c1"&gt;#exibe um calendario&lt;/span&gt;
+python -m calendar
+
+&lt;span class="c1"&gt;# recebe entrada json e imprime&lt;/span&gt;
+python -m json.tool
+
+&lt;span class="c1"&gt;# codifica e decodifica um texto em base64&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; python -m base64 -e
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SGVsbG8gV29ybGQK&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; python -m base64 -d
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;E mais uma infinidade de outros recursos&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# set comprehension&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# dict comprehension &lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 3/2 agora retorna 1.5 &lt;/span&gt;
+
+&lt;span class="c1"&gt;# notação para numeros em base oito e desesseis&lt;/span&gt;
+&lt;span class="c1"&gt;# 0o99 &lt;/span&gt;
+&lt;span class="c1"&gt;# 0x44&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Não dá mais pra trolar amigos&lt;/span&gt;
+&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="c1"&gt;# SyntaxError: can&amp;#39;t assign to keyword&lt;/span&gt;
+
+&lt;span class="c1"&gt;# asyncio&lt;/span&gt;
+&lt;span class="c1"&gt;# aqui uma utilização interessante&lt;/span&gt;
+&lt;span class="c1"&gt;# http://compiletoi.net/fast-scraping-in-python-with-asyncio.html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Considerações finais&lt;/h2&gt;
+&lt;p&gt;Ainda existem  várias funcionalidades que infelizmente não serão apresentadas neste post devido a extensão do mesmo. Espero que tenham curtido e com o crescimento do numero de bibliotecas com suporte para o python 3, como Django, nltk, numpy e muitas outras, está esperando o que para dar suporte ao python 3 em seu projeto?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.diveintopython3.net/"&gt;Vamos mergulhar no Python 3?&lt;/a&gt; Algumas ferramentas que podem te ajudar:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://pythonhosted.org//six/"&gt;six&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.python.org/2/library/2to3.html"&gt;2to3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;E se tem duvida sobre suporte de alguma bilbioteca, confira &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/a&gt;. &lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>

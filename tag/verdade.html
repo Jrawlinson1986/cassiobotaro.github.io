@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Import None - verdade</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Import None </a></h1>
+                <nav><ul>
+                    <li><a href="/category/linux.html">Linux</a></li>
+                    <li><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/python3.html">Python3</a></li>
+                    <li><a href="/category/sublime.html">Sublime</a></li>
+                    <li><a href="/category/vim.html">Vim</a></li>
+                    <li><a href="/category/web2py.html">web2py</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/mito-ou-verdade-destrutor.html">Mito ou Verdade: Destrutor</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-07-25T14:00:00-03:00">
+                Published: Sáb 25 julho 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python.html">Python</a>.</p>
+<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/mito.html">mito</a> <a href="/tag/verdade.html">verdade</a> </p>
+</footer><!-- /.post-info --><p><img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /></p>
+<h2>O problema</h2>
+<p>Linguagens de programação mais antigas traziam a capacidade de manipulação da memória. A competência de reservar um espaço de memória pra determinada operação e sua posterior liberação era do desenvolvedor.</p>
+<p>Python desde o seu início possui um mecanismo simples de alocação e desalocação, é o mecanismo de contador de refêrencia.</p>
+<p>Sempre que um novo objeto é referenciado(alguém passa apontar para aquele objeto), o contador é incrementado e quando deixa de apontar, este contador é decreementado. Chegando a 0 este contador aquele espaço de memória está livre.</p>
+<p>Até aqui tudo certo, isto quer então que quando realizo <code>del &lt;objeto&gt;</code>, meu objeto é desalocado?</p>
+<div class="highlight"><pre><span></span>lista = []
+lista.append(lista)
+del lista
+</pre></div>
+
+
+<p>Aparentemente tudo ok, mas tenho péssimas notícias para lhe dar, o rótulo lista pode até não estar mais referenciando aquele espaço de memória, porém aquele espaço de memória ainda continua ocupado.</p>
+<h2>Discussão sobre o problema</h2>
+<p>Vamos uma demonstração que mostra que aquele objeto ainda estava na memória.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span>
+<span class="c1"># Primeiro definiramos que o nível de debug do </span>
+<span class="c1"># coletor de lixo é DEBUG_LEAK para</span>
+<span class="c1"># poder ver os objetos coletados pelo coletor</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">set_debug</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">DEBUG_LEAK</span><span class="p">)</span>
+<span class="c1"># vamos definir uma lista e verificar qual o seu endereço de memória </span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">lista</span><span class="p">)))</span>
+<span class="c1"># repetimos o código anterior </span>
+<span class="c1"># adicionando lista a ela mesmo</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+<span class="c1"># apaga a lista</span>
+<span class="k">del</span> <span class="n">lista</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="c1"># Repare que um dos elementos coletados foi a </span>
+<span class="c1"># lista que achamos já ter sido removida</span>
+</pre></div>
+
+
+<p>Agora que já foi provado, vamos entender melhor como funciona o coletor de lixo do Python.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span>
+<span class="c1"># Definiramos que o nível de debug do </span>
+<span class="c1"># coletor de lixo é DEBUG_LEAK para</span>
+<span class="c1"># poder ver os objetos coletados pelo coletor</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">set_debug</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">DEBUG_LEAK</span><span class="p">)</span>
+<span class="c1"># Primeira coisa a saber é que nem todos os objetos provocam o</span>
+<span class="c1"># comportamento visto acima</span>
+<span class="n">variavel</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1"># obs: Tudo em Python é objeto</span>
+<span class="k">del</span> <span class="n">variavel</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">colect</span><span class="p">()</span>
+<span class="c1"># não foi coletado pelo coletor como a lista</span>
+</pre></div>
+
+
+<p>O que acontece é que nem todos os objetos em Python precisam ser monitorados, pois possuem atomicidade em sua construção.
+A maneira de verificar se um objeto está sendo monitorado é a seguinte:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">set_debug</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">DEBUG_LEAK</span><span class="p">)</span>
+<span class="n">variavel</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">is_tracked</span><span class="p">(</span><span class="n">variavel</span><span class="p">))</span>
+<span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">is_tracked</span><span class="p">(</span><span class="n">lista</span><span class="p">))</span>
+<span class="c1"># True</span>
+</pre></div>
+
+
+<p>Como dito a atomicidade de certos objetos o previnem da geração de ciclos, porém outros podem gerar ciclos e isto faz com que o número de referencias nunca caia a 0.</p>
+<h2>Entendendo o <code>del</code></h2>
+<p>Relembrando, Python tem um sistema de contador de referências, e quando não há mais referências a um objeto seu espaço de memória é desalocado.</p>
+<p>Mas porque isso não ocorreu quando eu fiz a lista referenciar a si proprio?</p>
+<p>A instrução <code>del</code> não pede a desalocação da memória, apenas faz com o contador de referências seja decrementado e associação do rótulo com o espaço de memória desfeita.</p>
+<h2>Mais exemplos pois ísto não ocorre somente em listas</h2>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span> 
+<span class="n">gc</span><span class="o">.</span><span class="n">set_debug</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">DEBUG_LEAK</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Exemplo</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alguma_referencia</span> <span class="o">=</span> <span class="n">ref</span>
+
+<span class="n">ref1</span> <span class="o">=</span> <span class="n">Exemplo</span><span class="p">()</span>
+<span class="n">ref2</span> <span class="o">=</span> <span class="n">Exemplo</span><span class="p">(</span><span class="n">ref1</span><span class="p">)</span>
+<span class="n">ref1</span><span class="o">.</span><span class="n">alguma_referencia</span> <span class="o">=</span> <span class="n">ref2</span>
+<span class="c1"># repare que aqui temos um ciclo, ou seja, objetos se referenciam mutualmente</span>
+<span class="k">del</span> <span class="n">ref1</span><span class="p">,</span> <span class="n">ref2</span>
+<span class="c1"># os rótulos ref1 e ref2 não se referem mais a nada</span>
+<span class="c1"># o contador de referências é decrementado</span>
+<span class="c1"># mas o espaço de memória ainda não foi desalocado</span>
+<span class="c1"># perceba que cada objeto ainda possui uma referência</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="c1"># gc: collectable &lt;Example 0x7f0f59646780&gt;</span>
+<span class="c1"># gc: collectable &lt;Example 0x7f0f59646b38&gt;</span>
+<span class="c1"># Podemos ver que agora há a desalocação do objeto</span>
+</pre></div>
+
+
+<h2>Mas e sobre o destrutor?</h2>
+<p>O destrutor, ou finalizador é um método chamado quando um objeto está para ser desalocado. 
+Em python é o método dunder del <code>__del__</code>.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span> 
+
+
+<span class="k">class</span> <span class="nc">Exemplo</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alguma_referencia</span> <span class="o">=</span> <span class="n">ref</span>
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Poderia estar fazendo algo&quot;</span><span class="p">)</span>
+
+<span class="n">ref1</span> <span class="o">=</span> <span class="n">Exemplo</span><span class="p">()</span>
+
+<span class="k">del</span> <span class="n">ref1</span>
+<span class="c1"># deve aparecer em tela &quot;Poderia estar fazendo algo&quot;</span>
+<span class="c1"># Mas e se ocorrer um cilo?</span>
+
+<span class="n">ref1</span> <span class="o">=</span> <span class="n">Exemplo</span><span class="p">()</span>
+<span class="n">ref2</span> <span class="o">=</span> <span class="n">Exemplo</span><span class="p">()</span>
+<span class="n">ref1</span><span class="o">.</span><span class="n">alguma_referencia</span> <span class="o">=</span> <span class="n">ref2</span>
+<span class="n">ref2</span><span class="o">.</span><span class="n">alguma_referencia</span> <span class="o">=</span> <span class="n">ref1</span>
+
+<span class="k">del</span> <span class="n">ref1</span><span class="p">,</span> <span class="n">ref2</span>
+<span class="c1"># sim! O finalizador ainda não foi chamado, pois por causa do ciclo</span>
+<span class="c1"># ainda não finalizado</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="c1"># agora sim o finalizador é invocado</span>
+</pre></div>
+
+
+<h2>Últimas considerações</h2>
+<p>O coletor de lixo é automático, aqui foi utilizado de forma manual somente para efeito explicativo. E como saber quando ele ocorre?</p>
+<p>O python monitora cada alocação e desalocação que ocorre, e quando a diferença de alocações e desalocações atinge um limite, o coletor de lixo é chamado.</p>
+<p>Este limite por padrão é de 700.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span>
+<span class="k">print</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">get_threshold</span><span class="p">())</span>
+</pre></div>
+
+
+<p>Um importante detalhe, este artigo foi escrito em python 3.4. Antes disso o coletor de lixo mantinha os objetos contendo ciclos, classificando-os como <em>não coletáveis</em>, estes vazamentos de memória são colocados em <code>gc.garbage</code> e necessitam ser tratados manualmente.</p>
+<h2>Conclusão</h2>
+<p>Como vimos há uma certa complexidade envolvida em uma instrução del, e dado isso não podemos garantir que o comando del realmente desaloque o espaço de memória naquele instante.</p>
+<p>Logo, Mito foi derrubado!</p>
+<p><img alt="busted" src="/images/busted.jpg" /></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/mito-ou-verdade-importacao.html" rel="bookmark"
+                           title="Permalink to Mito ou Verdade: Importação">Mito ou Verdade: Importação</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-06-11T03:00:00-03:00">
+                Published: Qui 11 junho 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/cassio-botaro.html">Cássio Botaro</a>
+        </address>
+<p>In <a href="/category/python.html">Python</a>.</p>
+<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/mito.html">mito</a> <a href="/tag/verdade.html">verdade</a> </p>
+</footer><!-- /.post-info -->                <p>Importação dentro de função é uma otimização. Verdade ou mito?</p>
+                <a class="readmore" href="/mito-ou-verdade-importacao.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,5 +1,1166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2015-03-01T00:00:00-03:00</updated><entry><title>Hello Python!</title><link href="/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="{filename}/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2016-02-11T00:00:00-02:00</updated><entry><title>Corrigindo o vim bootstrap</title><link href="/corrigindo-o-vim-bootstrap.html" rel="alternate"></link><updated>2016-02-11T00:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2016-02-11:corrigindo-o-vim-bootstrap.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-vim" src="/images/vim.png" title="Logo Vim" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;O intuito deste post é trazer problemas que tive durante a instalação do &lt;a href="https://github.com/avelino/vim-bootstrap"&gt;vim-bootstrap&lt;/a&gt; e a solução dos mesmos.&lt;/p&gt;
+&lt;p&gt;Acredito que minhas dúvidas podem ser de outros também.&lt;/p&gt;
+&lt;p&gt;Só para referência, sou usuário xubuntu, ou seja, meu ambiente gráfico é o xfce.&lt;/p&gt;
+&lt;p&gt;Utilizo o vim na versão 7.4, o git na versão 2.5.0. Estas informações são necessárias pois soluções podem divergir por versão.&lt;/p&gt;
+&lt;h2&gt;FAQ&lt;/h2&gt;
+&lt;h3&gt;&lt;code&gt;Open github file/line (website), if used git in github&lt;/code&gt; não funciona ?&lt;/h3&gt;
+&lt;p&gt;O que acontece é que é necessária mais uma configuração para que este recurso funcione, isto já foi reportado através da issue &lt;a href="https://github.com/avelino/vim-bootstrap/issues/170"&gt;#170&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Primeiro devemos criar/editar o arquivo .gitconfig e adicionar a seguinte configuração.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[alias]&lt;/span&gt;
+    &lt;span class="na"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;! bash -c &amp;#39;git config --get remote.origin.url | sed -E &amp;quot;s/\\\\.git//g&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Adicionado esta configuração, por conta do meu ambiente gráfico, é necessário trocar comando no .vimrc para:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L&amp;lt;C-R&amp;gt;=line(&amp;#39;.&amp;#39;)&amp;lt;CR&amp;gt; \| xargs xdg-open&amp;lt;CR&amp;gt;&amp;lt;CR&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Trocamos o &lt;code&gt;open&lt;/code&gt; por &lt;code&gt;xdg-open&lt;/code&gt; e agora o comando deve funcionar.&lt;/p&gt;
+&lt;h3&gt;Copiar e colar na área de transferência do sistema operacional não funciona.&lt;/h3&gt;
+&lt;p&gt;O vim-bootstrap faz o mapeamento da combinação de teclas para copia do texto para a área de trasnsferência do sistema operacional através do &lt;code&gt;YY&lt;/code&gt;, porém caso só tenha instalado o pacote vim, ele nao tera a opção +clipboard e este recurso não funciona.&lt;/p&gt;
+&lt;p&gt;A solução simples é a instalçao do pacote vim-gtk, ainda que não o utilize diretamente.&lt;/p&gt;
+&lt;h3&gt;Ao copiar e colar códigos python, a palavra import  se duplica.&lt;/h3&gt;
+&lt;p&gt;Isto é um problema com o plugin jedi para python, e a solução é adição da seguinte linha à configuração:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;let g:jedi#smart_auto_mappings = 0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Fiz uma configuração com suporte a linguagem GO, mas não parece ter funcionado.&lt;/h3&gt;
+&lt;p&gt;Para que o plugin go-vim esteja em perfeito funcionamento, o caminho da variável de ambiente GOPATH, deve estar bem configurado e em um diretório com permissões necessárias.
+Minha solução que funciona no ubuntu é a adição das seguintes linhas ao bashrc ou zshrc:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;export GOPATH=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/go&lt;/span&gt;
+&lt;span class="x"&gt;export PATH=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="x"&gt;:&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;GOROOT&lt;/span&gt;&lt;span class="x"&gt;/bin:&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;GOPATH&lt;/span&gt;&lt;span class="x"&gt;/bin&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Uma outra ação que pode ser necessária é rodar o comando &lt;code&gt;GoInstallBinaries&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Ao tentar comentar blocos de código em templates html com filetype jinja ou django, a notação de comentário está incorreta.&lt;/h3&gt;
+&lt;p&gt;Isto é um problema com o plugin vim-commentary, mas a solução é dita no próprio plugin. O que acontece é que o plugin não reconhece o filetype e não sabe qual sintaxe de comentário destes arquivos.&lt;/p&gt;
+&lt;p&gt;A correção é através da adição das seguintes linhas no .vimrc:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;autocmd FileType htmldjango set commentstring={#\ %s\ #}
+autocmd FileType jinja set commentstring={#\ %s\ #}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Conclusão&lt;/h3&gt;
+&lt;p&gt;Espero ter ajudado, quem tiver interesse em ver todas as minhas configurações elas estão públicas neste &lt;a href="https://github.com/cassiobotaro/botaro-toolbelt"&gt;repositório&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Também não podia deixar de falar no excelente &lt;a href="https://github.com/cassiobotaro/vimbook.git"&gt;vimbook&lt;/a&gt;, em pt-br, que estou portando para o gitbook, para que em breve tenhamos uma versão .epub, .mobi e .pdf.&lt;/p&gt;
+&lt;p&gt;[]'s&lt;/p&gt;</summary><category term="vim"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 4</title><link href="/conceitos-linguagem-parte-4.html" rel="alternate"></link><updated>2015-12-14T01:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-12-14:conceitos-linguagem-parte-4.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;A parte 3 pode ser encontrada &lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-3"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Paradigmas&lt;/h2&gt;
+&lt;p&gt;Como segundo assunto falaremos sobre paradigmas de programação.&lt;/p&gt;
+&lt;h3&gt;Programação Imperativa&lt;/h3&gt;
+&lt;p&gt;Paradigma principal do Python, tem por característica mudança de estado do programa.&lt;/p&gt;
+&lt;p&gt;O nome imperativo e por causa que ordens são dadas no imperativo.&lt;/p&gt;
+&lt;p&gt;Basicamente um programa é escrito como:
+faça isto, faça aquilo, depois aquilo outro.&lt;/p&gt;
+&lt;p&gt;Exemplo de um programa imprativo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;quadrado_valores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;quadrado_valores&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;quadrado_valores&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Repare que a mudança do programa são refletidas e armazenadas em células de memória(variáveis).&lt;/p&gt;
+&lt;h3&gt;Programação Funcional&lt;/h3&gt;
+&lt;p&gt;Características funcionais&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- Provê map  e filter, funções utéis quando se trabalha funcionalmente
+- Funções lambdas
+- Funções de primeira ordem(veja as lambdas sendo passados como parâmetros de outras funções)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Restrições&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- não existe recursão em cauda
+- não é puramente funcional, logo não apresenta todas as suas características
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Orientação a objeto&lt;/h3&gt;
+&lt;p&gt;Não considerado por Sebesta como um paradigma de programação, O argumento é que toda programação orientada a objeto é imperativa, com única diferença que a estruturação dos arquivos é orientada a objetos.
+Características:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- Elegância em getters e setters com utilização de properties
+- Herança Múltipla
+- Utilização do self explícito em métodos de instância
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Exemplo da utilização:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Filho&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Pai&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Mae&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;peso&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nome&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;peso&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;peso&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;peso&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__peso&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@peso.setter&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;peso&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__peso&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;valor deve ser &amp;gt; 0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Python possui suporte a orientação a objetos, inclusive até mesmo os tipos básicos em python são objetos.&lt;/p&gt;
+&lt;p&gt;A conclusão é que Python é imperativo, mas também possui caratéristicas de outros paradigmas e suporte a orientação a objeto.&lt;/p&gt;
+&lt;h3&gt;Gostinho de queiro mais?&lt;/h3&gt;
+&lt;p&gt;Este assunto é melhor explicado na prática, então não perca tempo e veja &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/paradigmas.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 3</title><link href="/conceitos-linguagem-parte-3.html" rel="alternate"></link><updated>2015-12-06T23:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-12-06:conceitos-linguagem-parte-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;A parte 2 pode ser encontrada &lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Sobrecargas&lt;/h2&gt;
+&lt;p&gt;Como segundo assunto falaremos sobre sobrecargas de operadores e métodos.&lt;/p&gt;
+&lt;h3&gt;Sobrecarga de operadores&lt;/h3&gt;
+&lt;p&gt;Tudo é objeto em python, como tal, quando eu utilizo um operador sobre qualquer coisa, na verdade estou invocando o "dunder" método correspondente 
+àquele operador.&lt;/p&gt;
+&lt;p&gt;Ex: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# é o mesmo que&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__add__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Quando falamos em sobrecarga de método, significa modificar estas funções especiais que o interpretador utiliza, para prover um comportamento diferente.&lt;/p&gt;
+&lt;p&gt;Normalmente respondendo a tipos diferentes com valores diferentes. &lt;/p&gt;
+&lt;p&gt;Por exemplo as strings em python são sobrecarregadas, quando diantes do operador de multiplicaçao '*' e o oerando é um inteiro, ele realiza a replicação do valor e sua eventual concatenação.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 333&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Sobrecarga de métodos&lt;/h3&gt;
+&lt;p&gt;Um mesmo método, responde de diferentes maneiras de acordo com a sua assinatura.
+Por exemplo, um método se comporta de uma maneira quando recebe uma string e de outra, quando recebe uma instância de Objeto qualquer.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# invoca um método&lt;/span&gt;
+
+&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;NFL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Futebol Americano&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="c1"&gt;# outro método é invocado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;No python isto é feito através de singledispatch da biblioteca functools. Há uma função(dispatcher) que invoca a função correspondente de acordo com o tipo do parâmetro recebido.&lt;/p&gt;
+&lt;p&gt;Post curto neh? &lt;/p&gt;
+&lt;p&gt;Foi proposital, este assunto é melhor explicado na prática, então não perca tempo e veja &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/sobrecargas.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-4"&gt;Clique aqui&lt;/a&gt; para ir até a parte 4.&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 2</title><link href="/conceitos-linguagem-parte-2.html" rel="alternate"></link><updated>2015-11-29T23:30:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-11-29:conceitos-linguagem-parte-2.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;A parte 1 pode ser encontrada &lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-1"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Métodos e funções&lt;/h2&gt;
+&lt;p&gt;Como segundo assunto falaremos sobre coisas associadas a funções.&lt;/p&gt;
+&lt;h3&gt;Escopo&lt;/h3&gt;
+&lt;p&gt;A resolução de nomes é sempre do interior(escopo local) para o exterior(escopo global) das funções a menos que explicitamente modificado.&lt;/p&gt;
+&lt;p&gt;Caso um nome seja invocado dentro de uma função, primeiro se procura dentro do escopo da funão esta variável, em seguida no escopo de quem invocou a função e assim por diante até chegar ao escopo global.&lt;/p&gt;
+&lt;h3&gt;Passagem de parâmetro por valor ou referência?&lt;/h3&gt;
+&lt;p&gt;A passagem de parâmetro em python se dar por referência em Python.&lt;/p&gt;
+&lt;p&gt;Isto leva a duas considerações, quando há atribuição daquele nome a um outro
+objeto, repare que isto não afeta o objeto externo.
+E isto leva a um efeito colateral com objetos mutáveis como listas e dicionários.&lt;/p&gt;
+&lt;p&gt;Sua alteração dentro da função é refletida no objeto externo.&lt;/p&gt;
+&lt;h4&gt;Namespaces&lt;/h4&gt;
+&lt;p&gt;Eventualmente há uma colisão na vinculação de nomes, e a resolução disto
+pelo interpretador é considerar a ultima atribuição ou importação daquele nome.
+Para solucionar isto, a utilização de namespaces é importante.
+Por exemplo a função open é builtin do Python, ou seja já vem por padrão no escopo global, mas caso eu quero utilizar a open do modulo io eu devo fazer utilização de namespaces.&lt;/p&gt;
+&lt;p&gt;Exemplo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;io&lt;/span&gt;
+
+&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Métodos anônimos&lt;/h3&gt;
+&lt;p&gt;Pode ser definida basicamente como: "Dado uma entrada, me retorne uma saída."
+São funções que não possuem nome, sua representação é através da palavra reservada lambda.&lt;/p&gt;
+&lt;p&gt;Exemplo: Função que retorna o cubo de um número&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A função deixa de existir quando não há mais referências a ela.&lt;/p&gt;
+&lt;h3&gt;Closure&lt;/h3&gt;
+&lt;p&gt;Closure é o registro de uma função associado a variáveis livre dentro
+de um contexto léxico em funções de primeira classe.
+Exemplo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;makeInk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;inc&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A variável x está associada a função inc, em um contexto léxico.&lt;/p&gt;
+&lt;p&gt;closure1 = makeInk(1)&lt;/p&gt;
+&lt;p&gt;closure2 = makeInk(5)&lt;/p&gt;
+&lt;p&gt;Seu valor na closure 1 é 1 e na segunda é 5.&lt;/p&gt;
+&lt;p&gt;Se o conceito ainda soar estranho, não se apavore, este conceito de alterar
+uma função em tempo de execução é dado como metaprogramação e não é
+considerado um assunto simples.&lt;/p&gt;
+&lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/metodos.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 1</title><link href="/conceitos-linguagem-parte-1.html" rel="alternate"></link><updated>2015-11-22T22:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-11-22:conceitos-linguagem-parte-1.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
+&lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
+&lt;p&gt;Existe um &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens"&gt;repositório&lt;/a&gt; onde exemplifico tudo que for colocado aqui além de explicar mais detalhadamente como e por que as coisas acontecem.&lt;/p&gt;
+&lt;p&gt;Durante a faculdade eu aprendi uma disciplina chamada linguagens de programação, e nela não se aprende nenhuma linguagem específica, mas sim os conceitos que são aplicados em todas elas.&lt;/p&gt;
+&lt;p&gt;Veremos abaixo sobre alguns conceitos e como eles são aplicados em Python.&lt;/p&gt;
+&lt;h2&gt;Tipagem&lt;/h2&gt;
+&lt;p&gt;O primeiro assunto a ser tratado será tipagem.&lt;/p&gt;
+&lt;h3&gt;Tipagem estáticaou dinâmica&lt;/h3&gt;
+&lt;p&gt;Python possui tipagem dinâmica, sua vinculação de tipos ocorre em tempo de execução, por isso é possível mudar o tipo de uma variável em tempo de execução.&lt;/p&gt;
+&lt;h3&gt;Tipagem forte ou fraca?&lt;/h3&gt;
+&lt;p&gt;Python embora tenha uma vinculação de tipo em tempo de execução, ou seja dinâmica, ele possui uma tipagem forte. Não há muita conversão de tipos quando se refere a operações, como por exemplo soma.&lt;/p&gt;
+&lt;h3&gt;Tipos primitivos&lt;/h3&gt;
+&lt;p&gt;Em Python não possuimos tipos primitivos, tudo é objeto. 
+Possuimos tipos builtins, tipos básicos que já estão disponíveis, como por exemplos listas, tuplas, números complexos, etc.&lt;/p&gt;
+&lt;h3&gt;Conversão/coerção de tipos&lt;/h3&gt;
+&lt;p&gt;Por possuir tipagem forte não há muita coerção de tipos, embora os tipos numéricos apresentam coerção.&lt;/p&gt;
+&lt;p&gt;A conversão de tipos, quando possível é realizada atraves  de uma "função" com nome semelhante ao tipo escolhido. Por exemplo str(1), para converter um número em string.&lt;/p&gt;
+&lt;h3&gt;Comparação e outros operadores&lt;/h3&gt;
+&lt;p&gt;A comparação entre elementos não é permitida(tipagem forte) a menos que dois elementos se permitam comparação. Uma consideração deve ser feita a comparação que apresenta como resultado False.&lt;/p&gt;
+&lt;h3&gt;Ponteiros&lt;/h3&gt;
+&lt;p&gt;Não existe o tipo ponteiro, mas tudo tem  a ver com ponteiros. Entenda a atribuição de uma variavél como um rótulo a um endereço de memória, associado a um escopo(assunto para outro post) e este endereço de memória pode ser compartilhado.&lt;/p&gt;
+&lt;p&gt;Inclusive Python costuma utilizar desta técnica para economizar o uso de memória.&lt;/p&gt;
+&lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/tipagem.py"&gt;este arquivo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
+&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Removendo Labels</title><link href="/removendo-labels.html" rel="alternate"></link><updated>2015-09-28T23:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-09-28:removendo-labels.html</id><summary type="html">&lt;p&gt;&lt;img alt="rotulo" src="/images/rotulos.png" title="Rótulos" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Recentemente em um projeto pessoal me deparei com o seguinte problema. Ao adicionar um formulário utilizando o helper &lt;code&gt;SQLFORM&lt;/code&gt;, mais especificamente com o método &lt;code&gt;SQLFORM.factory&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Eu não gostaria de exibir a label no formulário e também não gostaria de ter de escrever um form custom só por causa deste problema.&lt;/p&gt;
+&lt;h2&gt;Discussão sobre o problema&lt;/h2&gt;
+&lt;p&gt;Minha primeira tentativa foi aplicar um formstyle ao formulário. Realizei tentativas frustadas com 'table3cols', 'table2cols' e até mesmos os que utilizam bootstrap(que é utilizado no projeto).&lt;/p&gt;
+&lt;p&gt;Como uma alternativa decidi procurar algum parâmetro para resolver o meu problema. Foi ai que encontrei o &lt;code&gt;labels&lt;/code&gt; que por padrão é None. Aprofundando no código fonte, mas já ciente que passar None ao paramêtro não resolveria meu problema, tentei escrever um código para solucionar meu problema, e assim contribuir com outras pessoas também.&lt;/p&gt;
+&lt;p&gt;Web2py tem a premissa de compatibilidade reversa, ou seja seu programa feito em versões anteriores devem funcinar em versões mais novas, logo não poderia mudar a api do método, nem modificar o comportamento do mesmo.
+O que complicou bastante a tentativa de suprimir as labels. &lt;/p&gt;
+&lt;h2&gt;A solução&lt;/h2&gt;
+&lt;p&gt;Quando tudo parecia perdido, eis que entre buscas no Stack Overflow e Google Groups me deparei com uma elegante solução que caiu feito uma luva em meu problema.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;label&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Fica aqui a dica para quem tiver o mesmo problema.&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="dicas"></category><category term="forms"></category></entry><entry><title>Instalando Pillow</title><link href="/instalando-pillow.html" rel="alternate"></link><updated>2015-08-14T22:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-08-14:instalando-pillow.html</id><summary type="html">&lt;p&gt;&lt;img alt="ubuntu-pillow" src="/images/ubuntu_pillow.jpg" title="Travesseiro Ubuntu" /&gt;&lt;/p&gt;
+&lt;h2&gt;Problema&lt;/h2&gt;
+&lt;p&gt;Ao tentar instalar a biblioteca pillow, me deparei com o problema de não dar suporte a jpeg.&lt;/p&gt;
+&lt;p&gt;O erro apresentado era: "decoder jpeg not available". &lt;/p&gt;
+&lt;p&gt;Como estou desenvolvendo uma aplicação que irá redimensionar imagens jpeg e png isto é um problema.&lt;/p&gt;
+&lt;h2&gt;Solução&lt;/h2&gt;
+&lt;p&gt;Após algumas buscas no Stack Overflow cheguei ao seguintes passos que funcionaram pra mim.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Esta solução funciona em Ubuntu 14.04+&lt;/span&gt;
+
+&amp;gt;&amp;gt;&amp;gt; sudo apt-get install libtiff5-dev  libjpeg8-dev  zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+
+&lt;span class="c1"&gt;#For Ubuntu x64:&lt;/span&gt;
+
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib
+
+&lt;span class="c1"&gt;# Or for Ubuntu 32bit:&lt;/span&gt;
+
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/i386-linux-gnu/libjpeg.so /usr/lib/
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/i386-linux-gnu/libfreetype.so.6 /usr/lib/
+&amp;gt;&amp;gt;&amp;gt; sudo ln -s /usr/lib/i386-linux-gnu/libz.so /usr/lib/
+
+&amp;gt;&amp;gt;&amp;gt; pip install --no-cache-dir -v Pillow
+
+&lt;span class="c1"&gt;# O -v é só para após a instalação checarmos se tudo correu bem.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+&lt;p&gt;Sim, este foi um post ligeiro, com intuito de ajudar outros que possivelmente encontrem o mesmo erro que eu.&lt;/p&gt;
+&lt;p&gt;Espero que tenham gostado. Abraços!&lt;/p&gt;
+&lt;p&gt;Créditos para a solução e links interessantes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/8915296/python-image-library-fails-with-message-decoder-jpeg-not-available-pil"&gt;http://stackoverflow.com/questions/8915296/python-image-library-fails-with-message-decoder-jpeg-not-available-pil&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://pillow.readthedocs.org/installation.html"&gt;http://pillow.readthedocs.org/installation.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html"&gt;http://shortrecipes.blogspot.com.br/2014/06/python-34-and-pillow-24-with-jpeg2000.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="python3"></category><category term="ubuntu"></category></entry><entry><title>mv /bin/bash /bin/zsh</title><link href="/mv-bash-zsh.html" rel="alternate"></link><updated>2015-08-09T01:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-08-09:mv-bash-zsh.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-zsh" src="/images/oh-my-zsh-logo.png" title="Logo zsh" /&gt;&lt;/p&gt;
+&lt;h2&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;A while ago, when I spoke at Santa Rita in Inatel, my laptop doesn't work with the projector. Then I had to use a friend's Mac with zsh. I love what I saw and decided that some day I'd give a chance to that shell.&lt;/p&gt;
+&lt;p&gt;Two months later I wrote my own .bashrc with some shortcuts to improve my productivity.&lt;/p&gt;
+&lt;p&gt;The result was &lt;a href="https://github.com/cassiobotaro/dot_files"&gt;https://github.com/cassiobotaro/dot_files&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Then, yesterday, I did a fresh xubuntu install and finally gave a chance to zsh, and I'm in love.&lt;/p&gt;
+&lt;h2&gt;Disclaimer&lt;/h2&gt;
+&lt;p&gt;Works on Ubuntu with any interface, and works too in all *unix system, only changing the instalation commands.&lt;/p&gt;
+&lt;p&gt;If you have a question, look the references at the end of post. &lt;/p&gt;
+&lt;h2&gt;Step by step&lt;/h2&gt;
+&lt;p&gt;First install zsh. As I said, xubuntu is my distro, then I only have to write:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; sudo apt-get install zsh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As prerequisite git is needed, please install typing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; sudo apt-get install git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After we have to install oh-my-zsh &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; sh -c &amp;quot;$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Oh my zsh is a great helper to manage zsh configuration. &lt;/p&gt;
+&lt;h2&gt;Powerline fonts&lt;/h2&gt;
+&lt;p&gt;To improve our experience, with fancy symbols and more, install powerline fonts and chage your terminal font with one of powerlined fonts.
+Clone &lt;a href="https://github.com/powerline/fonts"&gt;this&lt;/a&gt; repo and only type &lt;code&gt;./install&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Theme - bullet-train-oh-my-zsh-theme&lt;/h2&gt;
+&lt;p&gt;My chosen theme is from a brazilian guy named Caio Gondim, and it's amazing.
+One prerequisite is powerline font.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="bullet-train-oh-my-zsh-theme" src="/images/preview.gif" title="bullet-train-oh-my-zsh-theme" /&gt;&lt;/p&gt;
+&lt;p&gt;Step by step:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
+&amp;gt;&amp;gt;&amp;gt; mv bullet-train.zsh-theme ~/.oh-my-zsh/themes/
+&lt;span class="c1"&gt;# Configure the theme in your ~/.zshrc file&lt;/span&gt;
+&lt;span class="c1"&gt;# ZSH_THEME=&amp;quot;bullet-train&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;My own config&lt;/h2&gt;
+&lt;p&gt;My changes at default values are:&lt;/p&gt;
+&lt;p&gt;In .zshrc&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ZSH_THEME=&amp;quot;bullet-train&amp;quot;
+
+plugins=(git python extract django virtualenvwrapper ubuntu vagrant)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;One more thing is necessary, change my default shell.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; chsh -s &lt;span class="k"&gt;$(&lt;/span&gt;which zsh&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Logoff and then logon, and now zsh turned into your new default.&lt;/p&gt;
+&lt;h2&gt;Repositories&lt;/h2&gt;
+&lt;p&gt;More information here:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/robbyrussell/oh-my-zsh"&gt;Oh-my-zsh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/powerline/fonts"&gt;Powerline fonts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/caiogondim/bullet-train-oh-my-zsh-theme"&gt;Bullet-train-oh-my-zsh-theme&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/cassiobotaro/dot_files"&gt;old bashrc config&lt;/a&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="dotfiles"></category><category term="iniciantes"></category></entry><entry><title>Mito ou Verdade: Destrutor</title><link href="/mito-ou-verdade-destrutor.html" rel="alternate"></link><updated>2015-07-25T14:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-07-25:mito-ou-verdade-destrutor.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Linguagens de programação mais antigas traziam a capacidade de manipulação da memória. A competência de reservar um espaço de memória pra determinada operação e sua posterior liberação era do desenvolvedor.&lt;/p&gt;
+&lt;p&gt;Python desde o seu início possui um mecanismo simples de alocação e desalocação, é o mecanismo de contador de refêrencia.&lt;/p&gt;
+&lt;p&gt;Sempre que um novo objeto é referenciado(alguém passa apontar para aquele objeto), o contador é incrementado e quando deixa de apontar, este contador é decreementado. Chegando a 0 este contador aquele espaço de memória está livre.&lt;/p&gt;
+&lt;p&gt;Até aqui tudo certo, isto quer então que quando realizo &lt;code&gt;del &amp;lt;objeto&amp;gt;&lt;/code&gt;, meu objeto é desalocado?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;lista = []
+lista.append(lista)
+del lista
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Aparentemente tudo ok, mas tenho péssimas notícias para lhe dar, o rótulo lista pode até não estar mais referenciando aquele espaço de memória, porém aquele espaço de memória ainda continua ocupado.&lt;/p&gt;
+&lt;h2&gt;Discussão sobre o problema&lt;/h2&gt;
+&lt;p&gt;Vamos uma demonstração que mostra que aquele objeto ainda estava na memória.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="c1"&gt;# Primeiro definiramos que o nível de debug do &lt;/span&gt;
+&lt;span class="c1"&gt;# coletor de lixo é DEBUG_LEAK para&lt;/span&gt;
+&lt;span class="c1"&gt;# poder ver os objetos coletados pelo coletor&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# vamos definir uma lista e verificar qual o seu endereço de memória &lt;/span&gt;
+&lt;span class="n"&gt;lista&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="c1"&gt;# repetimos o código anterior &lt;/span&gt;
+&lt;span class="c1"&gt;# adicionando lista a ela mesmo&lt;/span&gt;
+&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# apaga a lista&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;lista&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# Repare que um dos elementos coletados foi a &lt;/span&gt;
+&lt;span class="c1"&gt;# lista que achamos já ter sido removida&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Agora que já foi provado, vamos entender melhor como funciona o coletor de lixo do Python.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="c1"&gt;# Definiramos que o nível de debug do &lt;/span&gt;
+&lt;span class="c1"&gt;# coletor de lixo é DEBUG_LEAK para&lt;/span&gt;
+&lt;span class="c1"&gt;# poder ver os objetos coletados pelo coletor&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Primeira coisa a saber é que nem todos os objetos provocam o&lt;/span&gt;
+&lt;span class="c1"&gt;# comportamento visto acima&lt;/span&gt;
+&lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="c1"&gt;# obs: Tudo em Python é objeto&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;variavel&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# não foi coletado pelo coletor como a lista&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O que acontece é que nem todos os objetos em Python precisam ser monitorados, pois possuem atomicidade em sua construção.
+A maneira de verificar se um objeto está sendo monitorado é a seguinte:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="n"&gt;lista&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_tracked&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;variavel&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;# False&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_tracked&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lista&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;# True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Como dito a atomicidade de certos objetos o previnem da geração de ciclos, porém outros podem gerar ciclos e isto faz com que o número de referencias nunca caia a 0.&lt;/p&gt;
+&lt;h2&gt;Entendendo o &lt;code&gt;del&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Relembrando, Python tem um sistema de contador de referências, e quando não há mais referências a um objeto seu espaço de memória é desalocado.&lt;/p&gt;
+&lt;p&gt;Mas porque isso não ocorreu quando eu fiz a lista referenciar a si proprio?&lt;/p&gt;
+&lt;p&gt;A instrução &lt;code&gt;del&lt;/code&gt; não pede a desalocação da memória, apenas faz com o contador de referências seja decrementado e associação do rótulo com o espaço de memória desfeita.&lt;/p&gt;
+&lt;h2&gt;Mais exemplos pois ísto não ocorre somente em listas&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt; 
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG_LEAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;
+
+&lt;span class="n"&gt;ref1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ref2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="c1"&gt;# repare que aqui temos um ciclo, ou seja, objetos se referenciam mutualmente&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="c1"&gt;# os rótulos ref1 e ref2 não se referem mais a nada&lt;/span&gt;
+&lt;span class="c1"&gt;# o contador de referências é decrementado&lt;/span&gt;
+&lt;span class="c1"&gt;# mas o espaço de memória ainda não foi desalocado&lt;/span&gt;
+&lt;span class="c1"&gt;# perceba que cada objeto ainda possui uma referência&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# gc: collectable &amp;lt;Example 0x7f0f59646780&amp;gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# gc: collectable &amp;lt;Example 0x7f0f59646b38&amp;gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Podemos ver que agora há a desalocação do objeto&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Mas e sobre o destrutor?&lt;/h2&gt;
+&lt;p&gt;O destrutor, ou finalizador é um método chamado quando um objeto está para ser desalocado. 
+Em python é o método dunder del &lt;code&gt;__del__&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt; 
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__del__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Poderia estar fazendo algo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;ref1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;
+&lt;span class="c1"&gt;# deve aparecer em tela &amp;quot;Poderia estar fazendo algo&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# Mas e se ocorrer um cilo?&lt;/span&gt;
+
+&lt;span class="n"&gt;ref1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ref2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="n"&gt;ref2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alguma_referencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;
+
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;ref1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ref2&lt;/span&gt;
+&lt;span class="c1"&gt;# sim! O finalizador ainda não foi chamado, pois por causa do ciclo&lt;/span&gt;
+&lt;span class="c1"&gt;# ainda não finalizado&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# agora sim o finalizador é invocado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Últimas considerações&lt;/h2&gt;
+&lt;p&gt;O coletor de lixo é automático, aqui foi utilizado de forma manual somente para efeito explicativo. E como saber quando ele ocorre?&lt;/p&gt;
+&lt;p&gt;O python monitora cada alocação e desalocação que ocorre, e quando a diferença de alocações e desalocações atinge um limite, o coletor de lixo é chamado.&lt;/p&gt;
+&lt;p&gt;Este limite por padrão é de 700.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;gc&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_threshold&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Um importante detalhe, este artigo foi escrito em python 3.4. Antes disso o coletor de lixo mantinha os objetos contendo ciclos, classificando-os como &lt;em&gt;não coletáveis&lt;/em&gt;, estes vazamentos de memória são colocados em &lt;code&gt;gc.garbage&lt;/code&gt; e necessitam ser tratados manualmente.&lt;/p&gt;
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+&lt;p&gt;Como vimos há uma certa complexidade envolvida em uma instrução del, e dado isso não podemos garantir que o comando del realmente desaloque o espaço de memória naquele instante.&lt;/p&gt;
+&lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Mais um passo com web2py</title><link href="/mais-um-passo-com-web2py.html" rel="alternate"></link><updated>2015-07-07T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-07-07:mais-um-passo-com-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="/images/web2py_logo.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Recapitulando&lt;/h2&gt;
+&lt;p&gt;No &lt;a href="http://cassiobotaro.github.io/introducao-ao-web2py.html"&gt;post&lt;/a&gt; anterior dei uma introdução sobre o que é o web2py e iniciamos a construção de uma aplicação, porém não através de um scaffolding(uma aplicação base).&lt;/p&gt;
+&lt;p&gt;Escrevemos um hello world personalizado onde o nome passado por argumento era retornado no corpo do retorno da nossa aplicação.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="print" src="/images/print_screen_hello.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;O próximo passo&lt;/h2&gt;
+&lt;p&gt;Ainda sem uma aplicação bem definida decidi aboradar um pouco da criação de um modelo e sua aplicação.&lt;/p&gt;
+&lt;p&gt;Este será então o nosso segundo hello world, criaremos um modelo, faremos sua exposição através da view e seu controle através de um controlador. Será dado uma pincelada como ter visões alternativas sobre o mesmo controlador.&lt;/p&gt;
+&lt;h2&gt;Definindo o modelo&lt;/h2&gt;
+&lt;p&gt;Crie um arquivo dentro do diretório models chamado db.py com o seguinte conteúdo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DAL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sqlite://storage.sqlite&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;define_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;marcas&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;define_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;carros&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;modelo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;notnull&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ano&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;notnull&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;marca&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;reference marcas&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Agora temos definidos dois modelos de nossa aplicação, lembrando que estes modelos serão aplicados à &lt;a href="http://web2py.com/books/default/chapter/29/07/forms-and-validators#SQLFORM"&gt;visão&lt;/a&gt; e a persistência de dados.&lt;/p&gt;
+&lt;p&gt;O que acabamos de definir é que utilizaremos o sqlite como banco de dados, e neste banco de dados temos duas tabelas onde serão armazenados nossos dados.&lt;/p&gt;
+&lt;p&gt;Em uma delas temos uma lista de marcas, e em outra uma lista de carros asosociados a estas marcas. todo carro deve possuir obrigatoriamente modelo, ano e marca.&lt;/p&gt;
+&lt;h2&gt;Populando nossas tabelas&lt;/h2&gt;
+&lt;p&gt;Ainda no arquivo db.py adicione as seguintes linhas:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# verifica se a tabela de marcas está vazia&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;marcas&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;marcas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Fiat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;marcas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Ford&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;marcas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Chevrolet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;commit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c1"&gt;# verifica se a tabela de carros está vazia&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;carros&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;carros&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;modelo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Idea&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;marca&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ano&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;2003&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;carros&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;modelo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Ka&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;marca&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ano&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;2004&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;carros&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;modelo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Celta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;marca&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ano&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;2005&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;commit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Temos 3 carros de 3 marcas distintas. Preste atenção no if que foi adicionado antes da inserção do carro, ele previne que a cada requisição carros repetidos sejam adicionados à tabela.&lt;/p&gt;
+&lt;p&gt;Lembre-se tambem que essa maneira de povoar os dados é somente para desenvolvimento e teste e pode ser apagado após os registros serem adicionados ao banco de dados. Apagar estas linhas evita duas consultas desnecessárias ao banco de dados.&lt;/p&gt;
+&lt;h2&gt;Controlando o que será exibido&lt;/h2&gt;
+&lt;p&gt;Vamos voltar ao nosso controlador, o arquivo default.py(hello/controllers/default.py)&lt;/p&gt;
+&lt;p&gt;Já vimos que o controlador recebe uma requisição, realiza processamento e retorna alguma resposta ao solicitante.
+Vamos então apagar o conteúdo de index e reescreve-lo agora consultando os carros existentes em meu banco de dados.&lt;/p&gt;
+&lt;p&gt;O código será o seguinte:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="c1"&gt;# pode ser traduzido como select * from carros&lt;/span&gt;
+    &lt;span class="c1"&gt;# ou seja, todos os carros na tabela&lt;/span&gt;
+    &lt;span class="n"&gt;carros&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;carros&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c1"&gt;# dicionário que define as variáveis presentes no ambiente &lt;/span&gt;
+    &lt;span class="c1"&gt;# durante renderização da template html&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;carros&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;carros&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Com essa alteração nossa visão também deve ser alterada. Para uma vizualização interessante vamos fazer uma tabela.
+Edite o arquivo index.html(hello/views/default/index.html)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt; &lt;span class="na"&gt;lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pt-br&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;UTF-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Carros&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;table&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;table&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;th&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Modelo&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;th&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;th&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Marca&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;th&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;th&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Ano&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;th&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        {{for carro in carros:}}
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{=carro.modelo}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{=carro.marca.nome}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{=carro.ano}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        {{pass}}
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;table&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Um único detalhe que chamo atenção neste codigo é &lt;code&gt;{{=carro.marca.nome}}&lt;/code&gt;, como as tabelas possuem relação o web2py irá ficar responsável por  buscar o nome do modelo de cada carro.
+Visualize através da url: &lt;a href="http://localhost:8000/hello/default/index.json"&gt;http://localhost:8000/hello/default/index.json&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Exibindo os mesmos dados de forma diferente&lt;/h2&gt;
+&lt;p&gt;Já que temos uma resposta html, o quão será difícil retornar um json
+com estes mesmos dados para uma possível comunicação entre sistemas ou at´e mesmo para consumo de um aplicativo móvel?&lt;/p&gt;
+&lt;p&gt;Na verdade é extremamente simples. Apenas crie no mesmo diretório onde se encontra a view index.html um arquivo index.json com o seguinte conteúdo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{{from gluon.serializers import json}}{{=XML(json(response._vars))}}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Para consultar visite a url: &lt;a href="http://localhost:8000/hello/default/index.json"&gt;http://localhost:8000/hello/default/index.json&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Em breve tem mais...&lt;/h2&gt;
+&lt;p&gt;Ficou curioso sobre o esquema de templates do web2py?, mais detalhes sobre os modelos? Ainda um pouco perdido? Não se preocupe.
+Pretendo em breve escreves posts mais detalhados sobre cada aspecto do web2py como modelo, visão, controlador, modulos e também tratar brechas que até agora foram deixadas.&lt;/p&gt;
+&lt;p&gt;Curtiu? Compartilhe!&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Loop Infinito</title><link href="/loop-infinito.html" rel="alternate"></link><updated>2015-06-27T18:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-27:loop-infinito.html</id><summary type="html">&lt;p&gt;&lt;img alt="loop" src="/images/infinite_loop.png" title="Loop infinito" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Vamos começar analisando o seguinte código:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Exemplo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__getitem__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interno&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__setitem__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interno&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Criando uma instância do exemplo e manipulando-a, as coisas parecem legais:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class="nv"&gt;instancia_exemplo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Exemplo&lt;span class="o"&gt;()&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave1&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;valor1&amp;#39;&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave2&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;valor2&amp;#39;&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo.get&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave1&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;valor1&amp;#39;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Até que você decide mudar a notação para se recuperar um valor:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave1&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;valor1&amp;#39;&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave3&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; instancia_exemplo&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chave2&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;valor2&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Opa! Uma chave não existentente não deveria dar um erro?&lt;/p&gt;
+&lt;p&gt;Se reparar a implemenação de dunder item (&lt;code&gt;_getitem__&lt;/code&gt;) vai ver que eu tenho um valor default que é retornado quando eu não encontro essa chave e este valor por padrão é None.&lt;/p&gt;
+&lt;p&gt;Mas tudo bem, quando esta classe foi implementada, talvez essa seja o intuito.&lt;/p&gt;
+&lt;p&gt;No código onde utilizo essa instancia eu simplesmente verifico se chave passada retorna valor nulo(None).&lt;/p&gt;
+&lt;p&gt;Mas ai vem um desavisado, e vendo o &lt;code&gt;__getitem__&lt;/code&gt; na classe decidi itera-la.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class="k"&gt;for&lt;/span&gt; indice in instancia_exemplo:
+...    print indice 
+&amp;gt;&amp;gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;E Pam!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pane" src="/images/panic.gif" title="Pane no sistema" /&gt;&lt;/p&gt;
+&lt;p&gt;Seu programa entra em loop infinito. &lt;/p&gt;
+&lt;h2&gt;Como funciona o Python em termos de iteração?&lt;/h2&gt;
+&lt;p&gt;Vamos  começar por conceitos. Iterável, é tudo aquilo que pode ser percorrido, não confunda com iterador que é um padrão de projeto. Em Python, listas, tuplas, geradores e dicionarios podem ser percorridos.&lt;/p&gt;
+&lt;p&gt;Mas como posso definir para o interpretador que algo pode ser percorrível?&lt;/p&gt;
+&lt;p&gt;Algo que pode ser percorrível em Python, possui uma função &lt;code&gt;__iter___&lt;/code&gt; que retorna um iterador. Um iterador é um padrão de projeto aplicado em containers e seguem um protocolo para este container ser percorrido.&lt;/p&gt;
+&lt;p&gt;Uma outra opção é  a existência da função &lt;code&gt;__getitem__&lt;/code&gt; &lt;strong&gt;que aceite itens numéricos e lançam IndexError indicando que o percurso foi finalizado&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Dito isso já dá pra se ter uma idéia do que aconteceu em nosso código. Quando o laço de repetição(for) foi iniciado o interpretador tentou atribuir exaustivamente valores de 0..n para &lt;code&gt;__getitem__&lt;/code&gt; que continuava responder None e nenhuma exceção foi lançada.&lt;/p&gt;
+&lt;h2&gt;A solução&lt;/h2&gt;
+&lt;p&gt;Não há solução, porque não é um problema, apenas uma confusão causada sobre interpretação de iteráveis.&lt;/p&gt;
+&lt;p&gt;Porém analisando o código acima, acho que o grande problema neste código é a tentiva de suprimir uma exceção. Para casos em que isto ocorre o proprio dicionário já nos fornece um método chamado &lt;code&gt;get&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;É até dificil falar que a solução é o metódo get, pois este exemplo também nos faz pensar sobre a classe Exemplo que é basicamente um dicionário e caso algum estado ou ação seja adicionado ao objeto, talvez uma melhor reescrita seria através de herança.   &lt;/p&gt;
+&lt;h2&gt;Moral da história&lt;/h2&gt;
+&lt;p&gt;Seja cuidadoso ao reescrever os &lt;code&gt;special methods&lt;/code&gt;, lembrem-se que o maquinário para a execução destes métodos está presente no interpretador e que existe um protocolo estabelecido.&lt;/p&gt;
+&lt;p&gt;Lembre-se também que suprimir exceções podem fazer com que erros sejam silenciados e isto não é pythônico.&lt;/p&gt;
+&lt;h2&gt;Créditos&lt;/h2&gt;
+&lt;p&gt;Este post só se tornou possível após consulta de duas fontes:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/926574/why-does-defining-getitem-on-a-class-make-it-iterable-in-python"&gt;Resposta do Alex Martelli&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ULj7ejvuzI8"&gt;Palestra do Luciano Ramalho&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="OO"></category></entry><entry><title>Mito ou Verdade: Importação</title><link href="/mito-ou-verdade-importacao.html" rel="alternate"></link><updated>2015-06-11T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-06-11:mito-ou-verdade-importacao.html</id><summary type="html">&lt;p&gt;&lt;img alt="mythbusters" src="/images/MythBusters-Logo.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Vamos supor que temos uma função em um determinado módulo que precisa de utilizar de recursos de outro módulo.&lt;/p&gt;
+&lt;p&gt;Mas este outro modulo pode importar outros módulos que possivelmente não serão utilizados.&lt;/p&gt;
+&lt;p&gt;Será que a solução é fazer as importações internamente nas funções para que o carregamento seja feito de forma preguiçosa?&lt;/p&gt;
+&lt;p&gt;Esta economia de recursos é uma otimização?&lt;/p&gt;
+&lt;h2&gt;Discussão sobre o problema&lt;/h2&gt;
+&lt;p&gt;Vamos iniciar com um módulo A(moduloa.py):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;modulob&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;funcaoteste&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;Chama função de modulo B&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;funcaoteste&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;e em um módulo B(modulob.py):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcaoteste&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# mais código...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Quando executamos a função funcao, além de trazermos funcaoteste ao namespace corrente, um cache é feito para os outros módulos importados por modulob.&lt;/p&gt;
+&lt;p&gt;Agora vamos modificar o modulob para um segunda versão:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcaoteste&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# mais código...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Caso rode o modulo A novamente veremos que agora math não está nos módulos até que a função seja chamada.&lt;/p&gt;
+&lt;p&gt;Para vizualizar a mudança modifique modulo A para conter o seguinte código:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Repare que somente após a chamada da função o cache do módulo math é realizado.&lt;/p&gt;
+&lt;p&gt;Porém, ao fazer isto estamos aumentando o tempo de execução da função pois a chamada a instrução de importação será executada a cada vez que função for chamada(embora o interpretador já terá compilado o módulo e responderá a chamada instântaneamente).&lt;/p&gt;
+&lt;p&gt;Em um programa que preocupação é performance esta execução pode ser prejudicial.&lt;/p&gt;
+&lt;p&gt;Para vê-la  vamos analizar o bytecode das funções:&lt;/p&gt;
+&lt;p&gt;import dis
+dis.dis(funcaoteste)&lt;/p&gt;
+&lt;p&gt;funcaoteste versão 1:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="m"&gt;8&lt;/span&gt;           &lt;span class="m"&gt;0&lt;/span&gt; LOAD_GLOBAL              &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;3&lt;/span&gt; LOAD_ATTR                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;sin&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;6&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;a&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;9&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;b&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;12&lt;/span&gt; BINARY_POWER
+             &lt;span class="m"&gt;13&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;3&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;16&lt;/span&gt; BINARY_MULTIPLY
+             &lt;span class="m"&gt;17&lt;/span&gt; CALL_FUNCTION            1
+             &lt;span class="m"&gt;20&lt;/span&gt; RETURN_VALUE
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;funcaoteste versão2:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="m"&gt;7&lt;/span&gt;           &lt;span class="m"&gt;0&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;-1&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;3&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;None&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;6&lt;/span&gt; IMPORT_NAME              &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+              &lt;span class="m"&gt;9&lt;/span&gt; STORE_FAST               &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+
+  &lt;span class="m"&gt;8&lt;/span&gt;          &lt;span class="m"&gt;12&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;math&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;15&lt;/span&gt; LOAD_ATTR                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;sin&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;18&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;a&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;21&lt;/span&gt; LOAD_FAST                &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;b&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;24&lt;/span&gt; BINARY_POWER
+             &lt;span class="m"&gt;25&lt;/span&gt; LOAD_CONST               &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;3&lt;span class="o"&gt;)&lt;/span&gt;
+             &lt;span class="m"&gt;28&lt;/span&gt; BINARY_MULTIPLY
+             &lt;span class="m"&gt;29&lt;/span&gt; CALL_FUNCTION            1
+             &lt;span class="m"&gt;32&lt;/span&gt; RETURN_VALUE
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Aqui veremos uma  diferença no bytecode  gerado e isto reflete na execução, quando executado os programas apresentam leve diferença de tempo, sendo menor na primeira abordagem.&lt;/p&gt;
+&lt;p&gt;A pep 8 também recomenda a importação no início do arquivo, isto ajuda na legibilidade do código.&lt;/p&gt;
+&lt;h2&gt;Vamos Pensar&lt;/h2&gt;
+&lt;p&gt;Como import math está dentro da função, seu código somente será executado quando a função for chamada, ou seja estou atrasando o carregamento do módulo e com isso ganhamos na inicialização do módulo. Certo? Trazer estes módulos não podem prejudicar memória?&lt;/p&gt;
+&lt;p&gt;Não está errado, realmente com a segunda abordagem, caso a função não seja chamada, a compilação do módulo não ocorre e fica delegado a cada função o carregamento do módulo. Mas isto pode trazer consigo alguns problemas como replicação de código.&lt;/p&gt;
+&lt;p&gt;Esta preocupação com a memória não é justificavel, pois se analisarmos eu não trouxe math para meu namespace, apensa deixei o modulo em cache.&lt;/p&gt;
+&lt;h2&gt;Quando realizar importação dentro da função?&lt;/h2&gt;
+&lt;p&gt;Tenho alguns motivos para fazer isto como para evitar colisão de nomes em um namespace, deixar em escopo local algum modulo ou se este módulo importado é raramente utilizado.&lt;/p&gt;
+&lt;p&gt;Porém isto deve ser pensado cautelosamente.&lt;/p&gt;
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+&lt;p&gt;Essa otimização pode ter até casos pontuais em que se aplica, mas na maioria das vezes é uma má pratica.&lt;/p&gt;
+&lt;p&gt;Logo, Mito foi derrubado!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="busted" src="/images/busted.jpg" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="mito"></category><category term="verdade"></category></entry><entry><title>Introdução ao web2py</title><link href="/introducao-ao-web2py.html" rel="alternate"></link><updated>2015-05-04T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-05-04:introducao-ao-web2py.html</id><summary type="html">&lt;p&gt;&lt;img alt="Web2py Logo" src="/images/web2py_logo.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Sobre o web2py&lt;/h2&gt;
+&lt;p&gt;Framework full-stack(ou seja assim como python vem com baterias incluídas), para desenvolvimento rápido, seguro, portável e orientado a banco de dados(o que não o limita).&lt;/p&gt;
+&lt;p&gt;O download pode ser feito através da página &lt;a href="http://www.web2py.com/download"&gt;http://www.web2py.com/&lt;/a&gt; e quando este artigo foi escrito estava em sua versão 2.10.X.&lt;/p&gt;
+&lt;p&gt;Embora possua versões para Windows e MAC eu recomendo sempre baixar a versão de código fonte.&lt;/p&gt;
+&lt;h2&gt;Hello Web2py(Talk is cheap. Show me the code)&lt;/h2&gt;
+&lt;p&gt;Iniciaremos criando uma aplicação mínima no web2py(sem utilizar sua interface ou um scaffolding).&lt;/p&gt;
+&lt;p&gt;Navegue até o diretório applications do web2py, crie um diretório com o nome da sua aplicação(Eu chamerei o exemplo de hello).&lt;/p&gt;
+&lt;p&gt;Dentro deste diretório inclua um diretório chamado controllers.&lt;/p&gt;
+&lt;p&gt;Em seguida crie um arquivo chamado default.py no diretório controllers e digite o seguinte código.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Vá no diretório raiz do web2py, rode o arquivo web2py.py e pronto!
+Para acessar sua aplicação utilize a seguinte url: http://127.0.0.1:8000/hello&lt;/p&gt;
+&lt;p&gt;Duas observações devem ser feitas neste ponto, caso navegue no diretório da sua aplicação vai notar que outros diretórios foram criados(nao se reocupe com eles por enquanto). Outra coisa é o nome do arquivo python(default) e a função(index). Isto é um padrão e pode ser modificado utilizando um arquivo de rotas.&lt;/p&gt;
+&lt;p&gt;Todo o processo acima pode ser resumido da seguinte maneira(à partir da raiz do diretório web2py):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir applications/hello &lt;span class="c1"&gt;# criação da aplicação&lt;/span&gt;
+mkdir applications/hello/controllers &lt;span class="c1"&gt;# criação da pasta controllers&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;def index():&amp;quot;&lt;/span&gt; &amp;gt; applications/hello/controllers/default.py
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;    return &amp;#39;Hello World&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; applications/hello/controllers/default.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Web2py Word Cloud" src="/images/tag-cloud-web2py.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Hello Author&lt;/h2&gt;
+&lt;p&gt;Vamos tornar nosso primeiro aplicativo web mais interessante, vamos faze-lo passar a exibir um nome recebido como argumento em nossa url.&lt;/p&gt;
+&lt;p&gt;Abra novamente o controlador default.py e agora adicione o seguinte código:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O código agora foi alterado, para incialmente receber uma variável chamada nome que contém o valor do argumento 0.&lt;/p&gt;
+&lt;p&gt;Argumento 0, wtf? &lt;/p&gt;
+&lt;p&gt;Uma url pode ser decomposta assim no web2py:
+    http://host/application/controller/action/args1/args2...?var1=valor&amp;amp;var2=valor&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- host - Domínio ou subdominio da sua aplicação(Pode ser www.algo.com ou localmente localhost:8000 sendo 8000 porta padrão do servidor web2py)
+- application - nome da sua aplicação
+- controller - nome do controlador
+- action - nome da função presente no controlador
+- args - argumentos(como parâmetros)
+- vars - são como variáveis e sempre tem um nome e um valor
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O retorno que anteriormente era um string, agora é um dicionário, este dicionário são as variáveis que estarão disponíveis na template para o contexto desta ação.&lt;/p&gt;
+&lt;p&gt;Agora crie um diretório default na pasta views e em seguida adicione um arquivo chamado index.html dentro deste diretório.&lt;/p&gt;
+&lt;p&gt;Neste arquivo adicione o seguinte conteúdo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt; &lt;span class="na"&gt;lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pt-br&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;UTF-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Hello&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Hello {{=nome}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Repare que este arquivo é um arquivo html comum, porém na Tag H1 eu utilizo da linguagem de template do web2py para adicionar um recurso dinamicamente ao html.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;{{}}&lt;/code&gt; é a maneira da template do web2py reconhecer que aquele código será avaliado antes de retornar uma resposta ao cliente. O igual indica que uma expressão deve ser avaliada e o retorno será adicionado ao html, no caso do exemplo uma variável será adicionada.
+Como pode ser visto a variável nome que foi definida para o ambiente desta action(default/index) está disponível em minha template.&lt;/p&gt;
+&lt;p&gt;Agora acesse http://localhost:8000/hello/default/index/cassio ou substitua cassio por algo que queira e veja o resultado.&lt;/p&gt;
+&lt;h2&gt;Considerações finais&lt;/h2&gt;
+&lt;p&gt;Este foi o primeiro post sobre web2py do meu blog, quis ser breve. Se ficou perdido em algum detalhe, não se preocupe, deixe um comentário que adorarei lhe ajudar.&lt;/p&gt;
+&lt;p&gt;E já adiantando, teremos continuação para este post, demonstrando diversos recursos do framework e também dscutindo sobre suas "mágicas".&lt;/p&gt;
+&lt;p&gt;Gostou? Compatilhe!&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="web2py"></category><category term="iniciantes"></category></entry><entry><title>Argumentos somente por palavra chave</title><link href="/argumentos-somente-por-palavra-chave.html" rel="alternate"></link><updated>2015-03-28T19:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-28:argumentos-somente-por-palavra-chave.html</id><summary type="html">&lt;h2&gt;Por que falar sobre isto?&lt;/h2&gt;
+&lt;p&gt;Python 3 ainda possui uma névoa sobre ele, e o movimento de resistência ainda é grande. Mas isto não quer dizer que desbravadores já não o estejam explorando. Já escrevi um &lt;a href="http://cassiobotaro.github.io/porque-python-3.html"&gt;post&lt;/a&gt; sobre a nova versão da linguagem, porém ainda tem vários recursos que podem ser demonstrados. Um deles é a capacidade de aceitar somente palavras chaves como argumento. Eu até coloquei isto nos slides da Python Brasil 10, porém senti que ao apresentar faltou uma boa explicação.&lt;/p&gt;
+&lt;h2&gt;Talk is cheap. Show me the code&lt;/h2&gt;
+&lt;p&gt;Tentarei dar um exemplo utilizando código, explicarei utilizando os comentários&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# vamos iniciar com a seguinte função&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# realiza operacao&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# e por algum algum descuido...&lt;/span&gt;
+&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# o que acontece?&lt;/span&gt;
+&lt;span class="c1"&gt;# possivelmente você acaba de ser demitido&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Agora vamos corrigir isto utilizando python3&lt;/span&gt;
+&lt;span class="c1"&gt;# lembre-se que daqui pra baixo, a sintáxe não é compativel com python 2&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# realiza operacao&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Basta colocar um * e pronto&lt;/span&gt;
+&lt;span class="c1"&gt;# agora se cometer um erro o python 3 te alerta&lt;/span&gt;
+&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# TypeError: funcao() takes 2 positional arguments but 3 were given&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Mas o que é esse asterico, é igual o args?&lt;/span&gt;
+&lt;span class="c1"&gt;# Na verdade é similar, porém o interpretador sabe que se não foi definido o &lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;quot;args&amp;quot; um erro deve ser lançado&lt;/span&gt;
+
+&lt;span class="c1"&gt;#Mas e se eu definir o args?&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;shutil&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rmtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# realiza operacao&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# acontece que agora, todo parâmetro passado além dos dois obrigatórios(positionals), será armazenado em args, e kill só sera atribuido quando&lt;/span&gt;
+&lt;span class="c1"&gt;# utilizado palavra chave&lt;/span&gt;
+&lt;span class="c1"&gt;#Ex: funcao(0, 0, kill=True)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Considerações finais&lt;/h2&gt;
+&lt;p&gt;Não pense que exemplo é exagerado, pode acontecer a qualquer hora com você.
+Não brinque mais de roleta russa com seus argumentos.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="programming-motherfucker" src="/images/programming-motherfucker.jpg" /&gt;&lt;/p&gt;</summary><category term="python3"></category></entry><entry><title>Meu ambiente de trabalho</title><link href="/meu-ambiente.html" rel="alternate"></link><updated>2015-03-25T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-25:meu-ambiente.html</id><summary type="html">&lt;h2&gt;Frustração&lt;/h2&gt;
+&lt;p&gt;Sempre fui perfeccionista com meu editor de texto, já tentei várias ide's, mas sempre ficava faltando algum recurso que eu queria ou era pesada pra carregar e lenta na execução.
+Spyder era legal, seu debugger é um dos melhores, o pydev era pesado, mas também interessante, Ninja IDE me atendeu por um tempo mais ainda assim não totalmente. Pycharm, gedit(até escrevi plugin para ele) e mais uma infinidade de editores.
+Sempre tinha um recurso que faltava e eu não conseguia me decidir.
+Foi ai que comecei com vim, utilizei por um tempo, mas eu gastava muito tempo configurando para torna-lo da maneira que eu gostava.
+Nesta época comecei a escrever scripts para automatzar os processos.&lt;/p&gt;
+&lt;h2&gt;Solução&lt;/h2&gt;
+&lt;p&gt;Sempre digo a todos, o melhor editor é aquele ao qual você mais se adapta e  se torna produtivo. O Sublime Text foi o que mais me identifiquei, logo aprendi os seus atalhos e adotei como editor padrao.
+Mas ainda faltava os vários recursos que outros editores me forneciam.
+Com a necessidade de preparar um abiente para programação python e personalizar o editor de texto, surgiu o &lt;a href="https://github.com/cassiobotaro/my_environment"&gt;my_enviroment&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Meu Ambiente&lt;/h2&gt;
+&lt;p&gt;Abaixo alguns recursos da minha configuração.&lt;/p&gt;
+&lt;h3&gt;ATENÇÂO: O script foi desenvolvido e testado em Ubuntu e linux Mint&lt;/h3&gt;
+&lt;h2&gt;Isolamento de ambientes virtuais utilizando virtualenvwrapper&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="virtualenv" src="/images/virtualenv.png" title="Virtualenv" /&gt;
+&lt;img alt="ambiente isolado" src="/images/ambientes_isolados.png" title="Ambientes isolados" /&gt;&lt;/p&gt;
+&lt;h2&gt;Ipython&lt;/h2&gt;
+&lt;h3&gt;Terminal interativo com esteroides&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="ipython" src="/images/ipython.png" title="Ipython" /&gt;&lt;/p&gt;
+&lt;h2&gt;Complete para Django e Web2py&lt;/h2&gt;
+&lt;h3&gt;Auto completar para web2py e django, vários snippets&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Django" src="/images/django.png" /&gt;
+&lt;img alt="web2py" src="/images/web2py.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Um pouco de JS&lt;/h2&gt;
+&lt;h3&gt;Auto completar e formatação&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="antes_format_js" src="/images/antes_format_js.png" /&gt;
+&lt;img alt="depois_format_js" src="/images/depois_format_js.png" /&gt;
+&lt;img alt="console_log" src="/images/console_log.png" /&gt;
+&lt;img alt="query_selector" src="/images/query_selector.png" /&gt;&lt;/p&gt;
+&lt;h1&gt;Integração com git&lt;/h1&gt;
+&lt;h3&gt;Comandos como push, pull, diff, status, etc, além do gutter que indica onde os arquivos foram modificados&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="git" src="/images/git.png" /&gt;
+&lt;img alt="gutter" src="/images/gutter.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;REPL&lt;/h2&gt;
+&lt;h3&gt;Terminal interativo para python, bash e outros. Sem contar a opção de debug.&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="repl_python" src="/images/repl_python.png" /&gt;
+&lt;img alt="repl_shell" src="/images/repl_shell.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Emmet&lt;/h2&gt;
+&lt;h3&gt;Facilitando algum front-end&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="emmet1" src="/images/emmet1.png" /&gt;
+&lt;img alt="emmet2" src="/images/emmet2.png" /&gt;
+&lt;img alt="emmet3" src="/images/emmet3.png" /&gt;
+&lt;img alt="emmet4" src="/images/emmet4.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;E muito mais&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="docstring" src="/images/docstring.png" /&gt;
+&lt;img alt="highcolor" src="/images/highcolor.png" /&gt;
+&lt;img alt="markdown_editing" src="/images/markdown_editing.png" /&gt;
+&lt;img alt="preview_mark" src="/images/preview_mark.png" /&gt;
+&lt;img alt="requirements_txt" src="/images/requirements_txt.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Curtiu? Dê uma estrelinha pro projeto e faça seu fork e suas próprias configurações.&lt;/p&gt;</summary><category term="python"></category><category term="sublimetext"></category><category term="iniciantes"></category></entry><entry><title>Por que python 3?</title><link href="/porque-python-3.html" rel="alternate"></link><updated>2015-03-10T03:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-10:porque-python-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;h2&gt;Um pouco de história&lt;/h2&gt;
+&lt;p&gt;O python 3.0 foi uma decisão tomada em 2008, e decidiu-se assim por causa da incompatibilidade de alguns novos recursos com a versão 2.0 .
+É uma versão com novas baterias incluídas como asyncio, pip, enum, statistics, venv.
+Uma longa correção da nomeclatura de alguns módulos foi feita seguindo mais o padrão pythonico(pep-8).
+Outras mudanças foram a transformação do print em uma função, o que trouxe novas possibilidades, a utilização de visão e iteradores ao invés de listas como retorno de alguns métodos, a unificação de long e int, e várias outras mudanças que serão apresentadas.&lt;/p&gt;
+&lt;h2&gt;Mas porque python 3?&lt;/h2&gt;
+&lt;p&gt;Se a correção de nomeclatura e inclusão de novas bibliotecas à biblioteca padrão do python ainda não te convenceram, abaixo serão listados novos recursos e possibilidades que podem te atrair a esta nova versão. &lt;/p&gt;
+&lt;h2&gt;Fatiamento&lt;/h2&gt;
+&lt;p&gt;Agora é possivel extrair, inicio, meio e fim de sequencias utlizando novas possibilidades de atribuições.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna 0&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tail&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna 9&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna [1, 2, 3, 4, 5, 6, 7, 8]&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tail&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna [0, 1, 2, 3]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tail&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna 4&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Iteradores em todo lugar!&lt;/h2&gt;
+&lt;p&gt;Nada de se preocupar em otimizar memória modificando o metodo através da adição de algum prefixo como x  ou iter.
+Ou seja, nada mais de Xtudo ou iterlista no python 3.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna range(0, 10)&lt;/span&gt;
+&lt;span class="c1"&gt;# não é mais uma lista&lt;/span&gt;
+&lt;span class="c1"&gt;# se comporta como xrange do python 2&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;numero&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;numero&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;endp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 0 1 2 3 4 5 6 7 8 9&lt;/span&gt;
+&lt;span class="n"&gt;dic&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;chaveA&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;chaveB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;chaveC&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;dic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# retorna dict_keys([&amp;#39;chaveB&amp;#39;, &amp;#39;chaveC&amp;#39;, &amp;#39;chaveA&amp;#39;])&lt;/span&gt;
+&lt;span class="c1"&gt;# visão com os valores das chaves do dicionário&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chave&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;valor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# chaveB 2&lt;/span&gt;
+&lt;span class="c1"&gt;# chaveC 3&lt;/span&gt;
+&lt;span class="c1"&gt;# chaveA 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Tipificação forte em comparadores.&lt;/h2&gt;
+&lt;p&gt;Dado que python é uma linguagem dinâmica porém  com tipificação forte, nada mais sensato que comparadores também reclamem quando tipos distintos são comparados.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# No Python 2&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;abc&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="c1"&gt;# True&lt;/span&gt;
+&lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="c1"&gt;# True&lt;/span&gt;
+
+&lt;span class="c1"&gt;# No Python 3&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;abc&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="c1"&gt;# TypeError: unorderable types: str() &amp;gt; int()&lt;/span&gt;
+&lt;span class="bp"&gt;None&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="c1"&gt;# TypeError: unorderable types: NoneType() &amp;lt; int()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Strings divididas em bytes e unicodes&lt;/h2&gt;
+&lt;p&gt;Agora é possivél utilizar de acentos, caracteres de outros alfabetos como chinês e outros caracteres especias.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# python 2&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; 
+&lt;span class="c1"&gt;# &amp;#39;c\xc3\xa1ssio&lt;/span&gt;
+&lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;#39;c\xc3\xa1ssio&lt;/span&gt;
+&lt;span class="c1"&gt;# bytes e strings são a mesma coisa&lt;/span&gt;
+
+&lt;span class="c1"&gt;# python 3&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;nome&lt;/span&gt; 
+&lt;span class="c1"&gt;# &amp;#39;cássio&amp;#39;&lt;/span&gt;
+&lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cássio&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# b&amp;#39;c\xc3\xa1ssio&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;# bytes e strings são coisas distintas&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;E uma outra coisa permitida:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="err"&gt;Σ(&lt;/span&gt;&lt;span class="nf"&gt;lim_inf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lim_sup&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;Um somatório é um operador matemático que nos permite&lt;/span&gt;
+&lt;span class="sd"&gt;    representar facilmente somas de um grande número de termos,&lt;/span&gt;
+&lt;span class="sd"&gt;    até infinitos.&lt;/span&gt;
+&lt;span class="sd"&gt;    É representado com a letra grega sigma ( \Sigma ).&lt;/span&gt;
+&lt;span class="sd"&gt;    Uma variável i chamada índice do somatório recebe como valor inicial o&lt;/span&gt;
+&lt;span class="sd"&gt;    limite inferior(lim_inf).A&lt;/span&gt;
+&lt;span class="sd"&gt;    Esta variável percorre os valores inteiros até alcançar o limite&lt;/span&gt;
+&lt;span class="sd"&gt;    superior(lim_sup).&lt;/span&gt;
+&lt;span class="sd"&gt;    A cada iteração uma função(funcao) é executada sobre o índice do&lt;/span&gt;
+&lt;span class="sd"&gt;    somatório.&lt;/span&gt;
+&lt;span class="sd"&gt;    A função de entrada (funcao) deve receber um valor de entrada e retornar&lt;/span&gt;
+&lt;span class="sd"&gt;    um valor de saída.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Σ(1,5,lambda x:x) = 1 + 2 + 3 + 4 + 5 = 15&lt;/span&gt;
+
+&lt;span class="sd"&gt;    &amp;gt;&amp;gt;&amp;gt; Σ(1,5,lambda x:x)&lt;/span&gt;
+&lt;span class="sd"&gt;    15&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;funcao&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lim_inf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lim_sup&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Leitura de dados de forma segura&lt;/h2&gt;
+&lt;p&gt;Toda leitura de dados feita do teclado é feita em forma de string  e cabe ao programa sua manipulação.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# No python 2 &lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Comando a ser executado: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# experimente a expressão 80*&amp;#39;-&amp;#39; como entrada&lt;/span&gt;
+&lt;span class="c1"&gt;# embora no python 2 existe uma versão mais segura que é o raw_input&lt;/span&gt;
+&lt;span class="c1"&gt;# no python 3&lt;/span&gt;
+&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Digite um número: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;#39;4&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;# o input sempre retorna string e caso precise deve ser explicitamente convertida&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;python -m modulo&lt;/h2&gt;
+&lt;p&gt;Uma série de módulos da biblioteca padão se utilizam do artificio de colocar uma condicional para verificar quando são executados ou importados e podem ser utilizados como ferramentas.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# criação de um ambiente virtual&lt;/span&gt;
+python -m venv /path/to/&amp;lt;my_venv&amp;gt;
+&lt;span class="c1"&gt;# ubuntu apresenta problemas, nele utilize&lt;/span&gt;
+python -m venv --without-pip /path/to/&amp;lt;my_venv&amp;gt;
+&lt;span class="c1"&gt;# ativação deste ambiente&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; /path/to/&amp;lt;my_venv&amp;gt;/bin/activate
+
+&lt;span class="c1"&gt;# PYTHONPATH&lt;/span&gt;
+python -m site
+
+&lt;span class="c1"&gt;# Servidor http python&lt;/span&gt;
+python -m http.server &lt;span class="o"&gt;[&lt;/span&gt;port&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Documentação&lt;/span&gt;
+python -m pydoc
+&lt;span class="c1"&gt;# b para abrir documentação no browser&lt;/span&gt;
+python -m pydoc -b
+&lt;span class="c1"&gt;# ou especifique o módulo&lt;/span&gt;
+python -m pydoc math.sin
+
+&lt;span class="c1"&gt;# debug estilo gdb&lt;/span&gt;
+python -m pdb &amp;lt;nomedoprograma.py&amp;gt;
+
+&lt;span class="c1"&gt;# profiler&lt;/span&gt;
+python -m profile &amp;lt;nomedoprograma.py&amp;gt;
+
+&lt;span class="c1"&gt;#exibe um calendario&lt;/span&gt;
+python -m calendar
+
+&lt;span class="c1"&gt;# recebe entrada json e imprime&lt;/span&gt;
+python -m json.tool
+
+&lt;span class="c1"&gt;# codifica e decodifica um texto em base64&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; python -m base64 -e
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SGVsbG8gV29ybGQK&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; python -m base64 -d
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;E mais uma infinidade de outros recursos&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# set comprehension&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# dict comprehension &lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;something&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 3/2 agora retorna 1.5 &lt;/span&gt;
+
+&lt;span class="c1"&gt;# notação para numeros em base oito e desesseis&lt;/span&gt;
+&lt;span class="c1"&gt;# 0o99 &lt;/span&gt;
+&lt;span class="c1"&gt;# 0x44&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Não dá mais pra trolar amigos&lt;/span&gt;
+&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="c1"&gt;# SyntaxError: can&amp;#39;t assign to keyword&lt;/span&gt;
+
+&lt;span class="c1"&gt;# asyncio&lt;/span&gt;
+&lt;span class="c1"&gt;# aqui uma utilização interessante&lt;/span&gt;
+&lt;span class="c1"&gt;# http://compiletoi.net/fast-scraping-in-python-with-asyncio.html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Considerações finais&lt;/h2&gt;
+&lt;p&gt;Ainda existem  várias funcionalidades que infelizmente não serão apresentadas neste post devido a extensão do mesmo. Espero que tenham curtido e com o crescimento do numero de bibliotecas com suporte para o python 3, como Django, nltk, numpy e muitas outras, está esperando o que para dar suporte ao python 3 em seu projeto?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.diveintopython3.net/"&gt;Vamos mergulhar no Python 3?&lt;/a&gt; Algumas ferramentas que podem te ajudar:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://pythonhosted.org//six/"&gt;six&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.python.org/2/library/2to3.html"&gt;2to3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;E se tem duvida sobre suporte de alguma bilbioteca, confira &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/a&gt;. &lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Hello Python!</title><link href="/hello-python.html" rel="alternate"></link><updated>2015-03-01T00:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:,2015-03-01:hello-python.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;FAQ&lt;/h2&gt;
 &lt;p&gt;Como algumas perguntas são recorrentes nas listas de discussões, nos grupos do facebook e outros meios de comunicação e nossa comunidade gosta de receber bem os iniciantes, responderei aqui aquelas dúvidas que são constantes.&lt;/p&gt;
 &lt;h2&gt;Python roda no (coloque aqui sua plataforma) ?&lt;/h2&gt;
@@ -34,7 +1195,7 @@ Está na duvida, verifique &lt;a href="https://caniusepython3.com/"&gt;aqui&lt;/
 &lt;h2&gt;Por onde começo?&lt;/h2&gt;
 &lt;p&gt;Definitivamente o melhor lugar para começar é se juntar a horda de zumbis do profossor Masanori, que tem uma didática incrível e mostra muitos exemplos práticos e divertidos.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://pycursos.com/python-para-zumbis/"&gt;Python para zombies&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="python-para-zumbis" src="{filename}/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="python-para-zumbis" src="/images/zumbi.jpg" title="Python para zumbis" /&gt;&lt;/p&gt;
 &lt;p&gt;Um outro lugar bom pra começar é o site do &lt;a href="https://twitter.com/erichideki"&gt;japa&lt;/a&gt; que teve o trabalho de reunir todo um material pra iniciantes e vai ganhar uma estrelinha por isto. Quando for no site dele, leia os outros posts, que ele tem vários compilados interessantes.&lt;/p&gt;
 &lt;p&gt;Alguns links interessantes:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ericstk.wordpress.com/2015/02/16/guia-para-iniciantes-a-programacao-em-python/"&gt;Guia para iniciantes python&lt;/a&gt;&lt;/p&gt;
@@ -68,4 +1229,4 @@ Por exemplo:&lt;/p&gt;
 &lt;p&gt;Outra dica é preparar e isolar seu ambiente de trabalho em um projeto, mas como fazer isto ficará para outro post.&lt;/p&gt;
 &lt;p&gt;Caso seja um iniciante lendo este post, bem vindo a comunidade e conte comigo com o que eu puder te ajudar.&lt;/p&gt;
 &lt;p&gt;Espero que tenha contribuído com vocês e meu ultimo recado é:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="learn-python" src="{filename}/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>
+&lt;p&gt;&lt;img alt="learn-python" src="/images/keep-calm-and-learn-python.png" title="Keep calm and learn Python" /&gt;&lt;/p&gt;</summary><category term="python"></category><category term="python3"></category><category term="iniciantes"></category></entry></feed>
