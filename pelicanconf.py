@@ -46,6 +46,23 @@ SOCIAL = (
 
 
 DEFAULT_PAGINATION = 10
+GOOGLE_ANALYTICS = 'UA-59964005-1'
+ADD_THIS_ID = 'ra-54023148366c6bdd'
+DISQUS_SITENAME = 'importnone'
 
+USE_FOLDER_AS_CATEGORY = True
+MAIN_MENU = True
+
+MENUITEMS = (('Archives', '/archives.html'),
+             ('Categories', '/categories.html'),
+             ('Tags', '/tags.html'),)
+
+
+OG_LOCALE = u'pt_BR'
+
+SITETITLE = u'Import None'
+SITESUBTITLE = u'Code! Code! Code!'
+SITEDESCRIPTION = u'%s\'s Thoughts and Writings' % AUTHOR
 # Uncomment following line if you want document-relative URLs when developing
+
 # RELATIVE_URLS = True
