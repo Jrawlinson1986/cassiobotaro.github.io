@@ -6,6 +6,7 @@ AUTHOR = 'Cássio Botaro'
 SITENAME = 'Import None'
 SITEURL = ''
 
+THEME = 'Flex'
 PATH = 'content'
 
 TIMEZONE = 'America/Sao_Paulo'
@@ -32,4 +33,4 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# RELATIVE_URLS = True
