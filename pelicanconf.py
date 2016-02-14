@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Cássio Botaro'
 SITENAME = 'Import None'
-SITEURL = ''
+SITEURL = 'http://cassiobotaro.github.io'
 
 THEME = 'Flex'
 PATH = 'content'
@@ -20,15 +20,30 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
-
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (
+    (
+        'facebook',
+        'https://www.facebook.com/cassiobotaro'
+    ),
+    (
+        'github',
+        'https://github.com/cassiobotaro'
+    ),
+    (
+        'twitter',
+        'http://twitter.com/cassiobotaro'
+    ),
+    (
+        'google-plus',
+        'https://plus.google.com/u/0/+C%C3%A1ssioBotaro'
+    ),
+    (
+        'linkedin',
+        'http://br.linkedin.com/pub/c%C3%A1ssio-botaro/b1/43/6a2'
+    )
+)
+
 
 DEFAULT_PAGINATION = 10
 
