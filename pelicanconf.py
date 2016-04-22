@@ -5,6 +5,8 @@ from __future__ import unicode_literals
 AUTHOR = 'Cássio Botaro'
 SITENAME = 'Import None'
 SITEURL = ''
+SITELOGO = '/images/profile.png'
+FAVICON = '/images/favicon.ico'
 
 THEME = 'Flex'
 PATH = 'content'
