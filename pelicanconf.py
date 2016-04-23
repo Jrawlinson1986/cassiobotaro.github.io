@@ -11,6 +11,7 @@ BROWSER_COLOR = '#d9411e'
 
 THEME = 'Flex'
 PATH = 'content'
+PYGMENTS_STYLE = 'monokai'
 
 TIMEZONE = 'America/Sao_Paulo'
 
