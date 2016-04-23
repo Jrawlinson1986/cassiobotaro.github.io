@@ -26,10 +26,6 @@ AUTHOR_FEED_RSS = None
 # Social widget
 SOCIAL = (
     (
-        'facebook',
-        'https://www.facebook.com/cassiobotaro'
-    ),
-    (
         'github',
         'https://github.com/cassiobotaro'
     ),
