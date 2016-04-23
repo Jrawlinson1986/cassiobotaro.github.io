@@ -58,7 +58,7 @@ OG_LOCALE = u'pt_BR'
 
 SITETITLE = u'Import None'
 SITESUBTITLE = u'Code! Code! Code!'
-SITEDESCRIPTION = u'%s\'s Thoughts and Writings' % AUTHOR
+SITEDESCRIPTION = u'from none import thoughts'
 # Uncomment following line if you want document-relative URLs when developing
 
 # RELATIVE_URLS = True
