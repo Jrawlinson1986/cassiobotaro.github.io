@@ -7,6 +7,7 @@ SITENAME = 'Import None'
 SITEURL = ''
 SITELOGO = '/images/profile.png'
 FAVICON = '/images/favicon.ico'
+BROWSER_COLOR = '#d9411e'
 
 THEME = 'Flex'
 PATH = 'content'
