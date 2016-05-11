@@ -10,7 +10,7 @@ FAVICON = '/images/favicon.ico'
 BROWSER_COLOR = '#d9411e'
 PYGMENTS_STYLE = 'monokai'
 
-THEME = 'Flex'
+THEME = 'pelican-clean-blog'
 PATH = 'content'
 PYGMENTS_STYLE = 'monokai'
 
