@@ -176,8 +176,8 @@ uma função em tempo de execução é dado como metaprogramação e não é
 considerado um assunto simples.&lt;/p&gt;
 &lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/metodos.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
-&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 1</title><link href="https://cassiobotaro.github.io/conceitos-linguagem-parte-1.html" rel="alternate"></link><updated>2015-11-22T22:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-11-22:conceitos-linguagem-parte-1.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="https://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-3"&gt;Clique aqui&lt;/a&gt; para ir até a parte 3.&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 1</title><link href="https://cassiobotaro.github.io/conceitos-linguagem-parte-1.html" rel="alternate"></link><updated>2015-11-22T22:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-11-22:conceitos-linguagem-parte-1.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="https://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
 &lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;
@@ -191,7 +191,7 @@ considerado um assunto simples.&lt;/p&gt;
 &lt;h3&gt;Tipagem forte ou fraca?&lt;/h3&gt;
 &lt;p&gt;Python embora tenha uma vinculação de tipo em tempo de execução, ou seja dinâmica, ele possui uma tipagem forte. Não há muita conversão de tipos quando se refere a operações, como por exemplo soma.&lt;/p&gt;
 &lt;h3&gt;Tipos primitivos&lt;/h3&gt;
-&lt;p&gt;Em Python não possuimos tipos primitivos, tudo é objeto. 
+&lt;p&gt;Em Python não possuimos tipos primitivos, tudo é objeto.
 Possuimos tipos builtins, tipos básicos que já estão disponíveis, como por exemplos listas, tuplas, números complexos, etc.&lt;/p&gt;
 &lt;h3&gt;Conversão/coerção de tipos&lt;/h3&gt;
 &lt;p&gt;Por possuir tipagem forte não há muita coerção de tipos, embora os tipos numéricos apresentam coerção.&lt;/p&gt;
@@ -204,7 +204,7 @@ Possuimos tipos builtins, tipos básicos que já estão disponíveis, como por e
 &lt;p&gt;Para saber mais a respeito destes tópicos consulte &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/tipagem.py"&gt;este arquivo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://cassiobotaro.github.io/conceitos-linguagem-parte-2"&gt;Clique aqui&lt;/a&gt; para ir até a parte 2.&lt;/p&gt;
-&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Argumentos somente por palavra chave</title><link href="https://cassiobotaro.github.io/argumentos-somente-por-palavra-chave.html" rel="alternate"></link><updated>2015-03-28T19:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-03-28:argumentos-somente-por-palavra-chave.html</id><summary type="html">&lt;h2&gt;Por que falar sobre isto?&lt;/h2&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Argumentos somente por palavra chave</title><link href="https://cassiobotaro.github.io/argumentos-somente-por-palavra-chave.html" rel="alternate"></link><updated>2015-03-28T19:00:00-03:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-03-28:argumentos-somente-por-palavra-chave.html</id><summary type="html">&lt;h2&gt;Por que falar sobre isto?&lt;/h2&gt;
 &lt;p&gt;Python 3 ainda possui uma névoa sobre ele, e o movimento de resistência ainda é grande. Mas isto não quer dizer que desbravadores já não o estejam explorando. Já escrevi um &lt;a href="http://cassiobotaro.github.io/porque-python-3.html"&gt;post&lt;/a&gt; sobre a nova versão da linguagem, porém ainda tem vários recursos que podem ser demonstrados. Um deles é a capacidade de aceitar somente palavras chaves como argumento. Eu até coloquei isto nos slides da Python Brasil 10, porém senti que ao apresentar faltou uma boa explicação.&lt;/p&gt;
 &lt;h2&gt;Talk is cheap. Show me the code&lt;/h2&gt;
 &lt;p&gt;Tentarei dar um exemplo utilizando código, explicarei utilizando os comentários&lt;/p&gt;
