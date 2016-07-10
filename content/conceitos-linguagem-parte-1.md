@@ -1,12 +1,12 @@
 Title: Conceitos de linguagem de programação - Parte 1
-Date: 2015-11-22 22:00  
-Category: Python3  
-Tags: python3, iniciantes 
+Date: 2015-11-22 22:00
+Category: Python3
+Tags: python3, iniciantes
 Slug: conceitos-linguagem-parte-1
-Author: Cássio Botaro  
+Author: Cássio Botaro
 Summary: Conceitos de linguagens de programação aplicados em Python
 
-![logo-python]({filename}/images/logopython2.png 
+![logo-python]({filename}/images/logopython2.png
 "Logo Python")
 
 ##Introdução
@@ -31,7 +31,7 @@ Python possui tipagem dinâmica, sua vinculação de tipos ocorre em tempo de ex
 Python embora tenha uma vinculação de tipo em tempo de execução, ou seja dinâmica, ele possui uma tipagem forte. Não há muita conversão de tipos quando se refere a operações, como por exemplo soma.
 
 ###Tipos primitivos
-Em Python não possuimos tipos primitivos, tudo é objeto. 
+Em Python não possuimos tipos primitivos, tudo é objeto.
 Possuimos tipos builtins, tipos básicos que já estão disponíveis, como por exemplos listas, tuplas, números complexos, etc.
 
 ###Conversão/coerção de tipos
@@ -53,6 +53,6 @@ Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue
 
 [Clique aqui](http://cassiobotaro.github.io/conceitos-linguagem-parte-2) para ir até a parte 2.
 
-[ ]'s    
+[ ]'s
 
 

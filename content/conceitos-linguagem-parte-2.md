@@ -1,12 +1,12 @@
 Title: Conceitos de linguagem de programação - Parte 2
-Date: 2015-11-29 23:30  
-Category: Python3  
-Tags: python3, iniciantes 
+Date: 2015-11-29 23:30
+Category: Python3
+Tags: python3, iniciantes
 Slug: conceitos-linguagem-parte-2
-Author: Cássio Botaro  
+Author: Cássio Botaro
 Summary: Conceitos de linguagens de programação aplicados em Python
 
-![logo-python]({filename}/images/logopython2.png 
+![logo-python]({filename}/images/logopython2.png
 "Logo Python")
 
 ##Introdução
@@ -91,6 +91,6 @@ Para saber mais a respeito destes tópicos consulte [este arquivo](https://githu
 
 Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.
 
-[Clique aqui](http://cassiobotaro.github.io/conceitos-linguagem-parte-2) para ir até a parte 2.
+[Clique aqui](http://cassiobotaro.github.io/conceitos-linguagem-parte-3) para ir até a parte 3.
 
-[ ]'s    
+[ ]'s
