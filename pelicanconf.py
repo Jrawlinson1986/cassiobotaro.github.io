@@ -8,11 +8,10 @@ SITEURL = ''
 SITELOGO = '/images/profile.png'
 FAVICON = '/images/favicon.ico'
 BROWSER_COLOR = '#d9411e'
-PYGMENTS_STYLE = 'monokai'
 
-THEME = 'pelican-clean-blog'
+THEME = 'Flex'
 PATH = 'content'
-PYGMENTS_STYLE = 'monokai'
+PYGMENTS_STYLE = 'native'
 
 TIMEZONE = 'America/Sao_Paulo'
 
