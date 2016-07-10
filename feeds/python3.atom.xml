@@ -14,12 +14,15 @@
 faça isto, faça aquilo, depois aquilo outro.&lt;/p&gt;
 &lt;p&gt;Exemplo de um programa imprativo:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;quadrado_valores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;somente_menores_que_1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;quadrado_valores&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;quadrado_valores&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -27,31 +30,38 @@ faça isto, faça aquilo, depois aquilo outro.&lt;/p&gt;
 &lt;p&gt;Repare que a mudança do programa são refletidas e armazenadas em células de memória(variáveis).&lt;/p&gt;
 &lt;h3&gt;Programação Funcional&lt;/h3&gt;
 &lt;p&gt;Características funcionais&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- Provê map  e filter, funções utéis quando se trabalha funcionalmente
-- Funções lambdas
-- Funções de primeira ordem(veja as lambdas sendo passados como parâmetros de outras funções)
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Provê map  e filter, funções utéis quando se trabalha funcionalmente&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Funções lambdas&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Funções de primeira ordem(veja as lambdas sendo passados como parâmetros de outras funções)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Restrições&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- não existe recursão em cauda
-- não é puramente funcional, logo não apresenta todas as suas características
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;não existe recursão em cauda&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;não é puramente funcional, logo não apresenta todas as suas características&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;Orientação a objeto&lt;/h3&gt;
-&lt;p&gt;Não considerado por Sebesta como um paradigma de programação, O argumento é que toda programação orientada a objeto é imperativa, com única diferença que a estruturação dos arquivos é orientada a objetos.
-Características:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- Elegância em getters e setters com utilização de properties
-- Herança Múltipla
-- Utilização do self explícito em métodos de instância
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;Não considerado por Sebesta como um paradigma de programação, O argumento é que toda programação orientada a objeto é imperativa, com única diferença que a estruturação dos arquivos é orientada a objetos.&lt;/p&gt;
+&lt;p&gt;Características:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Elegância em getters e setters com utilização de properties&lt;/li&gt;
+&lt;li&gt;Herança Múltipla&lt;/li&gt;
+&lt;li&gt;Utilização do self explícito em métodos de instância&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Exemplo da utilização:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Filho&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Pai&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Mae&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 
@@ -77,7 +87,7 @@ Características:&lt;/p&gt;
 &lt;h3&gt;Gostinho de queiro mais?&lt;/h3&gt;
 &lt;p&gt;Este assunto é melhor explicado na prática, então não perca tempo e veja &lt;a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/paradigmas.py"&gt;este arquivo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.&lt;/p&gt;
-&lt;p&gt;[ ]'s    &lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 3</title><link href="https://cassiobotaro.github.io/conceitos-linguagem-parte-3.html" rel="alternate"></link><updated>2015-12-06T23:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-12-06:conceitos-linguagem-parte-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="https://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="python3"></category><category term="iniciantes"></category></entry><entry><title>Conceitos de linguagem de programação - Parte 3</title><link href="https://cassiobotaro.github.io/conceitos-linguagem-parte-3.html" rel="alternate"></link><updated>2015-12-06T23:00:00-02:00</updated><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2015-12-06:conceitos-linguagem-parte-3.html</id><summary type="html">&lt;p&gt;&lt;img alt="logo-python" src="https://cassiobotaro.github.io/images/logopython2.png" title="Logo Python" /&gt;&lt;/p&gt;
 &lt;h2&gt;Introdução&lt;/h2&gt;
 &lt;p&gt;Este post está relacionado a uma palestra ministrada no XVI encontro da comunidade mineira de Python, e aqui foi divida em partes para evitar que fique massante e cansativa.&lt;/p&gt;
 &lt;p&gt;Cada parte será postada em uma semana.&lt;/p&gt;

@@ -92,12 +92,15 @@
 faça isto, faça aquilo, depois aquilo outro.</p>
 <p>Exemplo de um programa imprativo:</p>
 <div class="highlight"><pre><span></span><span class="n">somente_menores_que_1</span> <span class="o">=</span> <span class="p">[]</span>
+
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">somente_menores_que_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">quadrado_valores</span> <span class="o">=</span> <span class="p">[]</span>
+
 <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">somente_menores_que_1</span><span class="p">:</span>
     <span class="n">quadrado_valores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
 <span class="k">print</span><span class="p">(</span><span class="n">quadrado_valores</span><span class="p">)</span>
 </pre></div>
 
@@ -105,31 +108,38 @@ faça isto, faça aquilo, depois aquilo outro.</p>
 <p>Repare que a mudança do programa são refletidas e armazenadas em células de memória(variáveis).</p>
 <h3>Programação Funcional</h3>
 <p>Características funcionais</p>
-<div class="highlight"><pre><span></span>- Provê map  e filter, funções utéis quando se trabalha funcionalmente
-- Funções lambdas
-- Funções de primeira ordem(veja as lambdas sendo passados como parâmetros de outras funções)
-</pre></div>
-
-
+<ul>
+<li>
+<p>Provê map  e filter, funções utéis quando se trabalha funcionalmente</p>
+</li>
+<li>
+<p>Funções lambdas</p>
+</li>
+<li>
+<p>Funções de primeira ordem(veja as lambdas sendo passados como parâmetros de outras funções)</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)))</span>
 </pre></div>
 
 
 <p>Restrições</p>
-<div class="highlight"><pre><span></span>- não existe recursão em cauda
-- não é puramente funcional, logo não apresenta todas as suas características
-</pre></div>
-
-
+<ul>
+<li>
+<p>não existe recursão em cauda</p>
+</li>
+<li>
+<p>não é puramente funcional, logo não apresenta todas as suas características</p>
+</li>
+</ul>
 <h3>Orientação a objeto</h3>
-<p>Não considerado por Sebesta como um paradigma de programação, O argumento é que toda programação orientada a objeto é imperativa, com única diferença que a estruturação dos arquivos é orientada a objetos.
-Características:</p>
-<div class="highlight"><pre><span></span>- Elegância em getters e setters com utilização de properties
-- Herança Múltipla
-- Utilização do self explícito em métodos de instância
-</pre></div>
-
-
+<p>Não considerado por Sebesta como um paradigma de programação, O argumento é que toda programação orientada a objeto é imperativa, com única diferença que a estruturação dos arquivos é orientada a objetos.</p>
+<p>Características:</p>
+<ul>
+<li>Elegância em getters e setters com utilização de properties</li>
+<li>Herança Múltipla</li>
+<li>Utilização do self explícito em métodos de instância</li>
+</ul>
 <p>Exemplo da utilização:</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Filho</span><span class="p">(</span><span class="n">Pai</span><span class="p">,</span> <span class="n">Mae</span><span class="p">):</span>
 
@@ -155,7 +165,7 @@ Características:</p>
 <h3>Gostinho de queiro mais?</h3>
 <p>Este assunto é melhor explicado na prática, então não perca tempo e veja <a href="https://github.com/cassiobotaro/conceitos_linguagens/blob/master/paradigmas.py">este arquivo</a>.</p>
 <p>Caso algo não esteja devidamente explicado, por favor reporte abrindo uma issue que farei o aprimoramento da explicação.</p>
-<p>[ ]'s    </p>
+<p>[ ]'s</p>
   </div>
   <div class="tag-cloud">
     <p>
