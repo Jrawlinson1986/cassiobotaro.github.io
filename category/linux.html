@@ -1,118 +1,187 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" type="text/css" href="https://cassiobotaro.github.io/theme/stylesheet/style.min.css">
-
-  <link rel="stylesheet" type="text/css" href="https://cassiobotaro.github.io/theme/pygments/native.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cassiobotaro.github.io/theme/font-awesome/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="https://cassiobotaro.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom">
+        <title>Import None - Articles in the Linux category</title>
+
+            <link href="https://cassiobotaro.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Full Atom Feed" />
+            <link href="https://cassiobotaro.github.io/feeds/linux.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Categories Atom Feed" />
+        <!-- Bootstrap Core CSS -->
+        <link href="https://cassiobotaro.github.io/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="https://cassiobotaro.github.io/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="https://cassiobotaro.github.io/theme/css/code_blocks/darkly.css" rel="stylesheet">
 
 
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="" />
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-    <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#d9411e">
-    <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#d9411e">
-    <!-- iOS Safari -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <meta name="author" content="Cássio Botaro" />
-    <meta name="description" content="from none import thoughts" />
-<meta property="og:site_name" content="Import None"/>
-<meta property="og:type" content="blog"/>
-<meta property="og:title" content="Import None"/>
-<meta property="og:description" content="from none import thoughts"/>
-<meta property="og:locale" content="pt_BR"/>
-<meta property="og:url" content="https://cassiobotaro.github.io"/>
-<meta property="og:image" content="/images/profile.png">
-
-  <title>Import None &ndash; Category: Linux</title>
+                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Import None">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:site" content="@cassiobotaro">
+            <meta name="twitter:title" content="Import None">
+            <meta name="twitter:description" content="Code! Code! Code!">
+                <meta name="twitter:image" content="https://cassiobotaro.github.io/theme/images/post-bg.jpg">
 </head>
+
 <body>
-  <aside>
-    <div>
-      <a href="https://cassiobotaro.github.io">
-        <img src="/images/profile.png" alt="Import None" title="Import None">
-      </a>
-      <h1><a href="https://cassiobotaro.github.io">Import None</a></h1>
-<p>Code! Code! Code!</p>      <ul class="social">
-        <li><a class="sc-github" href="https://github.com/cassiobotaro" target="_blank"><i class="fa fa-github"></i></a></li>
-        <li><a class="sc-twitter" href="http://twitter.com/cassiobotaro" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="sc-google-plus" href="https://plus.google.com/u/0/+C%C3%A1ssioBotaro" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-        <li><a class="sc-linkedin" href="http://br.linkedin.com/pub/c%C3%A1ssio-botaro/b1/43/6a2" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-      </ul>
-    </div>
-  </aside>
-  <main>
-    <nav>
-      <a href="https://cassiobotaro.github.io">Home</a>
-      <a href="/archives.html">Archives</a>
-      <a href="/categories.html">Categories</a>
-      <a href="/tags.html">Tags</a>
-      <a href="https://cassiobotaro.github.io/feeds/all.atom.xml">Atom</a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://cassiobotaro.github.io/">Import None</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/archives.html">Archives</a></li>
+                        <li><a href="/categories.html">Categories</a></li>
+                        <li><a href="/tags.html">Tags</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
     </nav>
 
-<article>
-  <header>
-    <h2><a href="https://cassiobotaro.github.io/mv-bash-zsh.html#mv-bash-zsh">mv /bin/bash /bin/zsh</a></h2>
-    <p>
-      Posted on Sun 09 August 2015 in <a href="https://cassiobotaro.github.io/category/linux.html">Linux</a>
-      &#8226; Tagged with
-      <a href="https://cassiobotaro.github.io/tag/linux.html">linux</a>,      <a href="https://cassiobotaro.github.io/tag/dotfiles.html">dotfiles</a>,      <a href="https://cassiobotaro.github.io/tag/iniciantes.html">iniciantes</a>      &#8226; <a href="https://cassiobotaro.github.io/mv-bash-zsh.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>Why I changed from bash to zsh and how I made my new config.</p>
-      <a class="btn" href="https://cassiobotaro.github.io/mv-bash-zsh.html#mv-bash-zsh">Continue reading</a>
-  </div>
-</article>
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('https://cassiobotaro.github.io/theme/images/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Articles in the Linux category</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <div class="pagination">
-  </div>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-preview">
+            <a href="https://cassiobotaro.github.io/mv-bash-zsh.html" rel="bookmark" title="Permalink to mv /bin/bash /bin/zsh">
+                <h2 class="post-title">
+                    mv /bin/bash /bin/zsh
+                </h2>
+            </a>
+                Why I changed from bash to zsh and how I made my new config.
+            <p class="post-meta">Posted by
+                    <a href="https://cassiobotaro.github.io/author/cassio-botaro.html">Cássio Botaro</a>
+                 on Dom 09 agosto 2015
+            </p>
+<p>There are <a href="https://cassiobotaro.github.io/mv-bash-zsh.html#disqus_thread">comments</a>.</p>        </div>
 
+    <hr>
+    <!-- Pager -->
+    <ul class="pager">
+        <li class="next">
+        </li>
+    </ul>
+    Page 1 / 1
+    <hr>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; Cássio Botaro </p>
-<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
-  </main>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://github.com/cassiobotaro">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://twitter.com/cassiobotaro">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/u/0/+C%C3%A1ssioBotaro">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://br.linkedin.com/pub/c%C3%A1ssio-botaro/b1/43/6a2">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
 
-<!-- Google Analytics -->
-<script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!-- jQuery -->
+    <script src="https://cassiobotaro.github.io/theme/js/jquery.js"></script>
 
-  ga('create', 'UA-59964005-1', 'auto');
-  ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://cassiobotaro.github.io/theme/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54023148366c6bdd" async="async"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="https://cassiobotaro.github.io/theme/js/clean-blog.min.js"></script>
 
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Import None ",
-  "url" : "https://cassiobotaro.github.io",
-  "image": "/images/profile.png",
-  "description": "from none import thoughts"
-}
-</script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-59964005-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
 <script type="text/javascript">
     var disqus_shortname = 'importnone';
     (function () {
@@ -123,4 +192,5 @@
     }());
 </script>
 </body>
+
 </html>
