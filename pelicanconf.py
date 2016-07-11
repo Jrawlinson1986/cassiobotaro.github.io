@@ -9,7 +9,7 @@ SITELOGO = '/images/profile.png'
 FAVICON = '/images/favicon.ico'
 BROWSER_COLOR = '#d9411e'
 
-THEME = 'Flex'
+THEME = 'pelican-clean-blog'
 PATH = 'content'
 PYGMENTS_STYLE = 'native'
 
