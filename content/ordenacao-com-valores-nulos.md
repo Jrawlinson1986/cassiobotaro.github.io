@@ -6,7 +6,7 @@ Slug: ordenacao-com-valores-nulos
 Author: Cássio Botaro
 Summary: Ordene uma lista de valores, colocando os valores nulos no fim.
 
-![rotulo]({filename}/images/sort.png "Ordenação")
+![ordenacao]({filename}/images/sort.jpg "Ordenação")
 
 ## O problema
 
