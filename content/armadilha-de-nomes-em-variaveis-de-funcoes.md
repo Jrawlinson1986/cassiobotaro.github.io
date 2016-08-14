@@ -1,4 +1,4 @@
-Title: Armadilha de nomes em variáveis em funções
+Title: Armadilha de nomes em variáveis de funções
 Date: 2016-08-13 23:00
 Category: python
 Tags: dicas, iniciantes, python, python3
@@ -10,10 +10,16 @@ Summary: Variável referenciada antes de ser atribuida? Entenda o que acontece c
 
 ## O problema
 Vamos analisar os seguintes cenários, eu tenho uma função onde ocorre uma importação dentro de uma função.
-Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado. Mas como já havia sido previamente importado no início do arquivo, o que esperar?
+
+Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado.
+
+Mas como já havia sido previamente importado no início do arquivo, o que esperar?
 
 No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.
-Porém como a condicional é falsa, esta não será redefinida. Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?
+
+Porém como a condicional é falsa, esta não será redefinida.
+
+Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?
 
 Será que em ambos os casos a variável global será utilizada?
 
@@ -38,7 +44,9 @@ def exemplo_variavel():
 
 ## Discussão sobre o problema
 
-Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()). Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.
+Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()).
+
+Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.
 
 Mas o que ocorre na verdade é um erro, e o mais interessante, somente durante a execução do programa.
 
@@ -57,7 +65,9 @@ UnboundLocalError: local variable 'variavel' referenced before assignment
 ```
 WAT!
 
-Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função. Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.
+Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função.
+
+Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.
 
 Isto pode ser vericado da seguinte maneira:
 
