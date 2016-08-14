@@ -29,7 +29,7 @@ import math
 
 # Importação condicional
 def import_dentro_da_funcao():
-    if(False):
+    if False:
         import math
     ...
     math.sin(30)
@@ -37,7 +37,7 @@ def import_dentro_da_funcao():
 # Atribuição condicional
 variavel = []
 def exemplo_variavel():
-    if(False):
+    if False:
         variavel = []
     variavel.append('erro')
 ```
