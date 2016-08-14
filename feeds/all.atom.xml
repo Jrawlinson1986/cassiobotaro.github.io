@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="https://cassiobotaro.github.io/" rel="alternate"></link><link href="https://cassiobotaro.github.io/feeds/all.atom.xml" rel="self"></link><id>https://cassiobotaro.github.io/</id><updated>2016-08-13T23:00:00-03:00</updated><entry><title>Armadilha de nomes em variáveis em funções</title><link href="https://cassiobotaro.github.io/armadilha-de-nomes-em-variaveis-de-funcoes.html" rel="alternate"></link><published>2016-08-13T23:00:00-03:00</published><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2016-08-13:armadilha-de-nomes-em-variaveis-de-funcoes.html</id><summary type="html">&lt;p&gt;&lt;img alt="fragile" src="https://cassiobotaro.github.io/images/fragile.jpg" title="Importação Frágil" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="https://cassiobotaro.github.io/" rel="alternate"></link><link href="https://cassiobotaro.github.io/feeds/all.atom.xml" rel="self"></link><id>https://cassiobotaro.github.io/</id><updated>2016-08-13T23:00:00-03:00</updated><entry><title>Armadilha de nomes em variáveis de funções</title><link href="https://cassiobotaro.github.io/armadilha-de-nomes-em-variaveis-de-funcoes.html" rel="alternate"></link><published>2016-08-13T23:00:00-03:00</published><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2016-08-13:armadilha-de-nomes-em-variaveis-de-funcoes.html</id><summary type="html">&lt;p&gt;&lt;img alt="fragile" src="https://cassiobotaro.github.io/images/fragile.jpg" title="Importação Frágil" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
-&lt;p&gt;Vamos analisar os seguintes cenários, eu tenho uma função onde ocorre uma importação dentro de uma função.
-Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado. Mas como já havia sido previamente importado no início do arquivo, o que esperar?&lt;/p&gt;
-&lt;p&gt;No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.
-Porém como a condicional é falsa, esta não será redefinida. Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?&lt;/p&gt;
+&lt;p&gt;Vamos analisar os seguintes cenários, eu tenho uma função onde ocorre uma importação dentro de uma função.&lt;/p&gt;
+&lt;p&gt;Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado.&lt;/p&gt;
+&lt;p&gt;Mas como já havia sido previamente importado no início do arquivo, o que esperar?&lt;/p&gt;
+&lt;p&gt;No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.&lt;/p&gt;
+&lt;p&gt;Porém como a condicional é falsa, esta não será redefinida.&lt;/p&gt;
+&lt;p&gt;Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?&lt;/p&gt;
 &lt;p&gt;Será que em ambos os casos a variável global será utilizada?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
 
@@ -25,7 +27,8 @@ Porém como a condicional é falsa, esta não será redefinida. Quando a execuç
 
 
 &lt;h2&gt;Discussão sobre o problema&lt;/h2&gt;
-&lt;p&gt;Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()). Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.&lt;/p&gt;
+&lt;p&gt;Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()).&lt;/p&gt;
+&lt;p&gt;Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.&lt;/p&gt;
 &lt;p&gt;Mas o que ocorre na verdade é um erro, e o mais interessante, somente durante a execução do programa.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;exemplo_variavel&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
@@ -42,7 +45,8 @@ Porém como a condicional é falsa, esta não será redefinida. Quando a execuç
 
 
 &lt;p&gt;WAT!&lt;/p&gt;
-&lt;p&gt;Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função. Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.&lt;/p&gt;
+&lt;p&gt;Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função.&lt;/p&gt;
+&lt;p&gt;Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.&lt;/p&gt;
 &lt;p&gt;Isto pode ser vericado da seguinte maneira:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;funcao.__code__.co_varnames&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Porém o resultado inesperado é durante a execução do programa.&lt;/p&gt;

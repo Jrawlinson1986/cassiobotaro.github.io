@@ -34,7 +34,7 @@
 <meta name="description" content="Variável referenciada antes de ser atribuida? Entenda o que acontece com nomes dentro de uma função." />
 <meta name="keywords" content="dicas, iniciantes, python, python3">
 <meta property="og:site_name" content="Import None"/>
-<meta property="og:title" content="Armadilha de nomes em variáveis em funções"/>
+<meta property="og:title" content="Armadilha de nomes em variáveis de funções"/>
 <meta property="og:description" content="Variável referenciada antes de ser atribuida? Entenda o que acontece com nomes dentro de uma função."/>
 <meta property="og:locale" content="pt_BR"/>
 <meta property="og:url" content="https://cassiobotaro.github.io/armadilha-de-nomes-em-variaveis-de-funcoes.html"/>
@@ -49,7 +49,7 @@
 <meta property="article:tag" content="python3"/>
 <meta property="og:image" content="/images/profile.png">
 
-  <title>Import None &ndash; Armadilha de nomes em variáveis em funções</title>
+  <title>Import None &ndash; Armadilha de nomes em variáveis de funções</title>
 </head>
 <body>
   <aside>
@@ -85,7 +85,7 @@
 
 <article>
   <header>
-    <h1 id="armadilha-de-nomes-em-variaveis-de-funcoes">Armadilha de nomes em variáveis em funções</h1>
+    <h1 id="armadilha-de-nomes-em-variaveis-de-funcoes">Armadilha de nomes em variáveis de funções</h1>
     <p>
           Posted on Sat 13 August 2016 in <a href="https://cassiobotaro.github.io/category/python.html">python</a>
 
@@ -95,10 +95,12 @@
   <div>
     <p><img alt="fragile" src="https://cassiobotaro.github.io/images/fragile.jpg" title="Importação Frágil" /></p>
 <h2>O problema</h2>
-<p>Vamos analisar os seguintes cenários, eu tenho uma função onde ocorre uma importação dentro de uma função.
-Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado. Mas como já havia sido previamente importado no início do arquivo, o que esperar?</p>
-<p>No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.
-Porém como a condicional é falsa, esta não será redefinida. Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?</p>
+<p>Vamos analisar os seguintes cenários, eu tenho uma função onde ocorre uma importação dentro de uma função.</p>
+<p>Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado.</p>
+<p>Mas como já havia sido previamente importado no início do arquivo, o que esperar?</p>
+<p>No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.</p>
+<p>Porém como a condicional é falsa, esta não será redefinida.</p>
+<p>Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?</p>
 <p>Será que em ambos os casos a variável global será utilizada?</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 
@@ -119,7 +121,8 @@ Porém como a condicional é falsa, esta não será redefinida. Quando a execuç
 
 
 <h2>Discussão sobre o problema</h2>
-<p>Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()). Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.</p>
+<p>Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()).</p>
+<p>Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.</p>
 <p>Mas o que ocorre na verdade é um erro, e o mais interessante, somente durante a execução do programa.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">variavel</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">exemplo_variavel</span><span class="p">():</span>
@@ -136,7 +139,8 @@ Porém como a condicional é falsa, esta não será redefinida. Quando a execuç
 
 
 <p>WAT!</p>
-<p>Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função. Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.</p>
+<p>Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função.</p>
+<p>Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.</p>
 <p>Isto pode ser vericado da seguinte maneira:</p>
 <p><code>funcao.__code__.co_varnames</code></p>
 <p>Porém o resultado inesperado é durante a execução do programa.</p>
