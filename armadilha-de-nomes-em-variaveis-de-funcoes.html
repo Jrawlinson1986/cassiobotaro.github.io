@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cassiobotaro.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cassiobotaro.github.io/theme/pygments/native.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cassiobotaro.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://cassiobotaro.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Import None Atom">
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#d9411e">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#d9411e">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Cássio Botaro" />
+<meta name="description" content="Variável referenciada antes de ser atribuida? Entenda o que acontece com nomes dentro de uma função." />
+<meta name="keywords" content="dicas, iniciantes, python, python3">
+<meta property="og:site_name" content="Import None"/>
+<meta property="og:title" content="Armadilha de nomes em variáveis em funções"/>
+<meta property="og:description" content="Variável referenciada antes de ser atribuida? Entenda o que acontece com nomes dentro de uma função."/>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:url" content="https://cassiobotaro.github.io/armadilha-de-nomes-em-variaveis-de-funcoes.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-08-13 23:00:00-03:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://cassiobotaro.github.io/author/cassio-botaro.html">
+<meta property="article:section" content="python"/>
+<meta property="article:tag" content="dicas"/>
+<meta property="article:tag" content="iniciantes"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="python3"/>
+<meta property="og:image" content="/images/profile.png">
+
+  <title>Import None &ndash; Armadilha de nomes em variáveis em funções</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://cassiobotaro.github.io">
+        <img src="/images/profile.png" alt="Import None" title="Import None">
+      </a>
+      <h1><a href="https://cassiobotaro.github.io">Import None</a></h1>
+
+<p>Code! Code! Code!</p>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/cassiobotaro" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="http://twitter.com/cassiobotaro" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-google-plus" href="https://plus.google.com/u/0/+C%C3%A1ssioBotaro" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="sc-linkedin" href="http://br.linkedin.com/pub/c%C3%A1ssio-botaro/b1/43/6a2" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="https://cassiobotaro.github.io">    Home
+</a>
+
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://cassiobotaro.github.io/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article>
+  <header>
+    <h1 id="armadilha-de-nomes-em-variaveis-de-funcoes">Armadilha de nomes em variáveis em funções</h1>
+    <p>
+          Posted on Sat 13 August 2016 in <a href="https://cassiobotaro.github.io/category/python.html">python</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p><img alt="fragile" src="https://cassiobotaro.github.io/images/fragile.jpg" title="Importação Frágil" /></p>
+<h2>O problema</h2>
+<p>Vamos analisar os seguintes cenários, eu tenho uma função onde ocorre uma importação dentro de uma função.
+Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado. Mas como já havia sido previamente importado no início do arquivo, o que esperar?</p>
+<p>No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.
+Porém como a condicional é falsa, esta não será redefinida. Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?</p>
+<p>Será que em ambos os casos a variável global será utilizada?</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Importação condicional</span>
+<span class="k">def</span> <span class="nf">import_dentro_da_funcao</span><span class="p">():</span>
+    <span class="k">if</span><span class="p">(</span><span class="bp">False</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">math</span>
+    <span class="o">...</span>
+    <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Atribuição condicional</span>
+<span class="n">variavel</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">def</span> <span class="nf">exemplo_variavel</span><span class="p">():</span>
+    <span class="k">if</span><span class="p">(</span><span class="bp">False</span><span class="p">):</span>
+        <span class="n">variavel</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">variavel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;erro&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Discussão sobre o problema</h2>
+<p>Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()). Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.</p>
+<p>Mas o que ocorre na verdade é um erro, e o mais interessante, somente durante a execução do programa.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">variavel</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">exemplo_variavel</span><span class="p">():</span>
+<span class="o">...</span>     <span class="k">if</span> <span class="bp">False</span><span class="p">:</span>
+<span class="o">...</span>         <span class="n">variavel</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="o">...</span>     <span class="n">variavel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;erro&#39;</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">exemplo_variavel</span><span class="p">()</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">4</span><span class="p">,</span> <span class="ow">in</span> <span class="n">exemplo_variavel</span>
+<span class="ne">UnboundLocalError</span><span class="p">:</span> <span class="n">local</span> <span class="n">variable</span> <span class="s1">&#39;variavel&#39;</span> <span class="n">referenced</span> <span class="n">before</span> <span class="n">assignment</span>
+</pre></div>
+
+
+<p>WAT!</p>
+<p>Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função. Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.</p>
+<p>Isto pode ser vericado da seguinte maneira:</p>
+<p><code>funcao.__code__.co_varnames</code></p>
+<p>Porém o resultado inesperado é durante a execução do programa.</p>
+<p>No primeiro caso, ao atingir <code>math.sin(30)</code>, o interpertrador espera que o nome <code>math</code> esteja referenciando algum objeto, mas dado que a condicional é falsa, durante a execução isto não ocorre e uma exceção é lançada, dizendo que a variável é referenciada antes de ter sido atribuida.</p>
+<p>O mesmo é valido para o segundo caso, embora não se trate de uma importação, mas sim de uma variável.</p>
+<h2>A solução</h2>
+<p>Este é um erro perigoso, pois só ocorre em tempo de execução e embora aqui apresentado de forma simplificada pode aparecer de maneiras mais complexas.</p>
+<p>A prevenção é tentar manter a PEP8, importando sempre no topo do arquivo(salvo em raras exceções), cuidado também com a inicialização de variáveis dentro de condicionais.</p>
+<p>Fecho este post com a lembrança do zen do python: "Special cases aren't special enough to break the rules", lembrem-se disto ao achar que seu caso é especial.</p>
+<p>Fica aqui a dica para quem tiver o mesmo problema.</p>
+<p>[ ]'s</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://cassiobotaro.github.io/tag/dicas.html">dicas</a>
+      <a href="https://cassiobotaro.github.io/tag/iniciantes.html">iniciantes</a>
+      <a href="https://cassiobotaro.github.io/tag/python.html">python</a>
+      <a href="https://cassiobotaro.github.io/tag/python3.html">python3</a>
+    </p>
+  </div>
+
+  <div class="center social-share">
+    <p>    Like this article? Share it with your friends!
+</p>
+    <div class="addthis_native_toolbox"></div>
+    <div class="addthis_sharing_toolbox"></div>
+  </div>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'importnone';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Cássio Botaro </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59964005-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54023148366c6bdd" async="async"></script>
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Import None ",
+  "url" : "https://cassiobotaro.github.io",
+  "image": "/images/profile.png",
+  "description": "from none import thoughts"
+}
+</script>
+</body>
+</html>

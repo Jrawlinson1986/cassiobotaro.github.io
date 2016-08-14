@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="https://cassiobotaro.github.io/" rel="alternate"></link><link href="https://cassiobotaro.github.io/feeds/all.atom.xml" rel="self"></link><id>https://cassiobotaro.github.io/</id><updated>2016-07-21T23:00:00-03:00</updated><entry><title>Ordenando valores</title><link href="https://cassiobotaro.github.io/ordenacao-com-valores-nulos.html" rel="alternate"></link><published>2016-07-21T23:00:00-03:00</published><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2016-07-21:ordenacao-com-valores-nulos.html</id><summary type="html">&lt;p&gt;&lt;img alt="ordenacao" src="https://cassiobotaro.github.io/images/sort.jpg" title="Ordenação" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Import None</title><link href="https://cassiobotaro.github.io/" rel="alternate"></link><link href="https://cassiobotaro.github.io/feeds/all.atom.xml" rel="self"></link><id>https://cassiobotaro.github.io/</id><updated>2016-08-13T23:00:00-03:00</updated><entry><title>Armadilha de nomes em variáveis em funções</title><link href="https://cassiobotaro.github.io/armadilha-de-nomes-em-variaveis-de-funcoes.html" rel="alternate"></link><published>2016-08-13T23:00:00-03:00</published><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2016-08-13:armadilha-de-nomes-em-variaveis-de-funcoes.html</id><summary type="html">&lt;p&gt;&lt;img alt="fragile" src="https://cassiobotaro.github.io/images/fragile.jpg" title="Importação Frágil" /&gt;&lt;/p&gt;
+&lt;h2&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Vamos analisar os seguintes cenários, eu tenho uma função onde ocorre uma importação dentro de uma função.
+Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o math não vai ser importado. Mas como já havia sido previamente importado no início do arquivo, o que esperar?&lt;/p&gt;
+&lt;p&gt;No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.
+Porém como a condicional é falsa, esta não será redefinida. Quando a execução chega no ponto onde há a chamada do método append, o que ocorre?&lt;/p&gt;
+&lt;p&gt;Será que em ambos os casos a variável global será utilizada?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Importação condicional&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;import_dentro_da_funcao&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Atribuição condicional&lt;/span&gt;
+&lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;exemplo_variavel&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="n"&gt;variavel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;erro&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Discussão sobre o problema&lt;/h2&gt;
+&lt;p&gt;Somos levados a acreditar que em uma função, a análise de nomes será feita primeiramente em nível local(locals()) e em seguida em nível global(globals()). Isto nos faz pensar que ambos os casos apresentados funcionarão utilizando o escopo global.&lt;/p&gt;
+&lt;p&gt;Mas o que ocorre na verdade é um erro, e o mais interessante, somente durante a execução do programa.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;exemplo_variavel&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;         &lt;span class="n"&gt;variavel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="n"&gt;variavel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;erro&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;exemplo_variavel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;exemplo_variavel&lt;/span&gt;
+&lt;span class="ne"&gt;UnboundLocalError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt; &lt;span class="n"&gt;variable&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;variavel&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;referenced&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="n"&gt;assignment&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;WAT!&lt;/p&gt;
+&lt;p&gt;Quando uma função é definida, o interpretador já analisa seu corpo e define o espaço de nomes locais para aquela função. Ou seja, a função já sabe quais serão os nomes utilizados em seu escopo local.&lt;/p&gt;
+&lt;p&gt;Isto pode ser vericado da seguinte maneira:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;funcao.__code__.co_varnames&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Porém o resultado inesperado é durante a execução do programa.&lt;/p&gt;
+&lt;p&gt;No primeiro caso, ao atingir &lt;code&gt;math.sin(30)&lt;/code&gt;, o interpertrador espera que o nome &lt;code&gt;math&lt;/code&gt; esteja referenciando algum objeto, mas dado que a condicional é falsa, durante a execução isto não ocorre e uma exceção é lançada, dizendo que a variável é referenciada antes de ter sido atribuida.&lt;/p&gt;
+&lt;p&gt;O mesmo é valido para o segundo caso, embora não se trate de uma importação, mas sim de uma variável.&lt;/p&gt;
+&lt;h2&gt;A solução&lt;/h2&gt;
+&lt;p&gt;Este é um erro perigoso, pois só ocorre em tempo de execução e embora aqui apresentado de forma simplificada pode aparecer de maneiras mais complexas.&lt;/p&gt;
+&lt;p&gt;A prevenção é tentar manter a PEP8, importando sempre no topo do arquivo(salvo em raras exceções), cuidado também com a inicialização de variáveis dentro de condicionais.&lt;/p&gt;
+&lt;p&gt;Fecho este post com a lembrança do zen do python: "Special cases aren't special enough to break the rules", lembrem-se disto ao achar que seu caso é especial.&lt;/p&gt;
+&lt;p&gt;Fica aqui a dica para quem tiver o mesmo problema.&lt;/p&gt;
+&lt;p&gt;[ ]'s&lt;/p&gt;</summary><category term="dicas"></category><category term="iniciantes"></category><category term="python"></category><category term="python3"></category></entry><entry><title>Ordenando valores</title><link href="https://cassiobotaro.github.io/ordenacao-com-valores-nulos.html" rel="alternate"></link><published>2016-07-21T23:00:00-03:00</published><author><name>Cássio Botaro</name></author><id>tag:cassiobotaro.github.io,2016-07-21:ordenacao-com-valores-nulos.html</id><summary type="html">&lt;p&gt;&lt;img alt="ordenacao" src="https://cassiobotaro.github.io/images/sort.jpg" title="Ordenação" /&gt;&lt;/p&gt;
 &lt;h2&gt;O problema&lt;/h2&gt;
 &lt;p&gt;Dado uma lista de elementos de mesmo tipo e valores nulos, ordene-os considerando que elementos nulos devem ir para o fim da lista.&lt;/p&gt;
 &lt;p&gt;Por exemplo:&lt;/p&gt;
