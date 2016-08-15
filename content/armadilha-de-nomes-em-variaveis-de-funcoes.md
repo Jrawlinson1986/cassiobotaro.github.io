@@ -15,7 +15,7 @@ Porém temos duas coisas ocorrendo, uma é que a condicional é falsa, logo o ma
 
 Mas como já havia sido previamente importado no início do arquivo, o que esperar?
 
-No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinada de forma local.
+No segundo caso, temos a declaração da variável de forma global, novamente temos uma condicional onde a variavel é redefinida de forma local.
 
 Porém como a condicional é falsa, esta não será redefinida.
 
@@ -75,7 +75,7 @@ Isto pode ser vericado da seguinte maneira:
 
 Porém o resultado inesperado é durante a execução do programa.
 
-No primeiro caso, ao atingir `math.sin(30)`, o interpertrador espera que o nome `math` esteja referenciando algum objeto, mas dado que a condicional é falsa, durante a execução isto não ocorre e uma exceção é lançada, dizendo que a variável é referenciada antes de ter sido atribuida.
+No primeiro caso, ao atingir `math.sin(30)`, o interpretador espera que o nome `math` esteja referenciando algum objeto, mas dado que a condicional é falsa, durante a execução isto não ocorre e uma exceção é lançada, dizendo que a variável é referenciada antes de ter sido atribuida.
 
 O mesmo é valido para o segundo caso, embora não se trate de uma importação, mas sim de uma variável.
 
