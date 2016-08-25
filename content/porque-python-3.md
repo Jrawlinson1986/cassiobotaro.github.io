@@ -126,7 +126,7 @@ def Σ(lim_inf, lim_sup, funcao):
     >>> Σ(1,5,lambda x:x)
     15
     '''
-    return sum([funcao(i) for i in range(lim_inf, lim_sup + 1)])
+    return sum(funcao(i) for i in range(lim_inf, lim_sup + 1))
 ```
 
 ##Leitura de dados de forma segura
